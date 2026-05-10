@@ -47,73 +47,25 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   </section>
 
   <!-- =====================================================
-       Direct contact (the simplest option)
+       Email link
+       The primary path. A form arrives later, once there's a
+       reliable backend (Calendly, Formspree, or a Vercel
+       serverless function). For now: just an email link, which
+       always works.
        ===================================================== -->
-  <section class="section reveal-on-scroll" aria-labelledby="direct-heading">
+  <section class="section reveal-on-scroll" aria-labelledby="email-heading">
     <div class="column">
-      <h2 id="direct-heading">The simplest way</h2>
+      <h2 id="email-heading">Email Stacey</h2>
 
       <p>
-        Email Stacey directly:
+        Send a short note. Or a long one. Anything you write is fine.
       </p>
 
-      <p style="margin-top: 1.25rem; font-size: 1.25rem;">
+      <p class="contact-email">
         <a href="mailto:hello@yellowlegalpad.example?subject=Discovery%20Call">
           hello@yellowlegalpad.example
         </a>
       </p>
-    </div>
-  </section>
-
-  <!-- =====================================================
-       The small form
-       ===================================================== -->
-  <section class="section reveal-on-scroll" aria-labelledby="form-heading">
-    <div class="column">
-      <h2 id="form-heading">Or use this</h2>
-
-      <p>
-        Three fields. Stacey will be in touch.
-      </p>
-
-      <form
-        method="post"
-        action="mailto:hello@yellowlegalpad.example"
-        enctype="text/plain"
-        class="contact-form"
-      >
-        <p>
-          <label for="contact-name">Your name</label>
-          <input
-            id="contact-name"
-            name="name"
-            type="text"
-            autocomplete="name"
-          />
-        </p>
-        <p>
-          <label for="contact-email">Email</label>
-          <input
-            id="contact-email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            required
-          />
-        </p>
-        <p>
-          <label for="contact-note">A note (optional)</label>
-          <textarea
-            id="contact-note"
-            name="note"
-            rows="5"
-            placeholder="A sentence or two about what brought you here. Or nothing &mdash; that's fine too."
-          ></textarea>
-        </p>
-        <p>
-          <button type="submit">Send</button>
-        </p>
-      </form>
     </div>
   </section>
 
@@ -139,77 +91,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
-  /* Contact form — quiet, document-like, not app-like.
-     Inputs use serif type to match the page; labels use sans
-     for modest contrast. NO bold borders, NO drop shadows,
-     NO focused-state rings beyond a subtle gold underline. */
-  .contact-form {
-    margin-top: 2rem;
-    max-width: 32rem;
-  }
-
-  .contact-form p {
-    margin-bottom: 1.5rem;
-  }
-
-  .contact-form label {
-    display: block;
-    font-family: theme("fontFamily.sans");
-    font-size: 0.875rem;
-    color: theme("colors.ink.soft");
-    margin-bottom: 0.5rem;
-  }
-
-  .contact-form input[type="text"],
-  .contact-form input[type="email"],
-  .contact-form textarea {
-    width: 100%;
-    font-family: theme("fontFamily.serif");
-    font-size: 1.0625rem;
-    line-height: 1.5;
-    color: theme("colors.ink.DEFAULT");
-    background-color: theme("colors.paper.cool");
-    border: 0;
-    border-bottom: 1px solid rgba(168, 127, 43, 0.32);
-    padding: 0.5rem 0;
-    transition: border-bottom-color 200ms ease;
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 0;
-  }
-
-  .contact-form input[type="text"]:focus,
-  .contact-form input[type="email"]:focus,
-  .contact-form textarea:focus {
-    outline: none;
-    border-bottom-color: theme("colors.gold.DEFAULT");
-  }
-
-  .contact-form textarea {
-    resize: vertical;
-    min-height: 8rem;
-  }
-
-  .contact-form button {
-    font-family: theme("fontFamily.sans");
-    font-size: 0.9375rem;
-    color: theme("colors.ink.DEFAULT");
-    background: transparent;
-    border: 0;
-    border-bottom: 1px solid theme("colors.gold.DEFAULT");
-    padding: 0.5rem 0;
-    cursor: pointer;
-    letter-spacing: 0.01em;
-  }
-
-  .contact-form button:hover {
-    border-bottom-width: 2px;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .contact-form input,
-    .contact-form textarea {
-      transition: none;
-    }
+  /* The email link sits a touch larger than body text — enough
+     presence to be obviously the call to action without becoming
+     a button. Underline is the existing gold convention. */
+  .contact-email {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
   }
 </style>

@@ -257,3 +257,53 @@ small,
   outline-offset: 3px;
   border-radius: 2px;
 }
+
+/* ------------------------------------------------------------------
+ * Print — respectful printing of pages people might want on paper
+ * (the resources, the about, the philosophy). Hide site chrome.
+ * Use white paper + black ink (the ivory paper color costs printer
+ * ink without serving the reader). Show URL after links so printed
+ * copies remain navigable.
+ * ------------------------------------------------------------------ */
+
+@media print {
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  .site-header,
+  .site-footer,
+  .reveal-on-scroll {
+    /* Reset the fade-in so printed pages aren't blank. */
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .site-header,
+  .site-footer {
+    display: none;
+  }
+
+  .section {
+    padding: 0.5rem 0;
+    page-break-inside: avoid;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  /* Show URL after external links (skip mailto/anchor) */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+  }
+
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+}
