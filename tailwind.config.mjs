@@ -66,7 +66,6 @@ export default {
         // feel like printed-page chapters, not boxes pressed against
         // each other.
         section: "8rem",
-        "section-lg": "12rem",
       },
       letterSpacing: {
         // Quietly literate, not fashion-editorial. No oversized

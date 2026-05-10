@@ -213,13 +213,6 @@ small,
   }
 }
 
-@media (min-width: 64rem) {
-  .section {
-    padding-top: theme("spacing.section-lg");
-    padding-bottom: theme("spacing.section-lg");
-  }
-}
-
 .column {
   max-width: var(--measure-prose);
   margin-left: auto;
