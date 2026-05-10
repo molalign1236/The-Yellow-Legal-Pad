@@ -11,8 +11,8 @@ slips through unnoticed.
 
 | Token | Where it appears | Stacey input needed |
 |---|---|---|
-| `[last name TBD]` | `src/layouts/BaseLayout.astro` (footer + title) and `src/pages/index.astro` (home reassurance copy) | Stacey's real last name |
 | `hello@yellowlegalpad.example` | `src/pages/contact.astro` (twice — direct mailto + form action) | Stacey's real email address |
+| (last name absent) | `src/pages/index.astro` ("a small practice run by Stacey"), `src/layouts/BaseLayout.astro` (footer "Stacey") | When she provides a last name, append it after "Stacey" in those two spots; until then, the site reads naturally as "Stacey" alone |
 
 ## Medium (real copy that supersedes the AI tonal drafts)
 

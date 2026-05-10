@@ -89,13 +89,25 @@ h3 {
 }
 
 h1 {
-  font-size: 2.5rem; /* ~40px — present, not loud */
+  font-size: 2rem; /* mobile baseline — kind to small screens */
   margin-bottom: 1.25rem;
 }
 
+@media (min-width: 40rem) {
+  h1 {
+    font-size: 2.5rem; /* ~40px on tablet+ — present, not loud */
+  }
+}
+
 h2 {
-  font-size: 1.75rem; /* ~28px — section titles */
+  font-size: 1.5rem; /* mobile baseline */
   margin-bottom: 1rem;
+}
+
+@media (min-width: 40rem) {
+  h2 {
+    font-size: 1.75rem; /* ~28px section titles on tablet+ */
+  }
 }
 
 h3 {
@@ -160,12 +172,20 @@ small,
  * ------------------------------------------------------------------ */
 
 .section {
-  padding-top: theme("spacing.section");
-  padding-bottom: theme("spacing.section");
-  /* Reading column is centered, but the OUTER container has
-     generous margin so the page never feels edge-to-edge. */
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  /* Mobile baseline — generous but not exhausting on small screens */
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 40rem) {
+  .section {
+    padding-top: theme("spacing.section");
+    padding-bottom: theme("spacing.section");
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 @media (min-width: 64rem) {
@@ -220,4 +240,20 @@ small,
 ::selection {
   background-color: theme("colors.gold.soft");
   color: theme("colors.ink.DEFAULT");
+}
+
+/* ------------------------------------------------------------------
+ * Focus — keyboard users get a soft gold ring matching link
+ * underlines. Mouse users see no extra indicator (per default
+ * :focus-visible behavior). Accessibility without aesthetic noise.
+ * ------------------------------------------------------------------ */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid theme("colors.gold.DEFAULT");
+  outline-offset: 3px;
+  border-radius: 2px;
 }
