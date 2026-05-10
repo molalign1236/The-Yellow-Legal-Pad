@@ -171,8 +171,10 @@ a:hover {
 
 blockquote {
   font-style: italic;
+  font-size: 1.1875rem; /* gentle pull-quote bump from body 18px */
   border-left: 1px solid theme("colors.gold.DEFAULT");
-  padding-left: 1.25rem;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
   color: theme("colors.ink.soft");
   max-width: var(--measure-prose);
 }
