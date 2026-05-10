@@ -141,6 +141,15 @@ p + p {
   margin-top: 0;
 }
 
+/* Caption following a paragraph sits tighter — like a footnote
+   tucked under its parent thought, not a separate beat. Resources
+   page ("about 8 pages") and services page ("Pricing on the
+   Discovery Call") both rely on this cadence. Footer caption is
+   unaffected because it follows a <nav>, not a <p>. */
+p + p.caption {
+  margin-top: -0.5rem;
+}
+
 a {
   color: theme("colors.ink.DEFAULT");
   text-decoration: underline;
