@@ -65,6 +65,11 @@ const isActive = (href: string) => {
       document.documentElement.classList.add("js-enabled");
     </script>
 
+    <!-- Skip-to-content link. Invisible until tab focus. Lets
+         keyboard and screen-reader users jump past the header
+         straight to the page body. -->
+    <a href="#main-content" class="skip-link">Skip to content</a>
+
     <!-- Quiet header. Plain text links. NOT sticky. The header
          is part of the page, not floating over it. The mobile
          layout simply wraps to two lines if needed — no
@@ -83,7 +88,7 @@ const isActive = (href: string) => {
       </div>
     </header>
 
-    <main>
+    <main id="main-content" tabindex="-1">
       <slot />
     </main>
 
@@ -140,6 +145,39 @@ const isActive = (href: string) => {
 
 <style is:global>
   @import "../styles/global.css";
+
+  /* Skip-to-content link. Hidden off-screen until it receives
+     keyboard focus, at which point it becomes a small, plain link
+     in the top-left corner. Visually quiet so it doesn't startle;
+     functionally honest for assistive-tech users. */
+  .skip-link {
+    position: absolute;
+    top: -3rem;
+    left: 1rem;
+    padding: 0.5rem 0.875rem;
+    background-color: theme("colors.paper.DEFAULT");
+    color: theme("colors.ink.DEFAULT");
+    font-family: theme("fontFamily.sans");
+    font-size: 0.875rem;
+    text-decoration: none;
+    border: 1px solid rgba(168, 127, 43, 0.4);
+    border-radius: 2px;
+    z-index: 10;
+  }
+
+  .skip-link:focus {
+    top: 0.75rem;
+    outline: 2px solid theme("colors.gold.DEFAULT");
+    outline-offset: 2px;
+  }
+
+  /* Remove the default focus ring on <main> when it receives
+     programmatic focus from the skip link — the link's own focus
+     state is enough indication, and a ring around the entire
+     content area would be visually loud. */
+  main:focus {
+    outline: none;
+  }
 
   /* Site header — small, calm, document-like. Not floating, not
      sticky. Reads as "the top of the page" not "navigation bar."
