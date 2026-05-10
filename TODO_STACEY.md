@@ -53,10 +53,10 @@ If she has different guides, replace the entries.
 
 | Item | Notes |
 |---|---|
-| `public/favicon.svg` | Owner provides; current `<link rel="icon">` will 404 silently |
+| `public/favicon.svg` | A temporary placeholder favicon ships with the repo (a single restrained-gold rule on a paper-ivory ground). Stacey can replace it with a proper mark whenever she has one |
 | Production domain | Owner picks; affects `astro.config.mjs` if site is server-side rendered (currently static, so domain is just a deploy concern) |
 | Real font files (alternative) | Currently using `@fontsource/eb-garamond` + `@fontsource/inter` via npm. If owner wants to use specifically licensed/purchased fonts (e.g. Söhne instead of Inter), drop into `public/fonts/` and update the `@font-face` declarations in `src/styles/global.css` |
-| Calendly link | If Stacey already has a Calendly URL, the contact form's `mailto:` action and the home/about/services "Book a Discovery Call" links can all be swapped to her Calendly URL via global search-replace on `mailto:hello@yellowlegalpad.example?subject=Discovery%20Call` and `/contact` |
+| Calendly link | If Stacey already has a Calendly URL, the contact-page email link and the home/about/services "Book a Discovery Call" links can be swapped to her Calendly URL via global search-replace. The current targets are `mailto:hello@yellowlegalpad.example?subject=Discovery%20Call` (in `src/pages/contact.astro`) and `href="/contact"` (in the other pages). |
 
 ## How to swap, mechanically
 
