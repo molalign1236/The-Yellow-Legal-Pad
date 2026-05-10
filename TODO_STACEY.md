@@ -11,7 +11,7 @@ slips through unnoticed.
 
 | Token | Where it appears | Stacey input needed |
 |---|---|---|
-| `hello@yellowlegalpad.example` | `src/pages/contact.astro` (twice — direct mailto + form action) | Stacey's real email address |
+| `hello@yellowlegalpad.example` | `src/pages/contact.astro` (one mailto link) | Stacey's real email address |
 | (last name absent) | `src/pages/index.astro` ("a small practice run by Stacey"), `src/layouts/BaseLayout.astro` (footer "Stacey") | When she provides a last name, append it after "Stacey" in those two spots; until then, the site reads naturally as "Stacey" alone |
 
 ## Medium (real copy that supersedes the AI tonal drafts)
@@ -27,7 +27,7 @@ edit these heavily — her exact cadence is the long-term authority.
 | `src/pages/about.astro` | "How she got here" section | **Bracketed placeholder paragraphs** — Stacey writes her own career path; I deliberately did not invent details |
 | `src/pages/services.astro` | All three package descriptions (Clarity Session / Quarterly Check-In / Family Conversation) | Currently named based on natural Stacey-shaped tiers; she may rename, restructure, change scope |
 | `src/pages/services.astro` | Process clarity ("three specific things") | Currently a good draft; she should edit |
-| `src/pages/contact.astro` | All sections | Currently good drafts; she should edit |
+| `src/pages/contact.astro` | All sections | Currently good drafts; she should edit. The contact form was removed in Pass 315 — only an email link is offered. Form returns when there's a backend (Calendly, Formspree, or Vercel serverless function) — owner-decision territory. |
 
 ## Resources page (needs real PDFs)
 
