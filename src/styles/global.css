@@ -1,0 +1,223 @@
+/*
+ * Yellow Legal Pad — global CSS
+ *
+ * The site is a document, not an application. Most styling here is
+ * typographic. We import EB Garamond + Inter from Fontsource (self-
+ * hosted via npm), define the document baseline rhythm, and stop.
+ *
+ * Resist the urge to add component classes here. Components belong
+ * in their own files. This file is for reading.
+ */
+
+/* Self-hosted faces, not Google Fonts CDN. Loaded via npm packages
+   so they ship with the build and respect privacy. */
+@import "@fontsource/eb-garamond/400.css";
+@import "@fontsource/eb-garamond/400-italic.css";
+@import "@fontsource/eb-garamond/600.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+ * Document baseline.
+ * ------------------------------------------------------------------ */
+
+:root {
+  /* Reading rhythm. Body line-height generous; headings tighter.
+     These values are CALM defaults. Per Pass 305 §3 finding,
+     don't introduce more constants until a specific reading
+     moment proves the default wrong. */
+  --line-height-body: 1.65;
+  --line-height-heading: 1.2;
+  --measure-prose: 38rem; /* ~62ch */
+}
+
+html {
+  /* Smooth scrolling, but only when the user has not asked
+     otherwise. Default is reduced-motion-respecting. */
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: theme("fontFamily.serif");
+  font-size: 1.125rem; /* 18px — kind to readers; not magazine-tiny */
+  line-height: var(--line-height-body);
+  letter-spacing: theme("letterSpacing.body");
+  color: theme("colors.ink.DEFAULT");
+  background-color: theme("colors.paper.DEFAULT");
+  /* Crisp text on retina; no smoothing tricks. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Slightly imperfectly human — text-rendering 'optimizeLegibility'
+     trades a small perf cost for kerning that respects the type
+     designer's intent. Safe at this scale. */
+  text-rendering: optimizeLegibility;
+}
+
+/* ------------------------------------------------------------------
+ * Typography — quietly literate, not fashion-editorial.
+ *
+ * Watch list (from relay #35 typography drift):
+ *   - oversized serif drama
+ *   - hyper-thin typography
+ *   - luxury-magazine contrast
+ *   - excessive uppercase spacing
+ *   - ornamental typography systems
+ *
+ * These rules deliberately sit at modest sizes. The hierarchy is
+ * present but quiet. The type supports reading safety, not brand
+ * spectacle.
+ * ------------------------------------------------------------------ */
+
+h1,
+h2,
+h3 {
+  font-family: theme("fontFamily.serif");
+  font-weight: 600;
+  line-height: var(--line-height-heading);
+  letter-spacing: theme("letterSpacing.heading");
+  color: theme("colors.ink.DEFAULT");
+}
+
+h1 {
+  font-size: 2.5rem; /* ~40px — present, not loud */
+  margin-bottom: 1.25rem;
+}
+
+h2 {
+  font-size: 1.75rem; /* ~28px — section titles */
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: 1.25rem; /* ~20px — sub-titles, used sparingly */
+  margin-bottom: 0.75rem;
+}
+
+p {
+  max-width: var(--measure-prose);
+  margin-bottom: 1.25rem;
+}
+
+p + p {
+  /* Slight extra breath between paragraphs — preserves the
+     three-beat rhythm Pass 309 §5 named (reassurance / clarity /
+     permission). The pauses are part of the trust. */
+  margin-top: 0;
+}
+
+a {
+  color: theme("colors.ink.DEFAULT");
+  text-decoration: underline;
+  text-decoration-color: theme("colors.gold.DEFAULT");
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: text-decoration-thickness 150ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a {
+    transition: none;
+  }
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+blockquote {
+  font-style: italic;
+  border-left: 1px solid theme("colors.gold.DEFAULT");
+  padding-left: 1.25rem;
+  color: theme("colors.ink.soft");
+  max-width: var(--measure-prose);
+}
+
+small,
+.caption {
+  font-family: theme("fontFamily.sans");
+  font-size: 0.875rem;
+  color: theme("colors.ink.muted");
+  letter-spacing: 0;
+}
+
+/* ------------------------------------------------------------------
+ * Section rhythm — generous breathing room.
+ *
+ * Per Pass 309 §9: slight asymmetry is healthy. Sections do NOT all
+ * use identical padding. Use these utilities as defaults; let
+ * individual sections deviate when their emotional content asks
+ * for it.
+ * ------------------------------------------------------------------ */
+
+.section {
+  padding-top: theme("spacing.section");
+  padding-bottom: theme("spacing.section");
+  /* Reading column is centered, but the OUTER container has
+     generous margin so the page never feels edge-to-edge. */
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media (min-width: 64rem) {
+  .section {
+    padding-top: theme("spacing.section-lg");
+    padding-bottom: theme("spacing.section-lg");
+  }
+}
+
+.column {
+  max-width: var(--measure-prose);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.column-wide {
+  max-width: 44rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ------------------------------------------------------------------
+ * Soft section appearance — gentle fade-in only.
+ *
+ * Per Pass 309 §7 motion profile: this is the ONLY motion
+ * permitted at v1. No spring physics, no parallax, no scroll
+ * theatrics. Single property (opacity), under 400ms, with a
+ * reduced-motion fallback that is instant.
+ *
+ * Implemented with a tiny IntersectionObserver enhancement in the
+ * page; sections begin at opacity 0 and fade to 1 when first
+ * intersected. If JS is disabled, sections render at opacity 1
+ * (the .reveal-on-scroll class only sets opacity:0 if the
+ * .js-enabled flag is added by the small inline script).
+ * ------------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js-enabled .reveal-on-scroll {
+    opacity: 0;
+    transition: opacity 380ms ease;
+  }
+
+  .js-enabled .reveal-on-scroll.is-visible {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Selection — a quietly warm highlight. No surprise.
+ * ------------------------------------------------------------------ */
+
+::selection {
+  background-color: theme("colors.gold.soft");
+  color: theme("colors.ink.DEFAULT");
+}

@@ -1,0 +1,290 @@
+---
+// Yellow Legal Pad — Stacey's site, single page.
+//
+// This is Pass 310 atmosphere-only scaffold. Real copy arrives in
+// Pass 312-314 once Stacey provides it. Placeholder text below is
+// tonally aligned but DELIBERATELY GENERIC so it doesn't feel like
+// finished writing — the page should look correctly empty until
+// Stacey's actual words land.
+//
+// 7 sections, linear scroll, in the order Pass 308 §2 specified:
+//   1. reassurance
+//   2. story (Grampy + yellow legal pad origin)
+//   3. philosophy
+//   4. who it's for
+//   5. process clarity
+//   6. packages
+//   7. invitation
+//
+// Composition rules being honored:
+//   - "Printed not engineered" — document composition, not app
+//     composition. Plain HTML, very few class names.
+//   - "Slightly imperfectly human" — section padding deliberately
+//     varies. Reassurance gets generous top space; Story has
+//     longer measure for narrative; Packages tighter to feel
+//     editorially organized.
+//   - Reduce-motion respected throughout.
+//   - Zero React. Zero islands. Zero client:* directives.
+//   - One IntersectionObserver tucked at the bottom — sections
+//     fade in once when first scrolled into view. Single property
+//     (opacity). Under 400ms. Falls back to "always visible" if
+//     JS disabled or reduce-motion preferred.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Yellow Legal Pad — financial coaching with Stacey. A quiet conversation, without judgment." />
+    <title>Yellow Legal Pad — Stacey [last name TBD]</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- No preconnect to font CDNs; fonts are bundled via Fontsource
+         and ship with the build. Privacy + speed. -->
+  </head>
+
+  <body>
+    <!-- Tiny inline script: only purpose is to add a flag class so
+         the CSS knows JS is available. If this script never runs,
+         the .reveal-on-scroll sections render at opacity 1 by
+         default — i.e. the page works fully without JS. -->
+    <script is:inline>
+      document.documentElement.classList.add("js-enabled");
+    </script>
+
+    <main>
+      <!-- ======================================================
+           1. REASSURANCE
+           Above the fold. Permission moment. The reader should
+           leave this section already breathing slightly easier.
+           ====================================================== -->
+      <section class="section reveal-on-scroll" aria-labelledby="reassurance-title">
+        <div class="column">
+          <h1 id="reassurance-title">
+            <!-- Placeholder. Stacey's actual opening will go here.
+                 Likely something like "You're in the right place."
+                 — but DO NOT WRITE that here; it must be hers. -->
+            [Reassurance opening — Stacey's voice]
+          </h1>
+          <p>
+            [One short paragraph that does the same emotional work
+            as the welcome mat. Plain language. No optimization
+            energy. Reads like Stacey speaking.]
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           2. STORY
+           Grampy + the yellow legal pad origin. This is the most
+           distinctive content asset in the site; it has its own
+           wider measure for narrative.
+           ====================================================== -->
+      <section class="section reveal-on-scroll" aria-labelledby="story-title">
+        <div class="column-wide">
+          <h2 id="story-title">[Story heading — likely "About the name" or similar]</h2>
+          <p>
+            [Grampy paragraph 1 — the legal pad, the conversation,
+            what it taught.]
+          </p>
+          <p>
+            [Grampy paragraph 2 — what carries forward into Stacey's
+            practice today.]
+          </p>
+          <p>
+            [Optional paragraph 3 — bridge into Stacey's own voice.]
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           3. PHILOSOPHY
+           "Wash a ziplock bag so you can fly first class."
+           "You are not financially unintelligent — you are
+           financially underserved." Three-beat rhythm:
+           reassurance / practical / permission.
+           ====================================================== -->
+      <section class="section reveal-on-scroll" aria-labelledby="philosophy-title">
+        <div class="column">
+          <h2 id="philosophy-title">[Philosophy heading]</h2>
+          <p>
+            [Reassurance beat — "this is understandable."]
+          </p>
+          <p>
+            [Practical beat — concrete framing. The ziplock-bag
+            quote belongs here, in Stacey's exact phrasing.]
+          </p>
+          <p>
+            [Permission beat — "you are not financially
+            unintelligent. You are financially underserved." —
+            Stacey's exact phrasing.]
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           4. WHO IT'S FOR
+           Audience self-recognition. Plain prose, not a feature
+           grid. Reader sees themselves and feels safe.
+           ====================================================== -->
+      <section class="section reveal-on-scroll" aria-labelledby="audience-title">
+        <div class="column">
+          <h2 id="audience-title">[Who this is for]</h2>
+          <p>
+            [Paragraph that names who Stacey works with — likely
+            individuals, couples, families. Plain language. No
+            ICP-style bullet list.]
+          </p>
+          <p>
+            [Paragraph that names what they're often carrying —
+            quiet financial shame, intimidation, exhaustion.
+            Without naming it harshly.]
+          </p>
+          <p>
+            [Optional paragraph that gently affirms: you don't
+            need to have it figured out before you arrive.]
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           5. PROCESS CLARITY
+           What a clarity session is. "Three specific things."
+           Demystifies before asking. Reads like a calm
+           explanation, not a sales pitch.
+           ====================================================== -->
+      <section class="section reveal-on-scroll" aria-labelledby="process-title">
+        <div class="column">
+          <h2 id="process-title">[What a session looks like]</h2>
+          <p>
+            [Paragraph framing what to expect — conversational,
+            unhurried, no homework before arriving.]
+          </p>
+          <p>
+            [Paragraph naming the "three specific things" or
+            equivalent concrete moves Stacey makes during a
+            session. Stacey's exact phrasing.]
+          </p>
+          <p>
+            [Paragraph closing the loop — what you leave with.
+            Likely: clarity + a next small step + permission.]
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           6. PACKAGES
+           Editorially organized comparison. Equal visual weight
+           per package. NO "BEST VALUE", NO "RECOMMENDED",
+           NO aggressive pricing hierarchy. Reader concludes from
+           prose what fits them; the design does not push.
+           ====================================================== -->
+      <section class="section reveal-on-scroll" aria-labelledby="packages-title">
+        <div class="column-wide">
+          <h2 id="packages-title">[Working together]</h2>
+          <p>
+            [Brief framing paragraph — "here are the ways we can
+            work together, calmly." Stacey's voice.]
+          </p>
+
+          <!-- Package list — semantic, not a card grid. -->
+          <article style="margin-top: 2.5rem;">
+            <h3>[Package 1 name]</h3>
+            <p>[Package 1 description — what it is, who it's for, what's included. Plain language. No "BEST VALUE" badge.]</p>
+            <p class="caption">[Optional: cadence, pricing if Stacey wants it visible. Pricing is OPTIONAL at v1; many concierge practices gate pricing behind the discovery call.]</p>
+          </article>
+
+          <article style="margin-top: 2.5rem;">
+            <h3>[Package 2 name]</h3>
+            <p>[Package 2 description.]</p>
+            <p class="caption">[Optional cadence/pricing.]</p>
+          </article>
+
+          <article style="margin-top: 2.5rem;">
+            <h3>[Package 3 name — if applicable]</h3>
+            <p>[Package 3 description.]</p>
+            <p class="caption">[Optional cadence/pricing.]</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           7. INVITATION
+           Soft call-to-action. "The second best time is today."
+           Booking link or contact form. NO transactional CTA
+           language ever — see Pass 309 §4.2 + relay #35
+           banned-phrase lists.
+           ====================================================== -->
+      <section class="section reveal-on-scroll" aria-labelledby="invitation-title">
+        <div class="column">
+          <h2 id="invitation-title">[Invitation heading]</h2>
+          <p>
+            [Closing paragraph in Stacey's voice. "The second best
+            time is today" or equivalent. Soft, conversational,
+            unhurried.]
+          </p>
+
+          <p style="margin-top: 2.5rem;">
+            <!-- The CTA. ONE link. Conversational language only.
+                 If Stacey already has Calendly, this is her
+                 Calendly URL. Otherwise mailto: works fine
+                 at v1. -->
+            <a href="[CALENDLY_URL_OR_MAILTO]">Book a Discovery Call</a>
+          </p>
+        </div>
+      </section>
+
+      <!-- ======================================================
+           Footer — quiet acknowledgement, no marketing footer.
+           ====================================================== -->
+      <footer class="section" style="padding-top: 4rem; padding-bottom: 4rem;">
+        <div class="column">
+          <p class="caption">
+            Yellow Legal Pad &middot; Stacey [last name TBD]
+            <!-- Optional: small acknowledgement of Grampy. -->
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <!-- Tiny IntersectionObserver — the only "JS" on the page.
+         Adds .is-visible to .reveal-on-scroll sections when they
+         first enter the viewport. Single property fade. If
+         IntersectionObserver is unavailable (very old browsers),
+         everything is visible by default.
+
+         Per Pass 309 §7: this is the ONLY motion permitted at v1.
+         If this script ever grows beyond ~15 lines or starts
+         coordinating multiple effects, that is implementation
+         drift — flag it.
+    -->
+    <script is:inline>
+      (function () {
+        if (typeof window === "undefined") return;
+        if (typeof IntersectionObserver === "undefined") return;
+        var prefersReduced = window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReduced) return;
+
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+        );
+
+        document.querySelectorAll(".reveal-on-scroll").forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>
+<style is:global>
+  @import "../styles/global.css";
+</style>
