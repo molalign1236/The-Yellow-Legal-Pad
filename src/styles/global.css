@@ -52,13 +52,6 @@ body {
   letter-spacing: theme("letterSpacing.body");
   color: theme("colors.ink.DEFAULT");
   background-color: theme("colors.paper.DEFAULT");
-  /* Subtle paper grain. SVG fractalNoise baked at ~4% alpha,
-     tiled every 180px. The effect is below conscious visual
-     threshold — you don't see speckles, you feel paper. Goal is
-     atmosphere, not decoration. Disabled in print and for users
-     who request more contrast (see media queries below). */
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.045 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
   /* Crisp text on retina; no smoothing tricks. */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -66,15 +59,6 @@ body {
      trades a small perf cost for kerning that respects the type
      designer's intent. Safe at this scale. */
   text-rendering: optimizeLegibility;
-}
-
-/* Skip the paper grain when the user has asked for more contrast.
-   The speckle sits well below typical visual threshold but anyone
-   relying on high-contrast preferences shouldn't have to fight it. */
-@media (prefers-contrast: more) {
-  body {
-    background-image: none;
-  }
 }
 
 /* ------------------------------------------------------------------
@@ -171,10 +155,8 @@ a:hover {
 
 blockquote {
   font-style: italic;
-  font-size: 1.1875rem; /* gentle pull-quote bump from body 18px */
   border-left: 1px solid theme("colors.gold.DEFAULT");
-  padding-left: 1.5rem;
-  margin: 2rem 0;
+  padding-left: 1.25rem;
   color: theme("colors.ink.soft");
   max-width: var(--measure-prose);
 }
