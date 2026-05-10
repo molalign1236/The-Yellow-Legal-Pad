@@ -233,6 +233,35 @@ small,
 }
 
 /* ------------------------------------------------------------------
+ * Section anchors — quiet scene breaks between consecutive sections.
+ *
+ * A small centered gold rule sits at the boundary between sections
+ * (in the natural whitespace area, no content moves). Visually
+ * echoes the legal-pad rules in the favicon and the paper grain in
+ * the body. Reads as a printed-essay scene break, not a UI divider.
+ *
+ * Width 2rem, 1px height, gold at 18% alpha. The eye registers
+ * "another beat begins here" without consciously noticing the mark.
+ * ------------------------------------------------------------------ */
+
+.section + .section {
+  position: relative;
+}
+
+.section + .section::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2rem;
+  height: 1px;
+  background-color: rgba(168, 127, 43, 0.18);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------
  * Soft section appearance — gentle fade-in only.
  *
  * Per Pass 309 §7 motion profile: this is the ONLY motion
@@ -315,6 +344,11 @@ small,
   .section {
     padding: 0.5rem 0;
     page-break-inside: avoid;
+  }
+
+  /* Section anchors are atmosphere-only — don't print them. */
+  .section + .section::before {
+    display: none;
   }
 
   a {
