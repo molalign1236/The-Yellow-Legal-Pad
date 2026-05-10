@@ -6,6 +6,11 @@ import tailwind from "@astrojs/tailwind";
 // minimal progressive enhancement. The quieter the runtime, the
 // louder the emotional clarity.
 export default defineConfig({
+  // Once Stacey's domain is known, set:
+  //   site: "https://yellowlegalpad.example",  // replace with real
+  // This re-enables the canonical <link> and og:url tags in
+  // BaseLayout (currently suppressed to avoid shipping localhost
+  // URLs to production — see Pass 320).
   output: "static",
   integrations: [
     tailwind({
