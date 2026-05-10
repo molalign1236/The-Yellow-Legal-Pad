@@ -1,0 +1,249 @@
+---
+// BaseLayout — shared shell for every page.
+//
+// Per relay #37 §1: navigation should feel "quietly adjacent, not
+// app-like. No sticky-nav sophistication. No mega menus. No routing
+// abstractions. No transition systems. Simple links."
+//
+// This layout provides:
+//   - <head> with meta + global CSS
+//   - a quiet header with text-only navigation (NOT sticky)
+//   - a <main> slot for page content
+//   - a quiet footer with the same links + a small acknowledgement
+//
+// The header and footer are deliberately small. The page content
+// breathes; the chrome doesn't compete.
+//
+// Single Astro layout. No further abstractions. No <Header> /
+// <Footer> components yet — they're 30 lines combined; splitting
+// them would add navigation cost without benefit.
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+
+const fullTitle = title
+  ? `${title} — Yellow Legal Pad`
+  : "Yellow Legal Pad — Stacey [last name TBD]";
+
+const meta =
+  description ??
+  "Yellow Legal Pad — financial coaching with Stacey. A quiet conversation, without judgment.";
+
+// Active-link detection. Match by pathname; trailing-slash tolerant.
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isActive = (href: string) => {
+  const normalized = href.replace(/\/$/, "") || "/";
+  return path === normalized;
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={meta} />
+    <title>{fullTitle}</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+
+  <body>
+    <script is:inline>
+      document.documentElement.classList.add("js-enabled");
+    </script>
+
+    <!-- Quiet header. Plain text links. NOT sticky. The header
+         is part of the page, not floating over it. The mobile
+         layout simply wraps to two lines if needed — no
+         hamburger menu. -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <a href="/" class="site-header__brand" aria-label="Yellow Legal Pad — home">
+          Yellow Legal Pad
+        </a>
+        <nav class="site-header__nav" aria-label="Primary">
+          <a href="/about" class:list={["site-header__link", { "is-active": isActive("/about") }]}>About</a>
+          <a href="/services" class:list={["site-header__link", { "is-active": isActive("/services") }]}>Services</a>
+          <a href="/resources" class:list={["site-header__link", { "is-active": isActive("/resources") }]}>Resources</a>
+          <a href="/contact" class:list={["site-header__link", { "is-active": isActive("/contact") }]}>Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <!-- Quiet footer. Same links offered again — for visitors who
+         finish reading and want a next page. Small acknowledgement
+         beneath. No social icons, no newsletter signup, no
+         "powered by." -->
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+        <nav class="site-footer__nav" aria-label="Footer">
+          <a href="/" class="site-footer__link">Home</a>
+          <a href="/about" class="site-footer__link">About</a>
+          <a href="/services" class="site-footer__link">Services</a>
+          <a href="/resources" class="site-footer__link">Resources</a>
+          <a href="/contact" class="site-footer__link">Contact</a>
+        </nav>
+        <p class="caption site-footer__note">
+          Yellow Legal Pad &middot; Stacey [last name TBD]
+        </p>
+      </div>
+    </footer>
+
+    <!-- Tiny IntersectionObserver — same as before; only motion
+         on the page. Section-level fade-in. Inert if reduce-motion
+         requested or JS disabled. -->
+    <script is:inline>
+      (function () {
+        if (typeof window === "undefined") return;
+        if (typeof IntersectionObserver === "undefined") return;
+        var prefersReduced =
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReduced) return;
+
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
+        );
+
+        document.querySelectorAll(".reveal-on-scroll").forEach(function (el) {
+          io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import "../styles/global.css";
+
+  /* Site header — small, calm, document-like. Not floating, not
+     sticky. Reads as "the top of the page" not "navigation bar." */
+  .site-header {
+    padding-top: 2.5rem;
+    padding-bottom: 1rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-bottom: 1px solid theme("colors.gold.DEFAULT");
+    /* Wait — that border is too loud. The relay said "almost no
+       hard dividers." Use a softer separator. */
+    border-bottom-color: rgba(168, 127, 43, 0.18);
+  }
+
+  .site-header__inner {
+    max-width: 60rem;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+  }
+
+  .site-header__brand {
+    font-family: theme("fontFamily.serif");
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: theme("colors.ink.DEFAULT");
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .site-header__brand:hover {
+    text-decoration: underline;
+    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .site-header__link {
+    font-family: theme("fontFamily.sans");
+    font-size: 0.9rem;
+    color: theme("colors.ink.soft");
+    text-decoration: none;
+    letter-spacing: 0;
+  }
+
+  .site-header__link:hover {
+    color: theme("colors.ink.DEFAULT");
+    text-decoration: underline;
+    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .site-header__link.is-active {
+    color: theme("colors.ink.DEFAULT");
+    text-decoration: underline;
+    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  /* Site footer — same links offered again, plus a small
+     acknowledgement. Quieter than the header. */
+  .site-footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    border-top: 1px solid rgba(168, 127, 43, 0.18);
+    margin-top: 6rem;
+  }
+
+  .site-footer__inner {
+    max-width: 60rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .site-footer__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .site-footer__link {
+    font-family: theme("fontFamily.sans");
+    font-size: 0.875rem;
+    color: theme("colors.ink.soft");
+    text-decoration: none;
+  }
+
+  .site-footer__link:hover {
+    color: theme("colors.ink.DEFAULT");
+    text-decoration: underline;
+    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+
+  .site-footer__note {
+    color: theme("colors.ink.muted");
+    margin-bottom: 0;
+    max-width: none;
+  }
+</style>

@@ -1,0 +1,228 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Contact page.
+//
+// Per relay #37 §8: contact flow should feel emotionally easy.
+// Plain language. Low-friction form. No aggressive required
+// fields. Reassurance copy near form. "No pressure" language.
+//
+// Pass 311 ships TWO paths offered side-by-side, calmly:
+//   1. A direct mailto: link to Stacey (no form to fill)
+//   2. A small form (only 3 fields: name, email, brief note)
+//
+// Stacey can later swap the form action for a Calendly URL or a
+// Vercel serverless email function. The form posts to "/contact"
+// (relative); since v1 is fully static, the form action will be
+// updated when she chooses a backend (mailto: works as fallback).
+//
+// No required fields beyond email. No phone field. No "company"
+// field. No "how did you hear about us" field. The friction
+// itself is part of the welcome.
+---
+
+<BaseLayout
+  title="Contact"
+  description="Book a Discovery Call with Stacey. Short, free, unhurried, and no pressure to continue."
+>
+  <!-- =====================================================
+       Reassurance opening
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="contact-heading">
+    <div class="column">
+      <h1 id="contact-heading">Book a Discovery Call</h1>
+
+      <p>
+        Send Stacey a note, or use the small form below. She reads
+        every message herself, usually within a day or two, and she
+        responds &mdash; even if it's just to say she's not the right
+        fit. No autoresponders. No drip emails. Just a person.
+      </p>
+
+      <p>
+        A Discovery Call is short (about twenty minutes), free, and
+        unhurried. There's no obligation to continue afterward.
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       Direct contact (the simplest option)
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="direct-heading">
+    <div class="column">
+      <h2 id="direct-heading">The simplest way</h2>
+
+      <p>
+        Email Stacey directly:
+      </p>
+
+      <p style="margin-top: 1.25rem; font-size: 1.25rem;">
+        <a href="mailto:hello@yellowlegalpad.example?subject=Discovery%20Call">
+          hello@yellowlegalpad.example
+        </a>
+      </p>
+
+      <p class="caption" style="margin-top: 1rem;">
+        [Email address placeholder &mdash; Stacey provides her real
+        address; the form below is for people who'd rather not open
+        their mail client.]
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       The small form
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="form-heading">
+    <div class="column">
+      <h2 id="form-heading">Or use this</h2>
+
+      <p>
+        Three fields. Stacey will be in touch.
+      </p>
+
+      <form
+        method="post"
+        action="mailto:hello@yellowlegalpad.example"
+        enctype="text/plain"
+        class="contact-form"
+      >
+        <p>
+          <label for="contact-name">Your name</label>
+          <input
+            id="contact-name"
+            name="name"
+            type="text"
+            autocomplete="name"
+          />
+        </p>
+        <p>
+          <label for="contact-email">Email</label>
+          <input
+            id="contact-email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          />
+        </p>
+        <p>
+          <label for="contact-note">A note (optional)</label>
+          <textarea
+            id="contact-note"
+            name="note"
+            rows="5"
+            placeholder="A sentence or two about what brought you here. Or nothing &mdash; that's fine too."
+          ></textarea>
+        </p>
+        <p>
+          <button type="submit">Send</button>
+        </p>
+      </form>
+
+      <p class="caption" style="margin-top: 2rem;">
+        [This form currently posts via mailto: as a v1 fallback.
+        Stacey or her web admin can later swap the action to a
+        Vercel serverless function or a Calendly link without
+        changing this page's structure.]
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       Reassurance closing
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="closing-heading">
+    <div class="column">
+      <h2 id="closing-heading">Before you write</h2>
+
+      <p>
+        You don't need to summarize your whole financial picture.
+        You don't need to know what you want. "I've been meaning
+        to talk to someone about money" is enough.
+      </p>
+
+      <p>
+        And if you write and never end up booking a session, that
+        is also fine. Stacey isn't tracking conversion rates.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Contact form — quiet, document-like, not app-like.
+     Inputs use serif type to match the page; labels use sans
+     for modest contrast. NO bold borders, NO drop shadows,
+     NO focused-state rings beyond a subtle gold underline. */
+  .contact-form {
+    margin-top: 2rem;
+    max-width: 32rem;
+  }
+
+  .contact-form p {
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-form label {
+    display: block;
+    font-family: theme("fontFamily.sans");
+    font-size: 0.875rem;
+    color: theme("colors.ink.soft");
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-form input[type="text"],
+  .contact-form input[type="email"],
+  .contact-form textarea {
+    width: 100%;
+    font-family: theme("fontFamily.serif");
+    font-size: 1.0625rem;
+    line-height: 1.5;
+    color: theme("colors.ink.DEFAULT");
+    background-color: theme("colors.paper.cool");
+    border: 0;
+    border-bottom: 1px solid rgba(168, 127, 43, 0.32);
+    padding: 0.5rem 0;
+    transition: border-bottom-color 200ms ease;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
+
+  .contact-form input[type="text"]:focus,
+  .contact-form input[type="email"]:focus,
+  .contact-form textarea:focus {
+    outline: none;
+    border-bottom-color: theme("colors.gold.DEFAULT");
+  }
+
+  .contact-form textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  .contact-form button {
+    font-family: theme("fontFamily.sans");
+    font-size: 0.9375rem;
+    color: theme("colors.ink.DEFAULT");
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid theme("colors.gold.DEFAULT");
+    padding: 0.5rem 0;
+    cursor: pointer;
+    letter-spacing: 0.01em;
+  }
+
+  .contact-form button:hover {
+    border-bottom-width: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .contact-form input,
+    .contact-form textarea {
+      transition: none;
+    }
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Services / Packages page.
+//
+// Per relay #37 §6: this page can be its own surface, but each
+// package must feel "calmly available" — NO sales hierarchy,
+// NO "best value," NO comparison aggression.
+//
+// Packages are presented as plain editorial blocks (<article>)
+// with equal visual weight. Pricing is left optional — many
+// concierge practices gate pricing behind the discovery call.
+// Stacey can choose to surface or hide prices when she edits.
+---
+
+<BaseLayout
+  title="Services"
+  description="How Stacey works — the Discovery Call, what a session looks like, and the ways to work together."
+>
+  <!-- =====================================================
+       Process clarity
+       Demystifies before asking. Reads like a calm
+       explanation, not a sales pitch.
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="process-heading">
+    <div class="column">
+      <h1 id="process-heading">How Stacey works</h1>
+
+      <p>
+        Every working relationship starts the same way: with a Discovery
+        Call. It's a short conversation, free, and no pressure to
+        continue. Stacey listens, asks a few questions, and tells you
+        honestly whether she can help.
+      </p>
+
+      <p>
+        If you decide to keep going, sessions feel a lot like Grampy's
+        kitchen table. We sit down, plain language, and look at three
+        specific things together &mdash; the things that, once they're clear,
+        tend to settle the rest of the picture.
+      </p>
+
+      <p>
+        You leave a session with: a clearer picture of where you are,
+        one or two concrete next steps you can actually do, and
+        permission to stop worrying about the rest until next time.
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       Packages
+       Editorial blocks, equal visual weight. NO badges.
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="packages-heading">
+    <div class="column-wide">
+      <h2 id="packages-heading">Ways to work together</h2>
+
+      <p>
+        These are the ways Stacey commonly works with people. None is
+        better than another &mdash; they're shaped to fit different lives.
+      </p>
+
+      <article style="margin-top: 3rem;">
+        <h3>The Clarity Session</h3>
+        <p>
+          A single conversation, in depth. For people who want one
+          good look at their picture &mdash; current accounts, income,
+          obligations, hopes &mdash; and want to leave with one or two
+          concrete next steps. No ongoing commitment.
+        </p>
+        <p class="caption">
+          Single session. Pricing on the Discovery Call.
+        </p>
+      </article>
+
+      <article style="margin-top: 3rem;">
+        <h3>The Quarterly Check-In</h3>
+        <p>
+          For people who'd rather not figure money out alone four times
+          a year. We pick up where the last conversation left off, look
+          at what's changed, and adjust. Useful for life that has more
+          moving parts &mdash; couples, families, parents and aging parents,
+          people in transition.
+        </p>
+        <p class="caption">
+          Recurring quarterly. Pricing on the Discovery Call.
+        </p>
+      </article>
+
+      <article style="margin-top: 3rem;">
+        <h3>The Family Conversation</h3>
+        <p>
+          For families who want to talk about money together &mdash; across
+          generations, across couples, across siblings sorting out a
+          parent's care. Stacey facilitates. The hard parts go better
+          when there's someone steady at the table.
+        </p>
+        <p class="caption">
+          Custom scope. Pricing on the Discovery Call.
+        </p>
+      </article>
+
+      <p style="margin-top: 4rem;">
+        Not sure which fits? <a href="/contact">Book a Discovery Call</a>
+        &mdash; that's what it's for.
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       What this is NOT
+       Quietly clarifies. Reduces fear of misunderstanding.
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="not-heading">
+    <div class="column">
+      <h2 id="not-heading">What this isn't</h2>
+
+      <p>
+        Stacey isn't a financial advisor or a registered investment
+        advisor. She doesn't sell investment products. She doesn't
+        manage your accounts or take a percentage of your assets.
+      </p>
+
+      <p>
+        She charges a flat fee for her time. That's it. The
+        relationship is between her and you, not her and a broker.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

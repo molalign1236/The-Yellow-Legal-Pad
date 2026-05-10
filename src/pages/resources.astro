@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Resources / Guides page.
+//
+// Per relay #37 §7: "calm document-library feeling. NOT content
+// marketing. The page should feel like Stacey quietly handing
+// someone useful papers."
+//
+// No SEO-blog energy. No "growth content." No productivity tone.
+// Each guide is presented as a quiet entry — title, short
+// description, link to a PDF or a printable page.
+//
+// Pass 311 ships the page STRUCTURE with placeholder guide
+// entries. Real PDFs / pages link in once Stacey provides them.
+---
+
+<BaseLayout
+  title="Resources"
+  description="A small library of guides Stacey has written for people sorting out money calmly."
+>
+  <section class="section reveal-on-scroll" aria-labelledby="library-heading">
+    <div class="column">
+      <h1 id="library-heading">A few useful papers</h1>
+
+      <p>
+        Stacey writes things down. These are the most-asked-for
+        ones &mdash; written for people, not for marketing. Read them
+        if they help. Skip them if they don't.
+      </p>
+
+      <p>
+        Nothing here is gated. No email required. No download
+        confirmation. Just papers.
+      </p>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       The library — list, not card grid.
+       Each entry is a small <article> with a title link,
+       a short paragraph, and a quiet hint at length.
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="entries-heading">
+    <div class="column-wide">
+      <h2 id="entries-heading" class="visually-hidden">Guides</h2>
+
+      <article style="margin-bottom: 3rem;">
+        <h3>
+          <a href="#family-money-guide">A Family Money Guide</a>
+        </h3>
+        <p>
+          For families with kids who haven't yet had The Money
+          Conversation, or have had a stilted version of it. A short
+          guide on what to say, when to say it, and how to make it
+          feel ordinary.
+        </p>
+        <p class="caption">PDF &middot; about 8 pages</p>
+      </article>
+
+      <article style="margin-bottom: 3rem;">
+        <h3>
+          <a href="#couples-money-guide">A Couples Money Guide</a>
+        </h3>
+        <p>
+          For couples who love each other and disagree about money,
+          or who haven't figured out yet how to talk about it
+          without one person feeling judged. Plain language. No
+          worksheets.
+        </p>
+        <p class="caption">PDF &middot; about 6 pages</p>
+      </article>
+
+      <article style="margin-bottom: 3rem;">
+        <h3>
+          <a href="#starting-at-forty">Starting at Forty (or Fifty, or Sixty)</a>
+        </h3>
+        <p>
+          For anyone who has heard one too many times that it's too
+          late. It isn't. Here is what catching up actually looks
+          like, calmly. The second best time is today.
+        </p>
+        <p class="caption">PDF &middot; about 5 pages</p>
+      </article>
+
+      <article style="margin-bottom: 3rem;">
+        <h3>
+          <a href="#aging-parents">When Your Parents Need Help</a>
+        </h3>
+        <p>
+          For people now finding themselves the steady one in the
+          family. A short, kind guide to having the conversations
+          you've been quietly dreading.
+        </p>
+        <p class="caption">PDF &middot; about 7 pages</p>
+      </article>
+
+      <article style="margin-bottom: 3rem;">
+        <h3>
+          <a href="#first-job-money">A First-Job Money Letter</a>
+        </h3>
+        <p>
+          Stacey wrote this for her own kids when they got their
+          first paychecks. A page or two on what to do, in what
+          order, in plain English &mdash; because nobody ever told her
+          either.
+        </p>
+        <p class="caption">PDF &middot; about 4 pages</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- =====================================================
+       Closing note
+       ===================================================== -->
+  <section class="section reveal-on-scroll" aria-labelledby="closing-heading">
+    <div class="column">
+      <h2 id="closing-heading">If a paper raised more questions than it answered</h2>
+
+      <p>
+        That's normal. The guides are starting points; some lives
+        need a longer conversation. <a href="/contact">Book a
+        Discovery Call</a> if that's where you've ended up.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Visually hide a heading without removing it from the
+     accessibility tree. The 'Guides' h2 is helpful for screen
+     readers but visually redundant given the entries below. */
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
