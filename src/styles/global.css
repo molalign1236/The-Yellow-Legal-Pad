@@ -233,32 +233,6 @@ small,
 }
 
 /* ------------------------------------------------------------------
- * Soft section appearance — gentle fade-in only.
- *
- * Per Pass 309 §7 motion profile: this is the ONLY motion
- * permitted at v1. No spring physics, no parallax, no scroll
- * theatrics. Single property (opacity), under 400ms, with a
- * reduced-motion fallback that is instant.
- *
- * Implemented with a tiny IntersectionObserver enhancement in the
- * page; sections begin at opacity 0 and fade to 1 when first
- * intersected. If JS is disabled, sections render at opacity 1
- * (the .reveal-on-scroll class only sets opacity:0 if the
- * .js-enabled flag is added by the small inline script).
- * ------------------------------------------------------------------ */
-
-@media (prefers-reduced-motion: no-preference) {
-  .js-enabled .reveal-on-scroll {
-    opacity: 0;
-    transition: opacity 380ms ease;
-  }
-
-  .js-enabled .reveal-on-scroll.is-visible {
-    opacity: 1;
-  }
-}
-
-/* ------------------------------------------------------------------
  * Selection — a quietly warm highlight. No surprise.
  * ------------------------------------------------------------------ */
 
@@ -297,13 +271,6 @@ small,
     color: #000;
     font-size: 11pt;
     line-height: 1.5;
-  }
-
-  .reveal-on-scroll {
-    /* Reset the fade-in so printed pages aren't blank for sections
-       the user hadn't scrolled past on screen before printing. */
-    opacity: 1 !important;
-    transition: none !important;
   }
 
   .site-header,
