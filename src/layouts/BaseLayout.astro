@@ -39,6 +39,15 @@ const isActive = (href: string) => {
   const normalized = href.replace(/\/$/, "") || "/";
   return path === normalized;
 };
+
+// Canonical + og:url only render when astro.config.mjs has `site`
+// configured. Without it, Astro falls back to http://localhost:4321
+// at build time and we'd ship localhost URLs to production. Owner
+// sets `site` once Stacey's domain is known; canonical comes back
+// automatically on the next build.
+const canonicalUrl = Astro.site
+  ? new URL(Astro.url.pathname, Astro.site).href
+  : null;
 ---
 
 <!doctype html>
@@ -50,11 +59,12 @@ const isActive = (href: string) => {
     <meta name="theme-color" content="#f6f1e6" />
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={Astro.url.href} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     {/* Open Graph + Twitter — quiet defaults for shared links */}
     <meta property="og:type" content="website" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={meta} />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={meta} />
