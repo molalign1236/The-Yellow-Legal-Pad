@@ -9,12 +9,11 @@
  * in their own files. This file is for reading.
  */
 
-/* Self-hosted faces, not Google Fonts CDN. Loaded via npm packages
-   so they ship with the build and respect privacy. */
-@import "@fontsource/eb-garamond/400.css";
-@import "@fontsource/eb-garamond/400-italic.css";
-@import "@fontsource/eb-garamond/600.css";
-@import "@fontsource/inter/400.css";
+/* Self-hosted faces are imported from BaseLayout.astro's frontmatter
+   so Vite resolves the woff2 assets and copies them into dist/_astro.
+   Importing them via CSS @import here works in dev but skips asset
+   bundling at build, which previously left fonts 404ing in production
+   and the page silently falling back to system serif/sans. */
 
 @tailwind base;
 @tailwind components;

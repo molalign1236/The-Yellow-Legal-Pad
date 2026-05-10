@@ -18,6 +18,16 @@
 // <Footer> components yet — they're 30 lines combined; splitting
 // them would add navigation cost without benefit.
 
+// Self-hosted Fontsource faces. Imported here (Astro frontmatter)
+// rather than via CSS @import in global.css so Vite picks up the
+// woff2 files as build dependencies and copies them into dist/_astro.
+// CSS @import works in dev but silently drops the font assets at
+// build, leaving production pages rendering in fallback system fonts.
+import "@fontsource/eb-garamond/400.css";
+import "@fontsource/eb-garamond/400-italic.css";
+import "@fontsource/eb-garamond/600.css";
+import "@fontsource/inter/400.css";
+
 interface Props {
   title?: string;
   description?: string;
