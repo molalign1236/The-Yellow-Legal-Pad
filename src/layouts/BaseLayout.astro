@@ -26,7 +26,6 @@
 import "@fontsource/eb-garamond/400.css";
 import "@fontsource/eb-garamond/400-italic.css";
 import "@fontsource/eb-garamond/600.css";
-import "@fontsource/inter/400.css";
 
 interface Props {
   title?: string;
@@ -149,7 +148,6 @@ const canonicalUrl = Astro.site
     padding: 0.5rem 0.875rem;
     background-color: theme("colors.paper.DEFAULT");
     color: theme("colors.ink.DEFAULT");
-    font-family: theme("fontFamily.sans");
     font-size: 0.875rem;
     text-decoration: none;
     border: 1px solid rgba(168, 127, 43, 0.4);
@@ -224,11 +222,9 @@ const canonicalUrl = Astro.site
   }
 
   .site-header__link {
-    font-family: theme("fontFamily.sans");
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: theme("colors.ink.soft");
     text-decoration: none;
-    letter-spacing: 0;
   }
 
   .site-header__link:hover {
@@ -283,8 +279,7 @@ const canonicalUrl = Astro.site
   }
 
   .site-footer__link {
-    font-family: theme("fontFamily.sans");
-    font-size: 0.875rem;
+    font-size: 0.9375rem;
     color: theme("colors.ink.soft");
     text-decoration: none;
   }

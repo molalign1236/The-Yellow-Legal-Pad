@@ -33,9 +33,8 @@ export default {
       },
     },
     fontFamily: {
-      // Single serif (EB Garamond) for headings + long-form body.
-      // Single sans (Inter) for caption-class text + occasional
-      // structural labels. NO third face.
+      // One face. EB Garamond for everything — body, headings, nav,
+      // captions. A real maintained document uses a single typeface.
       serif: [
         "EB Garamond",
         "Garamond",
@@ -43,15 +42,6 @@ export default {
         "Iowan Old Style",
         "Times New Roman",
         "serif",
-      ],
-      sans: [
-        "Inter",
-        "system-ui",
-        "-apple-system",
-        "Segoe UI",
-        "Roboto",
-        "Helvetica Neue",
-        "sans-serif",
       ],
     },
     extend: {

@@ -163,10 +163,9 @@ blockquote {
 
 small,
 .caption {
-  font-family: theme("fontFamily.sans");
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  font-style: italic;
   color: theme("colors.ink.muted");
-  letter-spacing: 0;
 }
 
 /* ------------------------------------------------------------------
