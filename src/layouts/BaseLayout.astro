@@ -95,10 +95,10 @@ const canonicalUrl = Astro.site
           Yellow Legal Pad
         </a>
         <nav class="site-header__nav" aria-label="Primary">
-          <a href="/about" class:list={["site-header__link", { "is-active": isActive("/about") }]}>About</a>
-          <a href="/services" class:list={["site-header__link", { "is-active": isActive("/services") }]}>Services</a>
-          <a href="/resources" class:list={["site-header__link", { "is-active": isActive("/resources") }]}>Resources</a>
-          <a href="/contact" class:list={["site-header__link", { "is-active": isActive("/contact") }]}>Contact</a>
+          <a href="/about" class:list={["site-header__link", { "is-active": isActive("/about") }]} aria-current={isActive("/about") ? "page" : undefined}>About</a>
+          <a href="/services" class:list={["site-header__link", { "is-active": isActive("/services") }]} aria-current={isActive("/services") ? "page" : undefined}>Services</a>
+          <a href="/resources" class:list={["site-header__link", { "is-active": isActive("/resources") }]} aria-current={isActive("/resources") ? "page" : undefined}>Resources</a>
+          <a href="/contact" class:list={["site-header__link", { "is-active": isActive("/contact") }]} aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
         </nav>
       </div>
     </header>
