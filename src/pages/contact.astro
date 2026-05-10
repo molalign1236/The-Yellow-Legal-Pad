@@ -4,21 +4,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 // Contact page.
 //
 // Per relay #37 §8: contact flow should feel emotionally easy.
-// Plain language. Low-friction form. No aggressive required
-// fields. Reassurance copy near form. "No pressure" language.
+// Plain language. No aggressive required fields. Reassurance
+// copy. "No pressure" language.
 //
-// Pass 311 ships TWO paths offered side-by-side, calmly:
-//   1. A direct mailto: link to Stacey (no form to fill)
-//   2. A small form (only 3 fields: name, email, brief note)
-//
-// Stacey can later swap the form action for a Calendly URL or a
-// Vercel serverless email function. The form posts to "/contact"
-// (relative); since v1 is fully static, the form action will be
-// updated when she chooses a backend (mailto: works as fallback).
-//
-// No required fields beyond email. No phone field. No "company"
-// field. No "how did you hear about us" field. The friction
-// itself is part of the welcome.
+// Pass 315 removed an unreliable mailto: form. The email link is
+// now the only path — it always works. A real form (Calendly,
+// Formspree, or a Vercel serverless function) can be added when
+// there's a backend; for v1, an email link is honest UX.
 ---
 
 <BaseLayout
@@ -33,10 +25,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h1 id="contact-heading">Book a Discovery Call</h1>
 
       <p>
-        Send Stacey a note, or use the small form below. She reads
-        every message herself, usually within a day or two, and she
-        responds &mdash; even if it's just to say she's not the right
-        fit. No autoresponders. No drip emails. Just a person.
+        Send Stacey a note. She reads every message herself, usually
+        within a day or two, and she responds &mdash; even if it's just
+        to say she's not the right fit. No autoresponders. No drip
+        emails. Just a person.
       </p>
 
       <p>
