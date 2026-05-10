@@ -133,16 +133,14 @@ const isActive = (href: string) => {
   @import "../styles/global.css";
 
   /* Site header — small, calm, document-like. Not floating, not
-     sticky. Reads as "the top of the page" not "navigation bar." */
+     sticky. Reads as "the top of the page" not "navigation bar."
+     The separator is a soft gold rule rather than a hard divider. */
   .site-header {
-    padding-top: 2.5rem;
+    padding-top: 2rem;
     padding-bottom: 1rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
-    border-bottom: 1px solid theme("colors.gold.DEFAULT");
-    /* Wait — that border is too loud. The relay said "almost no
-       hard dividers." Use a softer separator. */
-    border-bottom-color: rgba(168, 127, 43, 0.18);
+    border-bottom: 1px solid rgba(168, 127, 43, 0.18);
   }
 
   .site-header__inner {
