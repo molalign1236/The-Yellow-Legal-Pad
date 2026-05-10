@@ -1,22 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Resources / Guides page.
-//
-// Per relay #37 §7: "calm document-library feeling. NOT content
-// marketing. The page should feel like Stacey quietly handing
-// someone useful papers."
-//
-// No SEO-blog energy. No "growth content." No productivity tone.
-// Each guide is presented as a quiet entry — title, short
-// description, link to a PDF or a printable page.
-//
-// Pass 311 shipped the page STRUCTURE with placeholder guide
-// entries. Pass 321 removed the dead `#anchor-name` links from the
-// titles — they pointed to in-page anchors that don't exist, so
-// clicking them did nothing visible (a deceptive UX). Titles now
-// render as plain <h3> text until real PDFs arrive; at that point
-// each title gets wrapped in an <a href="/guides/<file>.pdf">.
+// Resources — small library of guides. Titles render as plain text
+// until real PDFs land; then wrap each in <a href="/guides/<file>.pdf">.
 ---
 
 <BaseLayout
@@ -40,11 +26,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       The library — list, not card grid.
-       Each entry is a small <article> with a title link,
-       a short paragraph, and a quiet hint at length.
-       ===================================================== -->
   <section class="section" aria-labelledby="entries-heading">
     <div class="column-wide">
       <h2 id="entries-heading" class="visually-hidden">Guides</h2>
@@ -104,9 +85,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       Closing note
-       ===================================================== -->
   <section class="section" aria-labelledby="closing-heading">
     <div class="column">
       <h2 id="closing-heading">If a paper raised more questions than it answered</h2>
@@ -121,9 +99,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
-  /* Visually hide a heading without removing it from the
-     accessibility tree. The 'Guides' h2 is helpful for screen
-     readers but visually redundant given the entries below. */
+  /* Hide visually but keep in the accessibility tree. */
   .visually-hidden {
     position: absolute;
     width: 1px;

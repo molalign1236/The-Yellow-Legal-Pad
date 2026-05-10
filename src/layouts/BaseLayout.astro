@@ -1,28 +1,6 @@
 ---
-// BaseLayout — shared shell for every page.
-//
-// Per relay #37 §1: navigation should feel "quietly adjacent, not
-// app-like. No sticky-nav sophistication. No mega menus. No routing
-// abstractions. No transition systems. Simple links."
-//
-// This layout provides:
-//   - <head> with meta + global CSS
-//   - a quiet header with text-only navigation (NOT sticky)
-//   - a <main> slot for page content
-//   - a quiet footer with the same links + a small acknowledgement
-//
-// The header and footer are deliberately small. The page content
-// breathes; the chrome doesn't compete.
-//
-// Single Astro layout. No further abstractions. No <Header> /
-// <Footer> components yet — they're 30 lines combined; splitting
-// them would add navigation cost without benefit.
-
-// Self-hosted Fontsource faces. Imported here (Astro frontmatter)
-// rather than via CSS @import in global.css so Vite picks up the
-// woff2 files as build dependencies and copies them into dist/_astro.
-// CSS @import works in dev but silently drops the font assets at
-// build, leaving production pages rendering in fallback system fonts.
+// Imported from frontmatter (not CSS @import) so Vite bundles the
+// woff2 files. CSS @import works in dev but drops font assets at build.
 import "@fontsource/eb-garamond/400.css";
 import "@fontsource/eb-garamond/400-italic.css";
 import "@fontsource/eb-garamond/600.css";
@@ -49,11 +27,8 @@ const isActive = (href: string) => {
   return path === normalized;
 };
 
-// Canonical + og:url only render when astro.config.mjs has `site`
-// configured. Without it, Astro falls back to http://localhost:4321
-// at build time and we'd ship localhost URLs to production. Owner
-// sets `site` once Stacey's domain is known; canonical comes back
-// automatically on the next build.
+// Canonical + og:url only render when astro.config has `site` set,
+// otherwise we'd ship localhost URLs to production.
 const canonicalUrl = Astro.site
   ? new URL(Astro.url.pathname, Astro.site).href
   : null;
@@ -66,10 +41,8 @@ const canonicalUrl = Astro.site
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={meta} />
     <meta name="theme-color" content="#f6f1e6" />
-    {/* Site is light-only by intent. Tells the browser to render UA
-        chrome (scrollbar, default form widgets) in light mode even
-        when the OS prefers dark — otherwise dark-mode users see a
-        dark scrollbar against the ivory page. */}
+    {/* Site is light-only — keeps UA chrome (scrollbar etc.) light
+        even when the OS prefers dark. */}
     <meta name="color-scheme" content="light" />
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -85,15 +58,8 @@ const canonicalUrl = Astro.site
   </head>
 
   <body>
-    <!-- Skip-to-content link. Invisible until tab focus. Lets
-         keyboard and screen-reader users jump past the header
-         straight to the page body. -->
     <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <!-- Quiet header. Plain text links. NOT sticky. The header
-         is part of the page, not floating over it. The mobile
-         layout simply wraps to two lines if needed — no
-         hamburger menu. -->
     <header class="site-header">
       <div class="site-header__inner">
         <a href="/" class="site-header__brand" aria-label="Yellow Legal Pad — home">
@@ -112,10 +78,6 @@ const canonicalUrl = Astro.site
       <slot />
     </main>
 
-    <!-- Quiet footer. Same links offered again — for visitors who
-         finish reading and want a next page. Small acknowledgement
-         beneath. No social icons, no newsletter signup, no
-         "powered by." -->
     <footer class="site-footer">
       <div class="site-footer__inner">
         <nav class="site-footer__nav" aria-label="Footer">
@@ -137,10 +99,7 @@ const canonicalUrl = Astro.site
 <style is:global>
   @import "../styles/global.css";
 
-  /* Skip-to-content link. Hidden off-screen until it receives
-     keyboard focus, at which point it becomes a small, plain link
-     in the top-left corner. Visually quiet so it doesn't startle;
-     functionally honest for assistive-tech users. */
+  /* Hidden off-screen until keyboard focus reveals it. */
   .skip-link {
     position: absolute;
     top: -3rem;
@@ -161,17 +120,11 @@ const canonicalUrl = Astro.site
     outline-offset: 2px;
   }
 
-  /* Remove the default focus ring on <main> when it receives
-     programmatic focus from the skip link — the link's own focus
-     state is enough indication, and a ring around the entire
-     content area would be visually loud. */
+  /* Suppress focus ring on <main> when the skip link sends focus there. */
   main:focus {
     outline: none;
   }
 
-  /* Site header — small, calm, document-like. Not floating, not
-     sticky. Reads as "the top of the page" not "navigation bar."
-     The separator is a soft gold rule rather than a hard divider. */
   .site-header {
     padding-top: 1.25rem;
     padding-bottom: 0.875rem;
@@ -243,8 +196,6 @@ const canonicalUrl = Astro.site
     text-underline-offset: 4px;
   }
 
-  /* Site footer — same links offered again, plus a small
-     acknowledgement. Quieter than the header. */
   .site-footer {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;

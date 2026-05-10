@@ -1,28 +1,13 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Home page — the welcome mat.
-//
-// Per Pass 308 §2 / Pass 309 §10 / relay #37 §1: the home page is
-// no longer the entire site. The full Story moves to /about; the
-// full Philosophy + Process + Packages move to /about and /services.
-// Home offers reassurance + a brief hint of what's here + an
-// invitation to a Discovery Call.
-//
-// Real tonal copy below — drawn from relay #33-#37 phrases. NOT
-// final Stacey copy; she'll edit. But specifically NOT placeholder
-// either. The site should already feel like Stacey speaking.
-//
-// Three-beat rhythm honored: reassurance → practical → permission.
+// Home — reassurance, a brief hint of what's here, an invitation.
+// Story details live on /about; packages on /services.
 ---
 
 <BaseLayout
   description="Yellow Legal Pad — financial coaching with Stacey. A quiet conversation, without judgment."
 >
-  <!-- =====================================================
-       1. REASSURANCE
-       Above-the-fold permission moment.
-       ===================================================== -->
   <section class="section" aria-labelledby="welcome-heading">
     <div class="column">
       <h1 id="welcome-heading">
@@ -40,9 +25,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       2. STORY PREVIEW (the Grampy story moves to /about)
-       ===================================================== -->
   <section class="section" aria-labelledby="origin-heading">
     <div class="column">
       <h2 id="origin-heading">About the name</h2>
@@ -58,9 +40,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       3. PHILOSOPHY EXCERPT (the central reframe)
-       ===================================================== -->
   <section class="section" aria-labelledby="philosophy-heading">
     <div class="column">
       <h2 id="philosophy-heading">A different starting point</h2>
@@ -79,11 +58,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       4. INVITATION
-       Closing. Soft. Conversational. The CTA is a plain
-       link, not a button.
-       ===================================================== -->
   <section class="section" aria-labelledby="invite-heading">
     <div class="column">
       <h2 id="invite-heading">If you'd like to talk</h2>

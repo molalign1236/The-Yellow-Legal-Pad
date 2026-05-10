@@ -1,25 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Contact page.
-//
-// Per relay #37 §8: contact flow should feel emotionally easy.
-// Plain language. No aggressive required fields. Reassurance
-// copy. "No pressure" language.
-//
-// Pass 315 removed an unreliable mailto: form. The email link is
-// now the only path — it always works. A real form (Calendly,
-// Formspree, or a Vercel serverless function) can be added when
-// there's a backend; for v1, an email link is honest UX.
+// Contact — email link only. A real form (Calendly / Formspree /
+// serverless) can land when there's a backend.
 ---
 
 <BaseLayout
   title="Contact"
   description="Book a Discovery Call with Stacey. Short, free, unhurried, and no pressure to continue."
 >
-  <!-- =====================================================
-       Reassurance opening
-       ===================================================== -->
   <section class="section" aria-labelledby="contact-heading">
     <div class="column">
       <h1 id="contact-heading">Book a Discovery Call</h1>
@@ -38,13 +27,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       Email link
-       The primary path. A form arrives later, once there's a
-       reliable backend (Calendly, Formspree, or a Vercel
-       serverless function). For now: just an email link, which
-       always works.
-       ===================================================== -->
   <section class="section" aria-labelledby="email-heading">
     <div class="column">
       <h2 id="email-heading">Email Stacey</h2>
@@ -61,9 +43,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       Reassurance closing
-       ===================================================== -->
   <section class="section" aria-labelledby="closing-heading">
     <div class="column">
       <h2 id="closing-heading">Before you write</h2>
@@ -83,9 +62,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </BaseLayout>
 
 <style>
-  /* The email link sits a touch larger than body text — enough
-     presence to be obviously the call to action without becoming
-     a button. Underline is the existing gold convention. */
   .contact-email {
     margin-top: 1.5rem;
     font-size: 1.25rem;

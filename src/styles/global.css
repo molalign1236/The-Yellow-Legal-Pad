@@ -1,33 +1,11 @@
-/*
- * Yellow Legal Pad — global CSS
- *
- * The site is a document, not an application. Most styling here is
- * typographic. We import EB Garamond + Inter from Fontsource (self-
- * hosted via npm), define the document baseline rhythm, and stop.
- *
- * Resist the urge to add component classes here. Components belong
- * in their own files. This file is for reading.
- */
-
-/* Self-hosted faces are imported from BaseLayout.astro's frontmatter
-   so Vite resolves the woff2 assets and copies them into dist/_astro.
-   Importing them via CSS @import here works in dev but skips asset
-   bundling at build, which previously left fonts 404ing in production
-   and the page silently falling back to system serif/sans. */
+/* Yellow Legal Pad — global CSS.
+   Fonts are imported from BaseLayout.astro frontmatter, not here. */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ------------------------------------------------------------------
- * Document baseline.
- * ------------------------------------------------------------------ */
-
 :root {
-  /* Reading rhythm. Body line-height generous; headings tighter.
-     These values are CALM defaults. Per Pass 305 §3 finding,
-     don't introduce more constants until a specific reading
-     moment proves the default wrong. */
   --line-height-body: 1.65;
   --line-height-heading: 1.2;
   --measure-prose: 38rem; /* ~62ch */
@@ -60,21 +38,6 @@ body {
      designer's intent. Safe at this scale. */
   text-rendering: optimizeLegibility;
 }
-
-/* ------------------------------------------------------------------
- * Typography — quietly literate, not fashion-editorial.
- *
- * Watch list (from relay #35 typography drift):
- *   - oversized serif drama
- *   - hyper-thin typography
- *   - luxury-magazine contrast
- *   - excessive uppercase spacing
- *   - ornamental typography systems
- *
- * These rules deliberately sit at modest sizes. The hierarchy is
- * present but quiet. The type supports reading safety, not brand
- * spectacle.
- * ------------------------------------------------------------------ */
 
 h1,
 h2,
@@ -118,18 +81,8 @@ p {
   margin-bottom: 1.25rem;
 }
 
-p + p {
-  /* Slight extra breath between paragraphs — preserves the
-     three-beat rhythm Pass 309 §5 named (reassurance / clarity /
-     permission). The pauses are part of the trust. */
-  margin-top: 0;
-}
-
-/* Caption following a paragraph sits tighter — like a footnote
-   tucked under its parent thought, not a separate beat. Resources
-   page ("about 8 pages") and services page ("Pricing on the
-   Discovery Call") both rely on this cadence. Footer caption is
-   unaffected because it follows a <nav>, not a <p>. */
+/* Caption following a paragraph sits tighter — reads as a footnote
+   under its parent thought, not as a separate beat. */
 p + p.caption {
   margin-top: -0.5rem;
 }
@@ -168,15 +121,6 @@ small,
   color: theme("colors.ink.muted");
 }
 
-/* ------------------------------------------------------------------
- * Section rhythm — generous breathing room.
- *
- * Per Pass 309 §9: slight asymmetry is healthy. Sections do NOT all
- * use identical padding. Use these utilities as defaults; let
- * individual sections deviate when their emotional content asks
- * for it.
- * ------------------------------------------------------------------ */
-
 .section {
   /* Mobile baseline — generous but not exhausting on small screens */
   padding-top: 4rem;
@@ -206,20 +150,10 @@ small,
   margin-right: auto;
 }
 
-/* ------------------------------------------------------------------
- * Selection — a quietly warm highlight. No surprise.
- * ------------------------------------------------------------------ */
-
 ::selection {
   background-color: theme("colors.gold.soft");
   color: theme("colors.ink.DEFAULT");
 }
-
-/* ------------------------------------------------------------------
- * Focus — keyboard users get a soft gold ring matching link
- * underlines. Mouse users see no extra indicator (per default
- * :focus-visible behavior). Accessibility without aesthetic noise.
- * ------------------------------------------------------------------ */
 
 :focus {
   outline: none;
@@ -230,14 +164,6 @@ small,
   outline-offset: 3px;
   border-radius: 2px;
 }
-
-/* ------------------------------------------------------------------
- * Print — respectful printing of pages people might want on paper
- * (the resources, the about, the philosophy). Hide site chrome.
- * Use white paper + black ink (the ivory paper color costs printer
- * ink without serving the reader). Show URL after links so printed
- * copies remain navigable.
- * ------------------------------------------------------------------ */
 
 @media print {
   body {

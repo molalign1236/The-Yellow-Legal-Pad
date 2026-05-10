@@ -1,27 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 
-// Services / Packages page.
-//
-// Per relay #37 §6: this page can be its own surface, but each
-// package must feel "calmly available" — NO sales hierarchy,
-// NO "best value," NO comparison aggression.
-//
-// Packages are presented as plain editorial blocks (<article>)
-// with equal visual weight. Pricing is left optional — many
-// concierge practices gate pricing behind the discovery call.
-// Stacey can choose to surface or hide prices when she edits.
+// Services — three packages as plain articles, equal visual weight,
+// no "best value" hierarchy. Pricing held for the Discovery Call.
 ---
 
 <BaseLayout
   title="Services"
   description="How Stacey works — the Discovery Call, what a session looks like, and the ways to work together."
 >
-  <!-- =====================================================
-       Process clarity
-       Demystifies before asking. Reads like a calm
-       explanation, not a sales pitch.
-       ===================================================== -->
   <section class="section" aria-labelledby="process-heading">
     <div class="column">
       <h1 id="process-heading">How Stacey works</h1>
@@ -48,10 +35,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       Packages
-       Editorial blocks, equal visual weight. NO badges.
-       ===================================================== -->
   <section class="section" aria-labelledby="packages-heading">
     <div class="column-wide">
       <h2 id="packages-heading">Ways to work together</h2>
@@ -108,10 +91,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
   </section>
 
-  <!-- =====================================================
-       What this is NOT
-       Quietly clarifies. Reduces fear of misunderstanding.
-       ===================================================== -->
   <section class="section" aria-labelledby="not-heading">
     <div class="column">
       <h2 id="not-heading">What this isn't</h2>
