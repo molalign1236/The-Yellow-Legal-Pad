@@ -273,16 +273,16 @@ small,
     line-height: 1.5;
   }
 
-  .site-header,
-  .site-footer,
   .reveal-on-scroll {
-    /* Reset the fade-in so printed pages aren't blank. */
+    /* Reset the fade-in so printed pages aren't blank for sections
+       the user hadn't scrolled past on screen before printing. */
     opacity: 1 !important;
     transition: none !important;
   }
 
   .site-header,
   .site-footer {
+    /* Site chrome doesn't print — the reader already has the page. */
     display: none;
   }
 
