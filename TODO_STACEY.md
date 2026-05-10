@@ -37,7 +37,7 @@ anchor (`#family-money-guide` etc.) instead of a real PDF.
 
 When Stacey provides each PDF:
 1. Add the file to `public/guides/` (e.g. `public/guides/family-money.pdf`)
-2. Update the corresponding `<a href="#...">` to `<a href="/guides/family-money.pdf">`
+2. Wrap the corresponding `<h3>Title</h3>` in an `<a>` so it becomes `<h3><a href="/guides/family-money.pdf">Title</a></h3>` (Pass 321 removed the dead `#anchor-name` placeholders so titles aren't deceptively styled as links until real destinations exist)
 3. Optionally remove the entry if Stacey doesn't actually have that guide
 
 The 5 placeholder titles are:

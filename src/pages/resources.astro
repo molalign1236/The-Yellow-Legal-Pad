@@ -11,8 +11,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 // Each guide is presented as a quiet entry — title, short
 // description, link to a PDF or a printable page.
 //
-// Pass 311 ships the page STRUCTURE with placeholder guide
-// entries. Real PDFs / pages link in once Stacey provides them.
+// Pass 311 shipped the page STRUCTURE with placeholder guide
+// entries. Pass 321 removed the dead `#anchor-name` links from the
+// titles — they pointed to in-page anchors that don't exist, so
+// clicking them did nothing visible (a deceptive UX). Titles now
+// render as plain <h3> text until real PDFs arrive; at that point
+// each title gets wrapped in an <a href="/guides/<file>.pdf">.
 ---
 
 <BaseLayout
@@ -46,9 +50,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2 id="entries-heading" class="visually-hidden">Guides</h2>
 
       <article style="margin-bottom: 3rem;">
-        <h3>
-          <a href="#family-money-guide">A Family Money Guide</a>
-        </h3>
+        <h3>A Family Money Guide</h3>
         <p>
           For families with kids who haven't yet had The Money
           Conversation, or have had a stilted version of it. A short
@@ -59,9 +61,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
 
       <article style="margin-bottom: 3rem;">
-        <h3>
-          <a href="#couples-money-guide">A Couples Money Guide</a>
-        </h3>
+        <h3>A Couples Money Guide</h3>
         <p>
           For couples who love each other and disagree about money,
           or who haven't figured out yet how to talk about it
@@ -72,9 +72,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
 
       <article style="margin-bottom: 3rem;">
-        <h3>
-          <a href="#starting-at-forty">Starting at Forty (or Fifty, or Sixty)</a>
-        </h3>
+        <h3>Starting at Forty (or Fifty, or Sixty)</h3>
         <p>
           For anyone who has heard one too many times that it's too
           late. It isn't. Here is what catching up actually looks
@@ -84,9 +82,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
 
       <article style="margin-bottom: 3rem;">
-        <h3>
-          <a href="#aging-parents">When Your Parents Need Help</a>
-        </h3>
+        <h3>When Your Parents Need Help</h3>
         <p>
           For people now finding themselves the steady one in the
           family. A short, kind guide to having the conversations
@@ -96,9 +92,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
 
       <article style="margin-bottom: 3rem;">
-        <h3>
-          <a href="#first-job-money">A First-Job Money Letter</a>
-        </h3>
+        <h3>A First-Job Money Letter</h3>
         <p>
           Stacey wrote this for her own kids when they got their
           first paychecks. A page or two on what to do, in what
