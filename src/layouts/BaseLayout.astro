@@ -57,6 +57,11 @@ const canonicalUrl = Astro.site
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={meta} />
     <meta name="theme-color" content="#f6f1e6" />
+    {/* Site is light-only by intent. Tells the browser to render UA
+        chrome (scrollbar, default form widgets) in light mode even
+        when the OS prefers dark — otherwise dark-mode users see a
+        dark scrollbar against the ivory page. */}
+    <meta name="color-scheme" content="light" />
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
