@@ -11,6 +11,7 @@ this folder ships to production.
 | `keyboard-audit-2026-05-11.md` | Tab-only walkthrough of all seven pages (Pass 432). Removed a stray gold focus override on radios and added post-navigation focus so screen readers announce the new page after a View-Transition swap. Re-run when new controls land. |
 | `dependency-audit-2026-05-11.md` | `npm audit` triage (Pass 434). All seven moderate vulns trace to either a dev-only chain (yaml in volar) or `define:vars` (unused). Production exposure is zero; deliberate Astro 6 upgrade pass deferred for owner sign-off. |
 | `icon-audit-2026-05-11.md` | Favicon + device-icon survey (Pass 436). Modern desktop browsers read `favicon.svg` correctly; only real gap is iOS Home Screen which needs a `apple-touch-icon.png` export. Owner action noted in `TODO_STACEY.md`. |
+| `deployment-checklist.md` | Practical step-list for the first Vercel deploy (Pass 437). Pre-push validation, DNS, post-deploy smoke test, accessibility re-verification, search-console onboarding. Updated when the deploy workflow changes — not when the site does. |
 
 When new context arrives that's longer than a passing note but
 isn't a load-bearing rule (CLAUDE.md) or an owner-input checklist
