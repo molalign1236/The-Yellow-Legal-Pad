@@ -43,6 +43,7 @@
   --light-cta-highlight: 0.5;
   --light-cta-highlight-hover: 0.55;
   --light-rule-alpha: 0.10;
+  --light-lamp-alpha: 0.42;
 
   /* Dark raw tokens */
   --dark-desk: #050505;
@@ -70,6 +71,7 @@
   --dark-cta-highlight: 0.06;
   --dark-cta-highlight-hover: 0.08;
   --dark-rule-alpha: 0.18;
+  --dark-lamp-alpha: 0.22;
 
   /* Active aliases — default to light */
   --c-desk: var(--light-desk);
@@ -98,6 +100,7 @@
   --c-cta-highlight-hover: var(--light-cta-highlight-hover);
   --c-rule-alpha: var(--light-rule-alpha);
   --c-rule-rgb: 184, 134, 11;
+  --c-lamp-alpha: var(--light-lamp-alpha);
 
   /* Non-color tokens */
   --line-height-body: 1.65;
@@ -136,6 +139,7 @@
     --c-cta-highlight-hover: var(--dark-cta-highlight-hover);
     --c-rule-alpha: var(--dark-rule-alpha);
     --c-rule-rgb: 201, 148, 31;
+    --c-lamp-alpha: var(--dark-lamp-alpha);
     --paper-lift-x: 18px;
     --paper-lift-ry: -8deg;
     --paper-flip-deg: -55deg;
@@ -170,6 +174,7 @@
   --c-cta-highlight-hover: var(--dark-cta-highlight-hover);
   --c-rule-alpha: var(--dark-rule-alpha);
   --c-rule-rgb: 201, 148, 31;
+  --c-lamp-alpha: var(--dark-lamp-alpha);
   --paper-lift-x: 18px;
   --paper-lift-ry: -8deg;
   --paper-flip-deg: -55deg;
@@ -191,13 +196,23 @@ body {
   line-height: var(--line-height-body);
   letter-spacing: theme("letterSpacing.body");
   color: var(--c-ink);
-  background-color: var(--c-desk);
-  background-image: radial-gradient(
-    ellipse 80vw 60vh at center top,
-    var(--c-desk-light) 0%,
-    transparent 70%
-  );
+  /* The site sits in a library: a tiled SVG of book spines on shelves
+     forms the backdrop, with a warm radial 'reading lamp' lighting
+     the center where the paper sheet lives. The dark mode override
+     below pulls the books deeper so they recede further. */
+  background-color: #1a0e08;
+  background-image:
+    radial-gradient(
+      ellipse 120vw 70vh at center 18vh,
+      rgba(110, 70, 30, var(--c-lamp-alpha, 0.42)) 0%,
+      rgba(60, 35, 18, 0.18) 30%,
+      transparent 70%
+    ),
+    url("/library.svg");
   background-attachment: fixed;
+  background-repeat: no-repeat, repeat;
+  background-position: center top, center top;
+  background-size: 100% 100%, 240px 600px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -228,11 +243,14 @@ body {
   .site-paper {
     max-width: 60rem;
     margin: 2rem auto;
+    /* Heavier drop shadow than the old desk era — the library
+       backdrop is genuinely dark, so the paper needs to lift more
+       to read as a single illuminated sheet at the center. */
     box-shadow:
       inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha)),
-      0 0 0 1px rgba(var(--c-shadow-rgb), 0.04),
-      0 2px 4px rgba(var(--c-shadow-rgb), 0.04),
-      0 12px 32px rgba(var(--c-shadow-rgb), 0.08);
+      0 0 0 1px rgba(0, 0, 0, 0.35),
+      0 4px 8px rgba(0, 0, 0, 0.28),
+      0 18px 56px rgba(0, 0, 0, 0.42);
   }
 }
 
