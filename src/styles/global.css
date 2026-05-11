@@ -29,10 +29,19 @@ body {
   line-height: var(--line-height-body);
   letter-spacing: theme("letterSpacing.body");
   color: theme("colors.ink.DEFAULT");
-  /* The 'desk' — a warm tan that the paper sheet sits on. On mobile
-     the paper sheet fills the viewport so this is hidden; on tablet+
-     it shows as the margin around the page. */
+  /* The 'desk' — a warm tan that the paper sheet sits on. Hidden on
+     mobile (paper fills the viewport); shows around the sheet on
+     tablet+. Subtle radial gradient gives a lamp-from-above feel:
+     desk is a touch lighter near the top, falls into shadow toward
+     the corners. Stays fixed to the viewport so the light source
+     doesn't move when you scroll. */
   background-color: #e6dcc7;
+  background-image: radial-gradient(
+    ellipse 80vw 60vh at center top,
+    #ece2cc 0%,
+    transparent 70%
+  );
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -274,6 +283,11 @@ small,
 @media (prefers-color-scheme: dark) {
   body {
     background-color: #050505;
+    background-image: radial-gradient(
+      ellipse 80vw 60vh at center top,
+      #0e0e0e 0%,
+      transparent 75%
+    );
     color: #ede5d0;
   }
 
