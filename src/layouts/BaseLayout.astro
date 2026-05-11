@@ -44,6 +44,37 @@ const canonicalUrl = Astro.site
     <meta name="theme-color" content="#f6f1e6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#161616" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
+    {/* Pre-paint script: reads user settings from localStorage and
+        applies data-* attributes to <html> before first paint, so
+        the page never flashes the wrong theme. Re-runs after every
+        Astro view transition swap. */}
+    <script is:inline>
+      (function () {
+        function apply() {
+          try {
+            var s = JSON.parse(localStorage.getItem("ylp:settings") || "{}");
+            var root = document.documentElement;
+            if (s.theme === "light" || s.theme === "dark") {
+              root.setAttribute("data-theme", s.theme);
+            } else {
+              root.removeAttribute("data-theme");
+            }
+            if (s.fontSize === "larger") {
+              root.setAttribute("data-font-size", "larger");
+            } else {
+              root.removeAttribute("data-font-size");
+            }
+            if (s.motion === "off") {
+              root.setAttribute("data-motion", "off");
+            } else {
+              root.removeAttribute("data-motion");
+            }
+          } catch (e) {}
+        }
+        apply();
+        document.addEventListener("astro:after-swap", apply);
+      })();
+    </script>
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
@@ -87,6 +118,7 @@ const canonicalUrl = Astro.site
             <a href="/services" class="site-footer__link">Services</a>
             <a href="/resources" class="site-footer__link">Resources</a>
             <a href="/contact" class="site-footer__link">Contact</a>
+            <a href="/settings" class="site-footer__link">Settings</a>
           </nav>
           <p class="caption site-footer__disclaimer">
             The Yellow Legal Pad provides financial coaching and education
@@ -113,18 +145,18 @@ const canonicalUrl = Astro.site
     top: -3rem;
     left: 1rem;
     padding: 0.5rem 0.875rem;
-    background-color: theme("colors.paper.DEFAULT");
-    color: theme("colors.ink.DEFAULT");
+    background-color: var(--c-paper);
+    color: var(--c-ink);
     font-size: 0.875rem;
     text-decoration: none;
-    border: 1px solid rgba(184, 134, 11, 0.4);
+    border: 1px solid rgba(var(--c-rule-rgb), 0.4);
     border-radius: 2px;
     z-index: 10;
   }
 
   .skip-link:focus {
     top: 0.75rem;
-    outline: 2px solid theme("colors.gold.DEFAULT");
+    outline: 2px solid var(--c-gold);
     outline-offset: 2px;
   }
 
@@ -138,7 +170,7 @@ const canonicalUrl = Astro.site
     padding-bottom: 0.875rem;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-    border-bottom: 1px solid rgba(184, 134, 11, 0.10);
+    border-bottom: 1px solid rgba(var(--c-rule-rgb), var(--c-rule-alpha));
   }
 
   @media (min-width: 40rem) {
@@ -164,14 +196,14 @@ const canonicalUrl = Astro.site
     font-family: theme("fontFamily.serif");
     font-size: 1.1rem;
     font-weight: 600;
-    color: theme("colors.ink.DEFAULT");
+    color: var(--c-ink);
     text-decoration: none;
     letter-spacing: -0.01em;
   }
 
   .site-header__brand:hover {
     text-decoration: underline;
-    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-color: var(--c-gold);
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
   }
@@ -184,22 +216,22 @@ const canonicalUrl = Astro.site
 
   .site-header__link {
     font-size: 0.95rem;
-    color: theme("colors.ink.soft");
+    color: var(--c-ink-soft);
     text-decoration: none;
   }
 
   .site-header__link:hover {
-    color: theme("colors.ink.DEFAULT");
+    color: var(--c-ink);
     text-decoration: underline;
-    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-color: var(--c-gold);
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
   }
 
   .site-header__link.is-active {
-    color: theme("colors.ink.DEFAULT");
+    color: var(--c-ink);
     text-decoration: underline;
-    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-color: var(--c-gold);
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
   }
@@ -209,7 +241,7 @@ const canonicalUrl = Astro.site
     padding-bottom: 1.75rem;
     padding-left: 1.25rem;
     padding-right: 1.25rem;
-    border-top: 1px solid rgba(184, 134, 11, 0.10);
+    border-top: 1px solid rgba(var(--c-rule-rgb), var(--c-rule-alpha));
     margin-top: 1rem;
   }
 
@@ -239,26 +271,26 @@ const canonicalUrl = Astro.site
 
   .site-footer__link {
     font-size: 0.9375rem;
-    color: theme("colors.ink.soft");
+    color: var(--c-ink-soft);
     text-decoration: none;
   }
 
   .site-footer__link:hover {
-    color: theme("colors.ink.DEFAULT");
+    color: var(--c-ink);
     text-decoration: underline;
-    text-decoration-color: theme("colors.gold.DEFAULT");
+    text-decoration-color: var(--c-gold);
     text-decoration-thickness: 1px;
     text-underline-offset: 4px;
   }
 
   .site-footer__note {
-    color: theme("colors.ink.muted");
+    color: var(--c-ink-muted);
     margin-bottom: 0;
     max-width: none;
   }
 
   .site-footer__disclaimer {
-    color: theme("colors.ink.muted");
+    color: var(--c-ink-muted);
     font-style: normal;
     font-size: 0.8125rem;
     line-height: 1.55;

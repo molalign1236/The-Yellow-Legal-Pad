@@ -5,15 +5,175 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---- THEME TOKENS -------------------------------------------------
+   Light and dark raw values are defined once; the 'active' aliases
+   (--c-*) reference one set or the other. The active set defaults to
+   light and is swapped to dark via:
+     - @media (prefers-color-scheme: dark), unless user forced light
+     - :root[data-theme="dark"] (explicit user choice)
+   The pre-paint script in BaseLayout reads localStorage and sets the
+   data-theme / data-font-size / data-motion attributes on <html>
+   before first paint to prevent flash.
+   ------------------------------------------------------------------ */
+
 :root {
+  /* Light raw tokens */
+  --light-desk: #e6dcc7;
+  --light-desk-light: #ece2cc;
+  --light-paper: #f6f1e6;
+  --light-ink: #1F3864;
+  --light-ink-soft: #39487a;
+  --light-ink-muted: #4a577b;
+  --light-gold: #B8860B;
+  --light-gold-soft: #d6a635;
+  --light-cta-bg: #e6dcc7;
+  --light-cta-hover: #ddd1b5;
+  --light-cta-active: #d2c4a4;
+  --light-shadow-rgb: 31, 56, 100;
+  --light-highlight-rgb: 255, 250, 235;
+  --light-selection-bg: #d6a635;
+  --light-selection-text: #1F3864;
+  --light-paper-edge-alpha: 0.045;
+  --light-cta-shadow-1: 0.16;
+  --light-cta-shadow-2: 0.10;
+  --light-cta-shadow-hover-1: 0.20;
+  --light-cta-shadow-hover-2: 0.12;
+  --light-cta-shadow-active-1: 0.24;
+  --light-cta-shadow-active-2: 0.14;
+  --light-cta-highlight: 0.5;
+  --light-cta-highlight-hover: 0.55;
+  --light-rule-alpha: 0.10;
+
+  /* Dark raw tokens */
+  --dark-desk: #050505;
+  --dark-desk-light: #0e0e0e;
+  --dark-paper: #161616;
+  --dark-ink: #dccfb0;
+  --dark-ink-soft: #c4bda9;
+  --dark-ink-muted: #918d7d;
+  --dark-gold: #c9941f;
+  --dark-gold-soft: #e6b545;
+  --dark-cta-bg: #050505;
+  --dark-cta-hover: #000000;
+  --dark-cta-active: #000000;
+  --dark-shadow-rgb: 0, 0, 0;
+  --dark-highlight-rgb: 220, 207, 176;
+  --dark-selection-bg: #c9941f;
+  --dark-selection-text: #161616;
+  --dark-paper-edge-alpha: 0.5;
+  --dark-cta-shadow-1: 0.65;
+  --dark-cta-shadow-2: 0.45;
+  --dark-cta-shadow-hover-1: 0.78;
+  --dark-cta-shadow-hover-2: 0.55;
+  --dark-cta-shadow-active-1: 0.9;
+  --dark-cta-shadow-active-2: 0.6;
+  --dark-cta-highlight: 0.06;
+  --dark-cta-highlight-hover: 0.08;
+  --dark-rule-alpha: 0.18;
+
+  /* Active aliases — default to light */
+  --c-desk: var(--light-desk);
+  --c-desk-light: var(--light-desk-light);
+  --c-paper: var(--light-paper);
+  --c-ink: var(--light-ink);
+  --c-ink-soft: var(--light-ink-soft);
+  --c-ink-muted: var(--light-ink-muted);
+  --c-gold: var(--light-gold);
+  --c-gold-soft: var(--light-gold-soft);
+  --c-cta-bg: var(--light-cta-bg);
+  --c-cta-hover: var(--light-cta-hover);
+  --c-cta-active: var(--light-cta-active);
+  --c-shadow-rgb: var(--light-shadow-rgb);
+  --c-highlight-rgb: var(--light-highlight-rgb);
+  --c-selection-bg: var(--light-selection-bg);
+  --c-selection-text: var(--light-selection-text);
+  --c-paper-edge-alpha: var(--light-paper-edge-alpha);
+  --c-cta-shadow-1: var(--light-cta-shadow-1);
+  --c-cta-shadow-2: var(--light-cta-shadow-2);
+  --c-cta-shadow-hover-1: var(--light-cta-shadow-hover-1);
+  --c-cta-shadow-hover-2: var(--light-cta-shadow-hover-2);
+  --c-cta-shadow-active-1: var(--light-cta-shadow-active-1);
+  --c-cta-shadow-active-2: var(--light-cta-shadow-active-2);
+  --c-cta-highlight: var(--light-cta-highlight);
+  --c-cta-highlight-hover: var(--light-cta-highlight-hover);
+  --c-rule-alpha: var(--light-rule-alpha);
+  --c-rule-rgb: 184, 134, 11;
+
+  /* Non-color tokens */
   --line-height-body: 1.65;
   --line-height-heading: 1.2;
-  --measure-prose: 38rem; /* ~62ch */
+  --measure-prose: 38rem;
+  --paper-lift-x: 36px;
+  --paper-lift-ry: -14deg;
+}
+
+/* Dark via system preference (unless user explicitly forced light) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --c-desk: var(--dark-desk);
+    --c-desk-light: var(--dark-desk-light);
+    --c-paper: var(--dark-paper);
+    --c-ink: var(--dark-ink);
+    --c-ink-soft: var(--dark-ink-soft);
+    --c-ink-muted: var(--dark-ink-muted);
+    --c-gold: var(--dark-gold);
+    --c-gold-soft: var(--dark-gold-soft);
+    --c-cta-bg: var(--dark-cta-bg);
+    --c-cta-hover: var(--dark-cta-hover);
+    --c-cta-active: var(--dark-cta-active);
+    --c-shadow-rgb: var(--dark-shadow-rgb);
+    --c-highlight-rgb: var(--dark-highlight-rgb);
+    --c-selection-bg: var(--dark-selection-bg);
+    --c-selection-text: var(--dark-selection-text);
+    --c-paper-edge-alpha: var(--dark-paper-edge-alpha);
+    --c-cta-shadow-1: var(--dark-cta-shadow-1);
+    --c-cta-shadow-2: var(--dark-cta-shadow-2);
+    --c-cta-shadow-hover-1: var(--dark-cta-shadow-hover-1);
+    --c-cta-shadow-hover-2: var(--dark-cta-shadow-hover-2);
+    --c-cta-shadow-active-1: var(--dark-cta-shadow-active-1);
+    --c-cta-shadow-active-2: var(--dark-cta-shadow-active-2);
+    --c-cta-highlight: var(--dark-cta-highlight);
+    --c-cta-highlight-hover: var(--dark-cta-highlight-hover);
+    --c-rule-alpha: var(--dark-rule-alpha);
+    --c-rule-rgb: 201, 148, 31;
+    --paper-lift-x: 18px;
+    --paper-lift-ry: -8deg;
+  }
+}
+
+/* Dark via explicit user choice */
+:root[data-theme="dark"] {
+  --c-desk: var(--dark-desk);
+  --c-desk-light: var(--dark-desk-light);
+  --c-paper: var(--dark-paper);
+  --c-ink: var(--dark-ink);
+  --c-ink-soft: var(--dark-ink-soft);
+  --c-ink-muted: var(--dark-ink-muted);
+  --c-gold: var(--dark-gold);
+  --c-gold-soft: var(--dark-gold-soft);
+  --c-cta-bg: var(--dark-cta-bg);
+  --c-cta-hover: var(--dark-cta-hover);
+  --c-cta-active: var(--dark-cta-active);
+  --c-shadow-rgb: var(--dark-shadow-rgb);
+  --c-highlight-rgb: var(--dark-highlight-rgb);
+  --c-selection-bg: var(--dark-selection-bg);
+  --c-selection-text: var(--dark-selection-text);
+  --c-paper-edge-alpha: var(--dark-paper-edge-alpha);
+  --c-cta-shadow-1: var(--dark-cta-shadow-1);
+  --c-cta-shadow-2: var(--dark-cta-shadow-2);
+  --c-cta-shadow-hover-1: var(--dark-cta-shadow-hover-1);
+  --c-cta-shadow-hover-2: var(--dark-cta-shadow-hover-2);
+  --c-cta-shadow-active-1: var(--dark-cta-shadow-active-1);
+  --c-cta-shadow-active-2: var(--dark-cta-shadow-active-2);
+  --c-cta-highlight: var(--dark-cta-highlight);
+  --c-cta-highlight-hover: var(--dark-cta-highlight-hover);
+  --c-rule-alpha: var(--dark-rule-alpha);
+  --c-rule-rgb: 201, 148, 31;
+  --paper-lift-x: 18px;
+  --paper-lift-ry: -8deg;
 }
 
 html {
-  /* Smooth scrolling, but only when the user has not asked
-     otherwise. Default is reduced-motion-respecting. */
   scroll-behavior: smooth;
 }
 
@@ -25,20 +185,14 @@ html {
 
 body {
   font-family: theme("fontFamily.serif");
-  font-size: 1.125rem; /* 18px — kind to readers; not magazine-tiny */
+  font-size: 1.125rem;
   line-height: var(--line-height-body);
   letter-spacing: theme("letterSpacing.body");
-  color: theme("colors.ink.DEFAULT");
-  /* The 'desk' — a warm tan that the paper sheet sits on. Hidden on
-     mobile (paper fills the viewport); shows around the sheet on
-     tablet+. Subtle radial gradient gives a lamp-from-above feel:
-     desk is a touch lighter near the top, falls into shadow toward
-     the corners. Stays fixed to the viewport so the light source
-     doesn't move when you scroll. */
-  background-color: #e6dcc7;
+  color: var(--c-ink);
+  background-color: var(--c-desk);
   background-image: radial-gradient(
     ellipse 80vw 60vh at center top,
-    #ece2cc 0%,
+    var(--c-desk-light) 0%,
     transparent 70%
   );
   background-attachment: fixed;
@@ -47,17 +201,18 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* The paper sheet — holds the entire site content. Edge-to-edge on
-   mobile, floats on the desk with a soft drop shadow on tablet+.
-   Tiled SVG fractalNoise gives a faint paper grain (~3.5% alpha).
-   An inset shadow darkens the inner edges so the sheet reads as a
-   physical surface picking up shadow near its borders. */
+/* User-selected larger text — bumps root font-size so everything
+   sized in rem scales proportionally (~12.5% larger). */
+:root[data-font-size="larger"] {
+  font-size: 18px;
+}
+
 .site-paper {
-  background-color: theme("colors.paper.DEFAULT");
+  background-color: var(--c-paper);
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   max-width: 100%;
-  box-shadow: inset 0 0 80px rgba(31, 56, 100, 0.045);
+  box-shadow: inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha));
 }
 
 @media (prefers-contrast: more) {
@@ -72,10 +227,10 @@ body {
     max-width: 60rem;
     margin: 2rem auto;
     box-shadow:
-      inset 0 0 80px rgba(31, 56, 100, 0.045),
-      0 0 0 1px rgba(31, 56, 100, 0.04),
-      0 2px 4px rgba(31, 56, 100, 0.04),
-      0 12px 32px rgba(31, 56, 100, 0.08);
+      inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha)),
+      0 0 0 1px rgba(var(--c-shadow-rgb), 0.04),
+      0 2px 4px rgba(var(--c-shadow-rgb), 0.04),
+      0 12px 32px rgba(var(--c-shadow-rgb), 0.08);
   }
 }
 
@@ -86,19 +241,14 @@ body {
   }
 }
 
-h1,
-h2,
-h3 {
+h1, h2, h3 {
   font-family: theme("fontFamily.serif");
   font-weight: 600;
   line-height: var(--line-height-heading);
   letter-spacing: theme("letterSpacing.heading");
-  color: theme("colors.ink.DEFAULT");
+  color: var(--c-ink);
 }
 
-/* Heading sizes are book-typeset, not magazine-display. h1 is a
-   chapter title that's distinct from body but not loud. h2 is a
-   section break. h3 sits at body size with weight only. */
 h1 {
   font-size: 1.75rem;
   margin-bottom: 0.875rem;
@@ -131,16 +281,14 @@ p {
   margin-bottom: 1rem;
 }
 
-/* Caption following a paragraph sits tighter — reads as a footnote
-   under its parent thought, not as a separate beat. */
 p + p.caption {
   margin-top: -0.5rem;
 }
 
 a {
-  color: theme("colors.ink.DEFAULT");
+  color: var(--c-ink);
   text-decoration: underline;
-  text-decoration-color: theme("colors.gold.DEFAULT");
+  text-decoration-color: var(--c-gold);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
   transition: text-decoration-thickness 150ms ease;
@@ -156,46 +304,39 @@ a:hover {
   text-decoration-thickness: 2px;
 }
 
-/* CTA — looks like a hole punched through the paper. The button
-   surface is the desk color (showing through the hole); inset
-   shadows at the top give the paper's depth around the rim. The
-   primary 'Book a free Discovery Call' uses this; inline mentions
-   of the call stay as plain underlined links. */
+/* CTA — looks like a hole punched through the paper. */
 .cta {
   display: inline-block;
   padding: 0.75rem 1.75rem;
-  background-color: #e6dcc7;
-  color: theme("colors.ink.DEFAULT");
+  background-color: var(--c-cta-bg);
+  color: var(--c-ink);
   font-family: theme("fontFamily.serif");
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
   border-radius: 999px;
-  /* Layered shadows for the hole-punched look:
-       1. deeper top shadow = paper above casting down into the hole
-       2. secondary close shadow = the rim's curve
-       3. tiny bottom inner highlight = light catching the lip below */
   box-shadow:
-    inset 0 3px 5px rgba(31, 56, 100, 0.16),
-    inset 0 1px 2px rgba(31, 56, 100, 0.10),
-    inset 0 -1px 1px rgba(255, 250, 235, 0.5);
+    inset 0 3px 5px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-1)),
+    inset 0 1px 2px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-2)),
+    inset 0 -1px 1px rgba(var(--c-highlight-rgb), var(--c-cta-highlight));
   transition: background-color 180ms ease, box-shadow 180ms ease,
               transform 120ms ease;
 }
 
 .cta:hover {
-  background-color: #ddd1b5;
+  background-color: var(--c-cta-hover);
   text-decoration: none;
   box-shadow:
-    inset 0 3px 6px rgba(31, 56, 100, 0.20),
-    inset 0 1px 2px rgba(31, 56, 100, 0.12),
-    inset 0 -1px 1px rgba(255, 250, 235, 0.55);
+    inset 0 3px 6px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-hover-1)),
+    inset 0 1px 2px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-hover-2)),
+    inset 0 -1px 1px rgba(var(--c-highlight-rgb), var(--c-cta-highlight-hover));
 }
 
 .cta:active {
-  background-color: #d2c4a4;
-  box-shadow: inset 0 4px 7px rgba(31, 56, 100, 0.24),
-              inset 0 1px 2px rgba(31, 56, 100, 0.14);
+  background-color: var(--c-cta-active);
+  box-shadow:
+    inset 0 4px 7px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-active-1)),
+    inset 0 1px 2px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-active-2));
   transform: translateY(0.5px);
 }
 
@@ -210,9 +351,9 @@ a:hover {
 
 blockquote {
   font-style: italic;
-  border-left: 1px solid theme("colors.gold.DEFAULT");
+  border-left: 1px solid var(--c-gold);
   padding-left: 1.25rem;
-  color: theme("colors.ink.soft");
+  color: var(--c-ink-soft);
   max-width: var(--measure-prose);
 }
 
@@ -220,24 +361,19 @@ small,
 .caption {
   font-size: 0.9375rem;
   font-style: italic;
-  color: theme("colors.ink.muted");
+  color: var(--c-ink-muted);
 }
 
-/* Page subhead — sits beneath an h1, names what the page is about
-   in one quiet line. Italic, ink.soft, pulled close to the heading. */
 .dek {
   font-style: italic;
   font-size: 1.0625rem;
-  color: theme("colors.ink.soft");
+  color: var(--c-ink-soft);
   margin-top: -0.25rem;
   margin-bottom: 2rem;
   max-width: var(--measure-prose);
 }
 
 .section {
-  /* Sections breathe at a paper-page rhythm — not editorial luxury
-     whitespace. Slight top-heavier padding (top > bottom) gives the
-     page a small irregular lean instead of perfect symmetry. */
   padding-top: 3rem;
   padding-bottom: 2.5rem;
   padding-left: 1.25rem;
@@ -266,8 +402,8 @@ small,
 }
 
 ::selection {
-  background-color: theme("colors.gold.soft");
-  color: theme("colors.ink.DEFAULT");
+  background-color: var(--c-selection-bg);
+  color: var(--c-selection-text);
 }
 
 :focus {
@@ -275,146 +411,14 @@ small,
 }
 
 :focus-visible {
-  outline: 2px solid theme("colors.gold.DEFAULT");
+  outline: 2px solid var(--c-gold);
   outline-offset: 3px;
   border-radius: 2px;
 }
 
-/* ---- DARK MODE ----------------------------------------------------
-   Paper-on-desk metaphor inverted. The paper sheet becomes matte
-   black (slightly lighter than the deeper desk behind it), text
-   becomes warm cream. Gold accents stay close to their light-mode
-   tone — they read well on either surface.
-   ------------------------------------------------------------------ */
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #050505;
-    background-image: radial-gradient(
-      ellipse 80vw 60vh at center top,
-      #0e0e0e 0%,
-      transparent 75%
-    );
-    color: #dccfb0;
-  }
-
-  .site-paper {
-    background-color: #161616;
-    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
-  }
-
-  h1, h2, h3 {
-    color: #dccfb0;
-  }
-
-  a {
-    color: #dccfb0;
-    text-decoration-color: #c9941f;
-  }
-
-  blockquote {
-    color: #c4bda9;
-    border-left-color: #c9941f;
-  }
-
-  small,
-  .caption {
-    color: #918d7d;
-  }
-
-  .dek {
-    color: #c4bda9;
-  }
-
-  ::selection {
-    background-color: #c9941f;
-    color: #161616;
-  }
-
-  :focus-visible {
-    outline-color: #c9941f;
-  }
-
-  .skip-link {
-    background-color: #161616;
-    color: #dccfb0;
-    border-color: rgba(201, 148, 31, 0.5);
-  }
-  .skip-link:focus {
-    outline-color: #c9941f;
-  }
-
-  .site-header {
-    border-bottom-color: rgba(201, 148, 31, 0.18);
-  }
-  .site-header__brand {
-    color: #dccfb0;
-  }
-  .site-header__brand:hover,
-  .site-header__link:hover,
-  .site-footer__link:hover,
-  .site-header__link.is-active {
-    color: #dccfb0;
-    text-decoration-color: #c9941f;
-  }
-  .site-header__link {
-    color: #c4bda9;
-  }
-
-  .site-footer {
-    border-top-color: rgba(201, 148, 31, 0.18);
-  }
-  .site-footer__link {
-    color: #c4bda9;
-  }
-  .site-footer__note,
-  .site-footer__disclaimer {
-    color: #918d7d;
-  }
-
-  .cta {
-    background-color: #050505;
-    color: #dccfb0;
-    box-shadow:
-      inset 0 3px 5px rgba(0, 0, 0, 0.65),
-      inset 0 1px 2px rgba(0, 0, 0, 0.45),
-      inset 0 -1px 1px rgba(220, 207, 176, 0.06);
-  }
-  .cta:hover {
-    background-color: #000000;
-    color: #dccfb0;
-    box-shadow:
-      inset 0 3px 6px rgba(0, 0, 0, 0.78),
-      inset 0 1px 2px rgba(0, 0, 0, 0.55),
-      inset 0 -1px 1px rgba(220, 207, 176, 0.08);
-  }
-  .cta:active {
-    background-color: #000000;
-    box-shadow: inset 0 4px 7px rgba(0, 0, 0, 0.9),
-                inset 0 1px 2px rgba(0, 0, 0, 0.6);
-  }
-}
-
-@media (prefers-color-scheme: dark) and (min-width: 40rem) {
-  .site-paper {
-    box-shadow:
-      inset 0 0 80px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(220, 207, 176, 0.04),
-      0 2px 4px rgba(0, 0, 0, 0.3),
-      0 12px 32px rgba(0, 0, 0, 0.45);
-  }
-}
-
 /* ---- PAGE TRANSITIONS --------------------------------------------
-   The desk stays put; only the paper sheet moves between routes.
-   Outgoing sheet lifts off with a slight 3D tilt (like a hand
-   pulling a sheet from a stack). Incoming sheet settles in from
-   underneath with a small scale + fade. No bounce, no spring.
-   ------------------------------------------------------------------ */
+   The desk stays put; only the paper sheet moves between routes. */
 
-/* Suppress the default crossfade on the root snapshot — the desk
-   is the same color across routes, so animating it adds nothing
-   except a brief flash. */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -440,7 +444,7 @@ small,
   }
   100% {
     opacity: 0;
-    transform: translateX(36px) rotateY(-14deg) scale(0.985);
+    transform: translateX(var(--paper-lift-x)) rotateY(var(--paper-lift-ry)) scale(0.985);
     filter: brightness(0.96);
   }
 }
@@ -459,28 +463,17 @@ small,
   }
 }
 
-/* Dark mode: motion is more visible on matte black, so dampen both
-   the rotation and the translate so it stays subconscious. */
-@media (prefers-color-scheme: dark) {
-  @keyframes paper-lift-away {
-    0% {
-      opacity: 1;
-      transform: translateX(0) rotateY(0deg);
-    }
-    100% {
-      opacity: 0;
-      transform: translateX(18px) rotateY(-8deg);
-    }
-  }
-}
-
-/* Reduced motion: drop the transition entirely. The View Transitions
-   API will still show the new page; just no animation. */
+/* Reduced motion (system preference OR user choice) */
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(paper),
   ::view-transition-new(paper) {
     animation: none;
   }
+}
+
+:root[data-motion="off"] ::view-transition-old(paper),
+:root[data-motion="off"] ::view-transition-new(paper) {
+  animation: none;
 }
 
 @media print {
@@ -493,7 +486,6 @@ small,
 
   .site-header,
   .site-footer {
-    /* Site chrome doesn't print — the reader already has the page. */
     display: none;
   }
 
@@ -507,7 +499,6 @@ small,
     text-decoration: underline;
   }
 
-  /* Show URL after external links (skip mailto/anchor) */
   a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 90%;
