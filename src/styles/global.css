@@ -393,6 +393,15 @@ p {
   margin-bottom: 1rem;
 }
 
+/* Mobile prose decompression — a touch more breath between
+   paragraphs on narrow widths, where line lengths compress and
+   the eye benefits from slightly longer pauses between blocks. */
+@media (max-width: 39.999rem) {
+  p {
+    margin-bottom: 1.125rem;
+  }
+}
+
 p + p.caption {
   margin-top: -0.5rem;
 }
