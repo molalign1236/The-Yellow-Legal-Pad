@@ -146,8 +146,12 @@ const canonicalUrl = Astro.site
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    {/* Open Graph + Twitter — quiet defaults for shared links */}
+    {/* Open Graph + Twitter — quiet defaults for shared links.
+        og:image deliberately omitted until a PNG export of
+        public/og.svg lands at public/og.png; see TODO_STACEY.md. */}
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Yellow Legal Pad" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={meta} />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
