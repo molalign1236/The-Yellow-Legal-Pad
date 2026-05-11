@@ -794,63 +794,87 @@ small,
    the rotation, so the shadow density 'leads' the lift — paper
    shadows build before the surface starts moving away. */
 @keyframes ibook-bend-shade {
-  /* Two drop-shadows stacked: the dark one is the cast shadow
-     falling on the page below (large offset, low alpha).
-     The warm rim is a much smaller offset that hugs the curl
-     edge — the bend's outermost surface catching the lamp. The
-     rim's offset grows with the curl progression so the highlight
-     appears to roll along the diagonal as the curve sweeps across
-     the page. Brightness oscillation continues from Pass 411. */
+  /* Three coordinated effects on the curl edge:
+       1. Dark inset (large offset, large blur, slight negative
+          spread) — interior of the curve falls into shadow.
+       2. Cream inset (matching offset, TIGHT blur, large negative
+          spread) — a narrow bright line just inside the curve
+          edge. The spread makes this only visible right at the
+          offset point, so it reads as a localized light pool
+          travelling along the diagonal as the curl progresses.
+       3. Two drop-shadows — dark cast shadow (large offset, low
+          alpha) and warm rim drop-shadow (small offset, theme
+          alpha) at the page's outer edge.
+     The cream INSET is the new piece — a moving ridge highlight
+     that pools at the curve apex inside the page surface. */
   0% {
-    box-shadow: inset 0 0 0 transparent;
+    box-shadow:
+      inset 0 0 0 transparent,
+      inset 0 0 0 transparent;
     filter: brightness(1)
       drop-shadow(0 0 0 transparent)
       drop-shadow(0 0 0 transparent);
   }
   12% {
-    box-shadow: inset -6px 6px 12px -6px rgba(0, 0, 0, 0.10);
+    box-shadow:
+      inset -6px 6px 12px -6px rgba(0, 0, 0, 0.10),
+      inset -4px 4px 2px -4px rgba(var(--c-curl-rim), 0.30);
     filter: brightness(1.015)
       drop-shadow(-4px 6px 14px rgba(0, 0, 0, 0.16))
       drop-shadow(-2px 3px 4px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   25% {
-    box-shadow: inset -18px 18px 30px -10px rgba(0, 0, 0, 0.18);
+    box-shadow:
+      inset -18px 18px 30px -10px rgba(0, 0, 0, 0.18),
+      inset -14px 14px 3px -14px rgba(var(--c-curl-rim), 0.40);
     filter: brightness(0.93)
       drop-shadow(-12px 14px 26px rgba(0, 0, 0, 0.30))
       drop-shadow(-4px 5px 6px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   38% {
-    box-shadow: inset -30px 30px 44px -12px rgba(0, 0, 0, 0.22);
+    box-shadow:
+      inset -30px 30px 44px -12px rgba(0, 0, 0, 0.22),
+      inset -26px 26px 3px -26px rgba(var(--c-curl-rim), 0.45);
     filter: brightness(0.96)
       drop-shadow(-20px 22px 38px rgba(0, 0, 0, 0.36))
       drop-shadow(-6px 7px 8px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   55% {
-    box-shadow: inset -46px 46px 60px -16px rgba(0, 0, 0, 0.28);
+    box-shadow:
+      inset -46px 46px 60px -16px rgba(0, 0, 0, 0.28),
+      inset -42px 42px 4px -42px rgba(var(--c-curl-rim), 0.45);
     filter: brightness(0.80)
       drop-shadow(-30px 32px 56px rgba(0, 0, 0, 0.44))
       drop-shadow(-8px 9px 10px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   68% {
-    box-shadow: inset -56px 56px 70px -18px rgba(0, 0, 0, 0.30);
+    box-shadow:
+      inset -56px 56px 70px -18px rgba(0, 0, 0, 0.30),
+      inset -52px 52px 4px -52px rgba(var(--c-curl-rim), 0.36);
     filter: brightness(0.74)
       drop-shadow(-38px 40px 66px rgba(0, 0, 0, 0.40))
       drop-shadow(-10px 11px 12px rgba(var(--c-curl-rim), calc(var(--c-curl-rim-alpha) * 0.75)));
   }
   82% {
-    box-shadow: inset -66px 66px 78px -20px rgba(0, 0, 0, 0.28);
+    box-shadow:
+      inset -66px 66px 78px -20px rgba(0, 0, 0, 0.28),
+      inset -62px 62px 4px -62px rgba(var(--c-curl-rim), 0.24);
     filter: brightness(0.68)
       drop-shadow(-46px 46px 78px rgba(0, 0, 0, 0.36))
       drop-shadow(-12px 13px 14px rgba(var(--c-curl-rim), calc(var(--c-curl-rim-alpha) * 0.5)));
   }
   92% {
-    box-shadow: inset -74px 74px 84px -22px rgba(0, 0, 0, 0.27);
+    box-shadow:
+      inset -74px 74px 84px -22px rgba(0, 0, 0, 0.27),
+      inset -70px 70px 4px -70px rgba(var(--c-curl-rim), 0.14);
     filter: brightness(0.62)
       drop-shadow(-50px 50px 84px rgba(0, 0, 0, 0.32))
       drop-shadow(-13px 14px 14px rgba(var(--c-curl-rim), calc(var(--c-curl-rim-alpha) * 0.3)));
   }
   100% {
-    box-shadow: inset -82px 82px 90px -24px rgba(0, 0, 0, 0.25);
+    box-shadow:
+      inset -82px 82px 90px -24px rgba(0, 0, 0, 0.25),
+      inset -78px 78px 4px -78px rgba(var(--c-curl-rim), 0);
     filter: brightness(0.58)
       drop-shadow(-54px 54px 88px rgba(0, 0, 0, 0.28))
       drop-shadow(-14px 15px 16px rgba(var(--c-curl-rim), 0));
