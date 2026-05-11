@@ -85,7 +85,29 @@ const canonicalUrl = Astro.site
       (function () {
         var ticking = false;
         var rate = 0.15;
+        function motionOff() {
+          if (
+            document.documentElement.getAttribute("data-motion") === "off"
+          ) {
+            return true;
+          }
+          if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches
+          ) {
+            return true;
+          }
+          return false;
+        }
         function update() {
+          if (motionOff()) {
+            document.documentElement.style.setProperty(
+              "--bg-parallax-y",
+              "0px"
+            );
+            ticking = false;
+            return;
+          }
           var y = window.scrollY * rate;
           document.documentElement.style.setProperty(
             "--bg-parallax-y",
@@ -171,9 +193,13 @@ const canonicalUrl = Astro.site
 <style is:global>
   @import "../styles/global.css";
 
-  /* Hidden off-screen until keyboard focus reveals it. */
+  /* Hidden off-screen until keyboard focus reveals it. position:
+     fixed so the skip link stays anchored to the viewport even if
+     an ancestor creates a new containing block (filters, transforms,
+     view-transition pseudos), which previously caused it to render
+     visibly on desktop. */
   .skip-link {
-    position: absolute;
+    position: fixed;
     top: -3rem;
     left: 1rem;
     padding: 0.5rem 0.875rem;
@@ -183,7 +209,7 @@ const canonicalUrl = Astro.site
     text-decoration: none;
     border: 1px solid rgba(var(--c-rule-rgb), 0.4);
     border-radius: 2px;
-    z-index: 10;
+    z-index: 1000;
   }
 
   .skip-link:focus {
