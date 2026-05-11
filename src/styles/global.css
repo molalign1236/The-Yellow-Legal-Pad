@@ -87,30 +87,33 @@ h3 {
   color: theme("colors.ink.DEFAULT");
 }
 
+/* Heading sizes are book-typeset, not magazine-display. h1 is a
+   chapter title that's distinct from body but not loud. h2 is a
+   section break. h3 sits at body size with weight only. */
 h1 {
-  font-size: 2rem; /* mobile baseline — kind to small screens */
+  font-size: 1.75rem;
   margin-bottom: 1.25rem;
 }
 
 @media (min-width: 40rem) {
   h1 {
-    font-size: 2.5rem; /* ~40px on tablet+ — present, not loud */
+    font-size: 2.125rem;
   }
 }
 
 h2 {
-  font-size: 1.5rem; /* mobile baseline */
+  font-size: 1.375rem;
   margin-bottom: 1rem;
 }
 
 @media (min-width: 40rem) {
   h2 {
-    font-size: 1.75rem; /* ~28px section titles on tablet+ */
+    font-size: 1.5rem;
   }
 }
 
 h3 {
-  font-size: 1.25rem; /* ~20px — sub-titles, used sparingly */
+  font-size: 1.1875rem;
   margin-bottom: 0.75rem;
 }
 
