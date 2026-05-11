@@ -13,12 +13,12 @@ interface Props {
 const { title, description } = Astro.props;
 
 const fullTitle = title
-  ? `${title} — Yellow Legal Pad`
-  : "Yellow Legal Pad";
+  ? `${title} — The Yellow Legal Pad`
+  : "The Yellow Legal Pad — Financial coaching for life's biggest transitions";
 
 const meta =
   description ??
-  "Yellow Legal Pad — financial coaching with Stacey. A quiet conversation, without judgment.";
+  "The Yellow Legal Pad — financial coaching with Stacey, for people navigating retirement, divorce, widowhood, late starts, caregiving, and other transitions. Remote sessions, plain language, no products.";
 
 // Active-link detection. Match by pathname; trailing-slash tolerant.
 const path = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -62,8 +62,8 @@ const canonicalUrl = Astro.site
 
     <header class="site-header">
       <div class="site-header__inner">
-        <a href="/" class="site-header__brand" aria-label="Yellow Legal Pad — home">
-          Yellow Legal Pad
+        <a href="/" class="site-header__brand" aria-label="The Yellow Legal Pad — home">
+          The Yellow Legal Pad
         </a>
         <nav class="site-header__nav" aria-label="Primary">
           <a href="/about" class:list={["site-header__link", { "is-active": isActive("/about") }]} aria-current={isActive("/about") ? "page" : undefined}>About</a>
@@ -86,8 +86,14 @@ const canonicalUrl = Astro.site
           <a href="/resources" class="site-footer__link">Resources</a>
           <a href="/contact" class="site-footer__link">Contact</a>
         </nav>
+        <p class="caption site-footer__disclaimer">
+          The Yellow Legal Pad provides financial coaching and education
+          only. This is not financial advice, investment advice, legal
+          advice, or tax advice. Consult a licensed professional for
+          advice specific to your situation.
+        </p>
         <p class="caption site-footer__note">
-          Yellow Legal Pad &middot; Stacey
+          The Yellow Legal Pad &middot; Stacey &middot; Vero Beach, Florida
         </p>
       </div>
     </footer>
@@ -246,5 +252,14 @@ const canonicalUrl = Astro.site
     color: theme("colors.ink.muted");
     margin-bottom: 0;
     max-width: none;
+  }
+
+  .site-footer__disclaimer {
+    color: theme("colors.ink.muted");
+    font-style: normal;
+    font-size: 0.8125rem;
+    line-height: 1.55;
+    max-width: 44rem;
+    margin-bottom: 0;
   }
 </style>
