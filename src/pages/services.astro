@@ -50,6 +50,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           bills you know about &mdash; and we look at all of it
           together.
         </p>
+        <p class="pathway__for">
+          For when you want one clear look at where you are and a
+          couple of concrete next steps, without committing to more.
+        </p>
         <ul class="pathway__includes">
           <li>One ninety-minute session</li>
           <li>Walk through your current picture together</li>
@@ -64,6 +68,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           A Clarity Session plus a sixty-minute follow-up a few weeks
           later, to work through what came up between conversations.
         </p>
+        <p class="pathway__for">
+          For when one conversation isn't quite enough &mdash; usually
+          because real life intervenes between sessions and a second
+          look helps land the first.
+        </p>
         <ul class="pathway__includes">
           <li>Everything in the Clarity Session</li>
           <li>Sixty-minute follow-up a few weeks later</li>
@@ -76,6 +85,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         <p>
           Four sessions over a couple of months for people sorting
           through more than one thing at once.
+        </p>
+        <p class="pathway__for">
+          For when more than one piece is in motion &mdash; a divorce
+          alongside retirement planning, a late start with debt to
+          untangle, a caregiving load that's changed the picture.
         </p>
         <ul class="pathway__includes">
           <li>Four sessions, one at a time</li>
@@ -91,6 +105,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           Quarterly check-ins across twelve months, for people who'd
           rather have Stacey as the person they check in with
           regularly as life changes.
+        </p>
+        <p class="pathway__for">
+          For when life keeps moving &mdash; kids leaving home, a
+          parent needing care, a retirement starting to take shape
+          &mdash; and a steady quarterly conversation is more useful
+          than a one-time plan.
         </p>
         <ul class="pathway__includes">
           <li>Everything in Complete Blueprint</li>
@@ -113,6 +133,13 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     /* Pathway "what's included" lists — paper-aesthetic bullets in
        muted gold, indented modestly, no card grid. Scannable detail
        without the SaaS-feature-list energy. */
+    .pathway__for {
+      font-style: italic;
+      color: var(--c-ink-soft);
+      max-width: var(--measure-prose);
+      margin-top: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
     .pathway__includes {
       list-style: none;
       padding: 0;
