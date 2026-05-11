@@ -8,8 +8,8 @@ export default {
       ink: {
         /* Brand navy from Stacey's business documents. */
         DEFAULT: "#1F3864",
-        soft: "#3a4f80",
-        muted: "#6c7c9c",
+        soft: "#39487a",
+        muted: "#4a577b",
       },
       paper: {
         DEFAULT: "#f6f1e6",
