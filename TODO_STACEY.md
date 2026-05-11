@@ -107,14 +107,27 @@ Currently `@fontsource/eb-garamond` via npm. If the owner wants
 licensed fonts (Söhne, etc.), drop into `public/fonts/` and update
 the `@font-face` declarations.
 
-### Open-Graph image (low priority, audit P2)
-No `og:image` is set. Twitter card is `summary` (text-only), which
-is fine for now but a quiet ivory-paper-on-tan-desk image at
-1200×630 in `public/og.png` would land better in chat previews and
-link unfurls. Reference the file from `BaseLayout.astro` via
-`<meta property="og:image" content="https://theyellowlegalpad.co/og.png" />`.
-Wait until Stacey signs off on the imagery; don't generate one in
-the meantime.
+### Open-Graph image — PNG export pending
+`public/og.svg` is the canonical design source (Pass 430) — a
+quiet ivory-paper-on-tan-desk 1200×630 composition with the
+wordmark, tagline, and Vero Beach byline. It is intentionally not
+yet referenced as `og:image` because the major social platforms
+(Twitter, LinkedIn, Facebook) don't render SVG share previews.
+
+To finish: export `og.svg` to `public/og.png` (1200×630), then add
+to `BaseLayout.astro`:
+
+```astro
+<meta property="og:image" content="https://theyellowlegalpad.co/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://theyellowlegalpad.co/og.png" />
+```
+
+Stacey can do the conversion via any SVG-to-PNG tool (rsvg-convert,
+Inkscape, Figma export, online converter) — no code change needed
+until the PNG lands.
 
 ---
 

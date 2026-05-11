@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="The Yellow Legal Pad — financial coaching for life's biggest transitions">
+  <defs>
+    <radialGradient id="lamp" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ece2cc" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#e6dcc7" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="paperGrain" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f6f1e6"/>
+      <stop offset="100%" stop-color="#f1ebdc"/>
+    </linearGradient>
+  </defs>
+
+  <!-- desk + lamp wash -->
+  <rect width="1200" height="630" fill="url(#lamp)"/>
+
+  <!-- paper shadow stack — subtle depth, no card glow -->
+  <rect x="172" y="92" width="856" height="468" fill="#000" opacity="0.06" rx="2"/>
+  <rect x="168" y="88" width="856" height="468" fill="#000" opacity="0.05" rx="2"/>
+
+  <!-- paper -->
+  <rect x="160" y="80" width="856" height="468" fill="url(#paperGrain)" rx="2"/>
+
+  <!-- gold rule, short — the "small mark" pattern from the body styles -->
+  <line x1="220" y1="180" x2="280" y2="180" stroke="#B8860B" stroke-width="2" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- wordmark -->
+  <text x="220" y="260" font-family="'EB Garamond', Garamond, 'Times New Roman', serif" font-size="64" fill="#1F3864" font-weight="500">The Yellow Legal Pad</text>
+
+  <!-- tagline -->
+  <text x="220" y="340" font-family="'EB Garamond', Garamond, 'Times New Roman', serif" font-size="34" font-style="italic" fill="#39487a">Financial coaching for life's biggest transitions</text>
+
+  <!-- second short gold rule above byline -->
+  <line x1="220" y1="430" x2="260" y2="430" stroke="#B8860B" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- byline -->
+  <text x="220" y="480" font-family="'EB Garamond', Garamond, 'Times New Roman', serif" font-size="22" fill="#4a577b">Stacey · Vero Beach, Florida</text>
+
+  <!-- domain, quiet, bottom-right of paper -->
+  <text x="996" y="528" font-family="'EB Garamond', Garamond, 'Times New Roman', serif" font-size="18" fill="#4a577b" text-anchor="end" opacity="0.7">theyellowlegalpad.co</text>
+</svg>
