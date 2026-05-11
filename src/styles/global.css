@@ -528,165 +528,259 @@ small,
   perspective-origin: 50% 35%;
 }
 
+/* The curl is composed of THREE concurrent sub-animations on the
+   same pseudo, each with its own easing and a small offset delay
+   so they don't progress in lock-step. This is the layer-timing
+   separation that makes the page read as material under uneven
+   stress rather than a procedurally-transformed rectangle:
+
+     - ibook-mask-flow:  the diagonal mask sweep. Non-uniform
+                          keyframe distribution: slow at start
+                          (paper resists), fast through the middle
+                          (release), slower at end (settling).
+     - ibook-tilt:        the rotate3d corner lift. Small 40ms
+                          delay so the surface deformation starts
+                          first; the rotation 'catches up' to the
+                          mask. Different easing — closer to a
+                          weighted lean than a smooth curve.
+     - ibook-bend-shade:  the inset self-shadow + filter brightness
+                          + drop-shadow. Their own easing so the
+                          shadow density doesn't peak at the same
+                          moment as the rotation.
+*/
 ::view-transition-old(paper) {
-  animation: ibook-real-curl 780ms cubic-bezier(0.42, 0.02, 0.52, 0.96) both;
+  animation:
+    ibook-mask-flow 800ms cubic-bezier(0.40, 0.00, 0.55, 0.95) both,
+    ibook-tilt 800ms cubic-bezier(0.62, 0.04, 0.36, 1) 40ms both,
+    ibook-bend-shade 800ms cubic-bezier(0.30, 0.05, 0.55, 0.92) 20ms both;
   transform-origin: 0% 100%;
   transform-style: preserve-3d;
   z-index: 2;
   backface-visibility: hidden;
-  will-change: transform, opacity, filter, mask-image;
+  will-change: transform, opacity, filter, mask-image, box-shadow;
 }
 
 ::view-transition-new(paper) {
-  animation: ibook-page-reveal 780ms cubic-bezier(0.2, 0, 0.4, 1) both;
+  animation:
+    ibook-page-mask-reveal 800ms cubic-bezier(0.2, 0, 0.4, 1) both,
+    ibook-page-settle 800ms cubic-bezier(0.25, 0, 0.35, 1) 60ms both;
   z-index: 1;
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity, filter, mask-image;
 }
 
-/* The page now actually loses surface along a moving diagonal as it
-   curls — mask-image is a linear-gradient whose stops slide from
-   above 100% (entire page visible) at start to below 0% (entire
-   page eaten) at end. The soft alpha band between the two stops
-   reads as a curl line moving across the surface. Combined with
-   the 3D rotation, the page appears to bend while peeling, not
-   just rotate as a rectangle. drop-shadow follows the masked
-   shape so the cast shadow tracks the curl edge correctly. */
-@keyframes ibook-real-curl {
+/* Mask flow with non-uniform stops — bend position moves 117 → -7
+   over the animation. Distribution is slow / fast / slow / very-slow
+   (resist → release → continue → settle). The 'paper bends along
+   a moving diagonal' beat. */
+@keyframes ibook-mask-flow {
   0% {
-    transform: rotate3d(1, -1, 0, 0deg);
     mask-image: linear-gradient(
       to top right,
-      black 100%,
-      black 110%,
-      rgba(0, 0, 0, 0.45) 115%,
-      transparent 125%
+      black 100%, black 110%,
+      rgba(0, 0, 0, 0.45) 115%, transparent 125%
     );
     -webkit-mask-image: linear-gradient(
       to top right,
-      black 100%,
-      black 110%,
-      rgba(0, 0, 0, 0.45) 115%,
-      transparent 125%
+      black 100%, black 110%,
+      rgba(0, 0, 0, 0.45) 115%, transparent 125%
     );
+  }
+  25% {
+    mask-image: linear-gradient(
+      to top right,
+      black 93%, black 103%,
+      rgba(0, 0, 0, 0.45) 110%, transparent 117%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      black 93%, black 103%,
+      rgba(0, 0, 0, 0.45) 110%, transparent 117%
+    );
+  }
+  55% {
+    mask-image: linear-gradient(
+      to top right,
+      black 43%, black 53%,
+      rgba(0, 0, 0, 0.45) 60%, transparent 67%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      black 43%, black 53%,
+      rgba(0, 0, 0, 0.45) 60%, transparent 67%
+    );
+  }
+  78% {
+    mask-image: linear-gradient(
+      to top right,
+      black 8%, black 18%,
+      rgba(0, 0, 0, 0.45) 25%, transparent 32%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      black 8%, black 18%,
+      rgba(0, 0, 0, 0.45) 25%, transparent 32%
+    );
+  }
+  92% {
+    mask-image: linear-gradient(
+      to top right,
+      black -12%, black -2%,
+      rgba(0, 0, 0, 0.45) 5%, transparent 12%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      black -12%, black -2%,
+      rgba(0, 0, 0, 0.45) 5%, transparent 12%
+    );
+  }
+  100% {
+    mask-image: linear-gradient(
+      to top right,
+      black -25%, black -15%,
+      rgba(0, 0, 0, 0.45) -8%, transparent 0%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      black -25%, black -15%,
+      rgba(0, 0, 0, 0.45) -8%, transparent 0%
+    );
+  }
+}
+
+/* Rotation lifts the corner with an uneven curve — barely any tilt
+   in the first 20%, then catches up to the mask. */
+@keyframes ibook-tilt {
+  0% {
+    transform: rotate3d(1, -1, 0, 0deg);
+  }
+  20% {
+    transform: rotate3d(1, -1, 0, 3deg);
+  }
+  55% {
+    transform: rotate3d(1, -1, 0, 28deg);
+  }
+  85% {
+    transform: rotate3d(1, -1, 0, 54deg);
+  }
+  100% {
+    transform: rotate3d(1, -1, 0, var(--paper-curl-deg, 68deg));
+  }
+}
+
+/* Shading — inset curl-edge darkening + filter brightness ramp +
+   external drop-shadow following the mask. Peaks slightly before
+   the rotation, so the shadow density 'leads' the lift — paper
+   shadows build before the surface starts moving away. */
+@keyframes ibook-bend-shade {
+  0% {
     box-shadow: inset 0 0 0 transparent;
     opacity: 1;
     filter: brightness(1) drop-shadow(0 0 0 transparent);
   }
-  30% {
-    mask-image: linear-gradient(
-      to top right,
-      black 60%,
-      black 70%,
-      rgba(0, 0, 0, 0.45) 76%,
-      transparent 84%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      black 60%,
-      black 70%,
-      rgba(0, 0, 0, 0.45) 76%,
-      transparent 84%
-    );
-    box-shadow: inset -20px 20px 32px -10px rgba(0, 0, 0, 0.16);
-    filter: brightness(0.94)
-      drop-shadow(-14px 16px 28px rgba(0, 0, 0, 0.34));
+  25% {
+    box-shadow: inset -18px 18px 30px -10px rgba(0, 0, 0, 0.18);
+    filter: brightness(0.93)
+      drop-shadow(-12px 14px 26px rgba(0, 0, 0, 0.30));
   }
-  60% {
-    transform: rotate3d(1, -1, 0, 25deg);
-    mask-image: linear-gradient(
-      to top right,
-      black 20%,
-      black 30%,
-      rgba(0, 0, 0, 0.45) 36%,
-      transparent 44%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      black 20%,
-      black 30%,
-      rgba(0, 0, 0, 0.45) 36%,
-      transparent 44%
-    );
-    box-shadow: inset -42px 42px 56px -16px rgba(0, 0, 0, 0.26);
-    filter: brightness(0.82)
-      drop-shadow(-30px 30px 54px rgba(0, 0, 0, 0.42));
+  55% {
+    box-shadow: inset -46px 46px 60px -16px rgba(0, 0, 0, 0.28);
+    filter: brightness(0.80)
+      drop-shadow(-30px 32px 56px rgba(0, 0, 0, 0.44));
   }
-  85% {
-    box-shadow: inset -60px 60px 72px -20px rgba(0, 0, 0, 0.28);
-    filter: brightness(0.70)
-      drop-shadow(-44px 44px 76px rgba(0, 0, 0, 0.36));
+  82% {
+    box-shadow: inset -66px 66px 78px -20px rgba(0, 0, 0, 0.28);
+    filter: brightness(0.68)
+      drop-shadow(-46px 46px 78px rgba(0, 0, 0, 0.36));
   }
   100% {
-    transform: rotate3d(1, -1, 0, var(--paper-curl-deg, 68deg));
-    mask-image: linear-gradient(
-      to top right,
-      black -25%,
-      black -15%,
-      rgba(0, 0, 0, 0.45) -8%,
-      transparent 0%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      black -25%,
-      black -15%,
-      rgba(0, 0, 0, 0.45) -8%,
-      transparent 0%
-    );
-    box-shadow: inset -80px 80px 88px -24px rgba(0, 0, 0, 0.30);
+    box-shadow: inset -82px 82px 90px -24px rgba(0, 0, 0, 0.25);
     opacity: 0;
     filter: brightness(0.58)
-      drop-shadow(-54px 54px 88px rgba(0, 0, 0, 0.30));
+      drop-shadow(-54px 54px 88px rgba(0, 0, 0, 0.28));
   }
 }
 
-/* The new page mirrors the curl logic — its mask reveals from
-   top-right to bottom-left, so the diagonal line aligns with where
-   the old page is being lost. The reader sees a continuous curl
-   line moving across the sheet stack rather than a crossfade. */
-@keyframes ibook-page-reveal {
+/* New page reveal — mirrors the mask sweep of the outgoing page so
+   the curl line appears continuous across the sheet stack. The
+   settle (scale + translate + brightness) runs on its own animation
+   with a 60ms delay so the new sheet first 'appears' along the
+   diagonal, then begins settling into final position. */
+@keyframes ibook-page-mask-reveal {
+  0% {
+    mask-image: linear-gradient(
+      to top right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.45) 5%,
+      black 12%, black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      transparent 0%,
+      rgba(0, 0, 0, 0.45) 5%,
+      black 12%, black 100%
+    );
+  }
+  22% {
+    mask-image: linear-gradient(
+      to top right,
+      transparent 8%,
+      rgba(0, 0, 0, 0.45) 14%,
+      black 22%, black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      transparent 8%,
+      rgba(0, 0, 0, 0.45) 14%,
+      black 22%, black 100%
+    );
+  }
+  55% {
+    mask-image: linear-gradient(
+      to top right,
+      transparent 36%,
+      rgba(0, 0, 0, 0.45) 44%,
+      black 52%, black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      transparent 36%,
+      rgba(0, 0, 0, 0.45) 44%,
+      black 52%, black 100%
+    );
+  }
+  85% {
+    mask-image: linear-gradient(
+      to top right,
+      transparent 80%,
+      rgba(0, 0, 0, 0.45) 88%,
+      black 96%, black 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to top right,
+      transparent 80%,
+      rgba(0, 0, 0, 0.45) 88%,
+      black 96%, black 100%
+    );
+  }
+  100% {
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+@keyframes ibook-page-settle {
   0% {
     opacity: 1;
     transform: scale(0.992) translateY(3px);
     filter: brightness(0.88);
-    mask-image: linear-gradient(
-      to top right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.45) 5%,
-      black 12%,
-      black 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.45) 5%,
-      black 12%,
-      black 100%
-    );
   }
-  60% {
+  55% {
     transform: scale(0.997) translateY(1px);
     filter: brightness(0.96);
-    mask-image: linear-gradient(
-      to top right,
-      transparent 36%,
-      rgba(0, 0, 0, 0.45) 44%,
-      black 52%,
-      black 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      transparent 36%,
-      rgba(0, 0, 0, 0.45) 44%,
-      black 52%,
-      black 100%
-    );
   }
   100% {
-    opacity: 1;
     transform: scale(1) translateY(0);
     filter: brightness(1);
-    mask-image: none;
-    -webkit-mask-image: none;
   }
 }
 
