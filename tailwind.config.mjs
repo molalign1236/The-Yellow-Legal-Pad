@@ -6,9 +6,10 @@ export default {
       transparent: "transparent",
       current: "currentColor",
       ink: {
-        DEFAULT: "#0e1a36",
-        soft: "#243152",
-        muted: "#5a6483",
+        /* Brand navy from Stacey's business documents. */
+        DEFAULT: "#1F3864",
+        soft: "#3a4f80",
+        muted: "#6c7c9c",
       },
       paper: {
         DEFAULT: "#f6f1e6",
@@ -16,8 +17,9 @@ export default {
         cool: "#fbf8f1",
       },
       gold: {
-        DEFAULT: "#a87f2b",
-        soft: "#c49648",
+        /* Brand gold from Stacey's business documents. */
+        DEFAULT: "#B8860B",
+        soft: "#d6a635",
       },
     },
     fontFamily: {
