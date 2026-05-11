@@ -264,6 +264,123 @@ small,
   border-radius: 2px;
 }
 
+/* ---- DARK MODE ----------------------------------------------------
+   Paper-on-desk metaphor inverted. The paper sheet becomes matte
+   black (slightly lighter than the deeper desk behind it), text
+   becomes warm cream. Gold accents stay close to their light-mode
+   tone — they read well on either surface.
+   ------------------------------------------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #050505;
+    color: #ede5d0;
+  }
+
+  .site-paper {
+    background-color: #161616;
+    box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.5);
+  }
+
+  h1, h2, h3 {
+    color: #ede5d0;
+  }
+
+  a {
+    color: #ede5d0;
+    text-decoration-color: #c9941f;
+  }
+
+  blockquote {
+    color: #c4bda9;
+    border-left-color: #c9941f;
+  }
+
+  small,
+  .caption {
+    color: #918d7d;
+  }
+
+  .dek {
+    color: #c4bda9;
+  }
+
+  ::selection {
+    background-color: #c9941f;
+    color: #161616;
+  }
+
+  :focus-visible {
+    outline-color: #c9941f;
+  }
+
+  .skip-link {
+    background-color: #161616;
+    color: #ede5d0;
+    border-color: rgba(201, 148, 31, 0.5);
+  }
+  .skip-link:focus {
+    outline-color: #c9941f;
+  }
+
+  .site-header {
+    border-bottom-color: rgba(201, 148, 31, 0.18);
+  }
+  .site-header__brand {
+    color: #ede5d0;
+  }
+  .site-header__brand:hover,
+  .site-header__link:hover,
+  .site-footer__link:hover,
+  .site-header__link.is-active {
+    color: #ede5d0;
+    text-decoration-color: #c9941f;
+  }
+  .site-header__link {
+    color: #c4bda9;
+  }
+
+  .site-footer {
+    border-top-color: rgba(201, 148, 31, 0.18);
+  }
+  .site-footer__link {
+    color: #c4bda9;
+  }
+  .site-footer__note,
+  .site-footer__disclaimer {
+    color: #918d7d;
+  }
+
+  .cta {
+    background-color: #050505;
+    color: #ede5d0;
+    box-shadow:
+      inset 0 2px 4px rgba(0, 0, 0, 0.6),
+      inset 0 1px 2px rgba(0, 0, 0, 0.4);
+  }
+  .cta:hover {
+    background-color: #000000;
+    color: #ede5d0;
+    box-shadow:
+      inset 0 2px 5px rgba(0, 0, 0, 0.75),
+      inset 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  .cta:active {
+    background-color: #000000;
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.85);
+  }
+}
+
+@media (prefers-color-scheme: dark) and (min-width: 40rem) {
+  .site-paper {
+    box-shadow:
+      inset 0 0 80px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(237, 229, 208, 0.04),
+      0 2px 4px rgba(0, 0, 0, 0.3),
+      0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+}
+
 @media print {
   body {
     background: #fff;
