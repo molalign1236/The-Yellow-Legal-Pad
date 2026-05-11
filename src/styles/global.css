@@ -405,6 +405,84 @@ small,
   }
 }
 
+/* ---- PAGE TRANSITIONS --------------------------------------------
+   The desk stays put; only the paper sheet moves between routes.
+   Outgoing sheet lifts off with a slight 3D tilt (like a hand
+   pulling a sheet from a stack). Incoming sheet settles in from
+   underneath with a small scale + fade. No bounce, no spring.
+   ------------------------------------------------------------------ */
+
+/* Suppress the default crossfade on the root snapshot — the desk
+   is the same color across routes, so animating it adds nothing
+   except a brief flash. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+}
+
+::view-transition-old(paper) {
+  animation: paper-lift-away 380ms cubic-bezier(0.4, 0, 0.6, 1) both;
+  transform-origin: top left;
+  z-index: 2;
+}
+
+::view-transition-new(paper) {
+  animation: paper-settle-in 460ms cubic-bezier(0.2, 0, 0.4, 1) both;
+  transform-origin: center;
+  z-index: 1;
+}
+
+@keyframes paper-lift-away {
+  0% {
+    opacity: 1;
+    transform: translateX(0) rotateY(0deg) scale(1);
+    filter: brightness(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(36px) rotateY(-14deg) scale(0.985);
+    filter: brightness(0.96);
+  }
+}
+
+@keyframes paper-settle-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.992);
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Dark mode: motion is more visible on matte black, so dampen both
+   the rotation and the translate so it stays subconscious. */
+@media (prefers-color-scheme: dark) {
+  @keyframes paper-lift-away {
+    0% {
+      opacity: 1;
+      transform: translateX(0) rotateY(0deg);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(18px) rotateY(-8deg);
+    }
+  }
+}
+
+/* Reduced motion: drop the transition entirely. The View Transitions
+   API will still show the new page; just no animation. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(paper),
+  ::view-transition-new(paper) {
+    animation: none;
+  }
+}
+
 @media print {
   body {
     background: #fff;

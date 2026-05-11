@@ -4,6 +4,7 @@
 import "@fontsource/eb-garamond/400.css";
 import "@fontsource/eb-garamond/400-italic.css";
 import "@fontsource/eb-garamond/600.css";
+import { ClientRouter } from "astro:transitions";
 
 interface Props {
   title?: string;
@@ -54,12 +55,13 @@ const canonicalUrl = Astro.site
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={meta} />
+    <ClientRouter />
   </head>
 
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <div class="site-paper">
+    <div class="site-paper" transition:name="paper">
       <header class="site-header">
         <div class="site-header__inner">
           <a href="/" class="site-header__brand" aria-label="The Yellow Legal Pad — home">
