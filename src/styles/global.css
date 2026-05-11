@@ -403,17 +403,6 @@ a {
   text-decoration-color: var(--c-gold);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
-  transition: text-decoration-thickness 150ms ease;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  a {
-    transition: none;
-  }
-}
-
-a:hover {
-  text-decoration-thickness: 2px;
 }
 
 /* CTA — looks like a hole punched through the paper. */
