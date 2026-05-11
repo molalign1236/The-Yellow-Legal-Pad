@@ -44,6 +44,11 @@
   --light-cta-highlight-hover: 0.55;
   --light-rule-alpha: 0.10;
   --light-lamp-alpha: 0.42;
+  /* Warm cream rim that hugs the curl edge — light catching the
+     bend's outermost surface. Kept low alpha so it reads as a
+     halo, not a glow. */
+  --light-curl-rim: 255, 240, 210;
+  --light-curl-rim-alpha: 0.18;
 
   /* Dark raw tokens */
   --dark-desk: #050505;
@@ -72,6 +77,10 @@
   --dark-cta-highlight-hover: 0.08;
   --dark-rule-alpha: 0.18;
   --dark-lamp-alpha: 0.22;
+  /* Dark mode: rim is a much dimmer warm bronze. On matte black
+     paper, any cream highlight would read as too bright. */
+  --dark-curl-rim: 200, 150, 80;
+  --dark-curl-rim-alpha: 0.08;
 
   /* Active aliases — default to light */
   --c-desk: var(--light-desk);
@@ -101,6 +110,8 @@
   --c-rule-alpha: var(--light-rule-alpha);
   --c-rule-rgb: 184, 134, 11;
   --c-lamp-alpha: var(--light-lamp-alpha);
+  --c-curl-rim: var(--light-curl-rim);
+  --c-curl-rim-alpha: var(--light-curl-rim-alpha);
 
   /* Non-color tokens */
   --line-height-body: 1.65;
@@ -140,6 +151,8 @@
     --c-rule-alpha: var(--dark-rule-alpha);
     --c-rule-rgb: 201, 148, 31;
     --c-lamp-alpha: var(--dark-lamp-alpha);
+    --c-curl-rim: var(--dark-curl-rim);
+    --c-curl-rim-alpha: var(--dark-curl-rim-alpha);
     --bg-overlay: linear-gradient(
       rgba(10, 10, 10, 0.82),
       rgba(10, 10, 10, 0.82)
@@ -179,6 +192,8 @@
   --c-rule-alpha: var(--dark-rule-alpha);
   --c-rule-rgb: 201, 148, 31;
   --c-lamp-alpha: var(--dark-lamp-alpha);
+  --c-curl-rim: var(--dark-curl-rim);
+  --c-curl-rim-alpha: var(--dark-curl-rim-alpha);
   --bg-overlay: linear-gradient(
     rgba(10, 10, 10, 0.82),
     rgba(10, 10, 10, 0.82)
@@ -779,59 +794,66 @@ small,
    the rotation, so the shadow density 'leads' the lift — paper
    shadows build before the surface starts moving away. */
 @keyframes ibook-bend-shade {
-  /* No opacity ramp — mask alone hides the page. Brightness now
-     has small non-monotonic oscillations (rolling highlights) so
-     the curving surface appears to catch light briefly as it bends
-     — what real paper does when the apex of a fold passes through
-     the lamp angle. The inset and drop-shadow follow the same
-     timing but trend monotonically darker. */
+  /* Two drop-shadows stacked: the dark one is the cast shadow
+     falling on the page below (large offset, low alpha).
+     The warm rim is a much smaller offset that hugs the curl
+     edge — the bend's outermost surface catching the lamp. The
+     rim's offset grows with the curl progression so the highlight
+     appears to roll along the diagonal as the curve sweeps across
+     the page. Brightness oscillation continues from Pass 411. */
   0% {
     box-shadow: inset 0 0 0 transparent;
-    filter: brightness(1) drop-shadow(0 0 0 transparent);
+    filter: brightness(1)
+      drop-shadow(0 0 0 transparent)
+      drop-shadow(0 0 0 transparent);
   }
   12% {
-    /* tiny brightness uplift — the edge of the page catches the
-       lamp as it begins to lift */
     box-shadow: inset -6px 6px 12px -6px rgba(0, 0, 0, 0.10);
     filter: brightness(1.015)
-      drop-shadow(-4px 6px 14px rgba(0, 0, 0, 0.16));
+      drop-shadow(-4px 6px 14px rgba(0, 0, 0, 0.16))
+      drop-shadow(-2px 3px 4px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   25% {
     box-shadow: inset -18px 18px 30px -10px rgba(0, 0, 0, 0.18);
     filter: brightness(0.93)
-      drop-shadow(-12px 14px 26px rgba(0, 0, 0, 0.30));
+      drop-shadow(-12px 14px 26px rgba(0, 0, 0, 0.30))
+      drop-shadow(-4px 5px 6px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   38% {
-    /* rolling highlight — apex of curvature passes through lamp */
     box-shadow: inset -30px 30px 44px -12px rgba(0, 0, 0, 0.22);
     filter: brightness(0.96)
-      drop-shadow(-20px 22px 38px rgba(0, 0, 0, 0.36));
+      drop-shadow(-20px 22px 38px rgba(0, 0, 0, 0.36))
+      drop-shadow(-6px 7px 8px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   55% {
     box-shadow: inset -46px 46px 60px -16px rgba(0, 0, 0, 0.28);
     filter: brightness(0.80)
-      drop-shadow(-30px 32px 56px rgba(0, 0, 0, 0.44));
+      drop-shadow(-30px 32px 56px rgba(0, 0, 0, 0.44))
+      drop-shadow(-8px 9px 10px rgba(var(--c-curl-rim), var(--c-curl-rim-alpha)));
   }
   68% {
-    /* backside light loss accelerates — apex past the lamp angle */
     box-shadow: inset -56px 56px 70px -18px rgba(0, 0, 0, 0.30);
     filter: brightness(0.74)
-      drop-shadow(-38px 40px 66px rgba(0, 0, 0, 0.40));
+      drop-shadow(-38px 40px 66px rgba(0, 0, 0, 0.40))
+      drop-shadow(-10px 11px 12px rgba(var(--c-curl-rim), calc(var(--c-curl-rim-alpha) * 0.75)));
   }
   82% {
     box-shadow: inset -66px 66px 78px -20px rgba(0, 0, 0, 0.28);
     filter: brightness(0.68)
-      drop-shadow(-46px 46px 78px rgba(0, 0, 0, 0.36));
+      drop-shadow(-46px 46px 78px rgba(0, 0, 0, 0.36))
+      drop-shadow(-12px 13px 14px rgba(var(--c-curl-rim), calc(var(--c-curl-rim-alpha) * 0.5)));
   }
   92% {
     box-shadow: inset -74px 74px 84px -22px rgba(0, 0, 0, 0.27);
     filter: brightness(0.62)
-      drop-shadow(-50px 50px 84px rgba(0, 0, 0, 0.32));
+      drop-shadow(-50px 50px 84px rgba(0, 0, 0, 0.32))
+      drop-shadow(-13px 14px 14px rgba(var(--c-curl-rim), calc(var(--c-curl-rim-alpha) * 0.3)));
   }
   100% {
     box-shadow: inset -82px 82px 90px -24px rgba(0, 0, 0, 0.25);
     filter: brightness(0.58)
-      drop-shadow(-54px 54px 88px rgba(0, 0, 0, 0.28));
+      drop-shadow(-54px 54px 88px rgba(0, 0, 0, 0.28))
+      drop-shadow(-14px 15px 16px rgba(var(--c-curl-rim), 0));
   }
 }
 
