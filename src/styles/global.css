@@ -138,6 +138,7 @@
     --c-rule-rgb: 201, 148, 31;
     --paper-lift-x: 18px;
     --paper-lift-ry: -8deg;
+    --paper-flip-deg: -55deg;
   }
 }
 
@@ -171,6 +172,7 @@
   --c-rule-rgb: 201, 148, 31;
   --paper-lift-x: 18px;
   --paper-lift-ry: -8deg;
+  --paper-flip-deg: -55deg;
 }
 
 html {
@@ -417,53 +419,81 @@ small,
 }
 
 /* ---- PAGE TRANSITIONS --------------------------------------------
-   The desk stays put; only the paper sheet moves between routes. */
+   iBook-style page flip. Outgoing sheet rotates around its left
+   edge (the book-spine axis) with perspective, the new sheet
+   reveals underneath. A box-shadow grows during the rotation so
+   the lifting page casts a real depth shadow onto the paper below.
+   ------------------------------------------------------------------ */
 
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
 }
 
+/* Apply perspective on the group so the rotation reads as a 3D
+   page-turn rather than a flat horizontal squish. */
+::view-transition-group(paper) {
+  perspective: 1800px;
+}
+
 ::view-transition-old(paper) {
-  animation: paper-lift-away 380ms cubic-bezier(0.4, 0, 0.6, 1) both;
-  transform-origin: top left;
+  animation: ibook-flip-out 620ms cubic-bezier(0.42, 0.04, 0.5, 0.96) both;
+  transform-origin: left center;
+  transform-style: preserve-3d;
   z-index: 2;
+  backface-visibility: hidden;
 }
 
 ::view-transition-new(paper) {
-  animation: paper-settle-in 460ms cubic-bezier(0.2, 0, 0.4, 1) both;
-  transform-origin: center;
+  animation: ibook-page-reveal 620ms cubic-bezier(0.2, 0, 0.4, 1) both;
   z-index: 1;
 }
 
-@keyframes paper-lift-away {
+@keyframes ibook-flip-out {
   0% {
+    transform: rotateY(0deg);
     opacity: 1;
-    transform: translateX(0) rotateY(0deg) scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
     filter: brightness(1);
   }
-  100% {
-    opacity: 0;
-    transform: translateX(var(--paper-lift-x)) rotateY(var(--paper-lift-ry)) scale(0.985);
+  30% {
+    box-shadow: 24px 14px 36px -8px rgba(0, 0, 0, 0.30);
     filter: brightness(0.96);
+  }
+  60% {
+    box-shadow: 48px 28px 72px -12px rgba(0, 0, 0, 0.40);
+    filter: brightness(0.86);
+  }
+  100% {
+    transform: rotateY(var(--paper-flip-deg, -92deg));
+    opacity: 0;
+    box-shadow: 72px 40px 96px -16px rgba(0, 0, 0, 0.30);
+    filter: brightness(0.7);
   }
 }
 
-@keyframes paper-settle-in {
+@keyframes ibook-page-reveal {
   0% {
-    opacity: 0;
-    transform: scale(0.992);
+    opacity: 0.2;
+    transform: scale(0.975);
+    filter: brightness(0.92);
   }
-  60% {
-    opacity: 1;
+  45% {
+    opacity: 0.7;
+    filter: brightness(0.97);
   }
   100% {
     opacity: 1;
     transform: scale(1);
+    filter: brightness(1);
   }
 }
 
-/* Reduced motion (system preference OR user choice) */
+/* Dark-mode dampening for the flip arc is handled by the theme
+   variable blocks above (--paper-flip-deg). */
+
+/* Reduced motion: drop the rotation entirely; the API still swaps
+   the page but does so without movement. */
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-old(paper),
   ::view-transition-new(paper) {
@@ -474,6 +504,21 @@ small,
 :root[data-motion="off"] ::view-transition-old(paper),
 :root[data-motion="off"] ::view-transition-new(paper) {
   animation: none;
+}
+
+/* Mobile: tighten duration so the flip doesn't slow short-screen
+   navigation, and ease the rotation a touch so it doesn't feel as
+   aggressive on a small device. */
+@media (max-width: 39.999rem) {
+  ::view-transition-old(paper) {
+    animation-duration: 480ms;
+  }
+  ::view-transition-new(paper) {
+    animation-duration: 480ms;
+  }
+  :root {
+    --paper-flip-deg: -78deg;
+  }
 }
 
 @media print {
