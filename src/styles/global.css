@@ -228,11 +228,11 @@ small,
 }
 
 .section {
-  /* Sections breathe, but at a paper-page rhythm — not editorial
-     luxury whitespace. Long pages should feel like continuous paper,
-     not stacked blocks. */
+  /* Sections breathe at a paper-page rhythm — not editorial luxury
+     whitespace. Slight top-heavier padding (top > bottom) gives the
+     page a small irregular lean instead of perfect symmetry. */
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 2.5rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
@@ -240,7 +240,7 @@ small,
 @media (min-width: 40rem) {
   .section {
     padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-bottom: 4rem;
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
