@@ -573,11 +573,19 @@ small,
        - origin-drift:  pivot drift toward center
        - curl-x:        the --curl-x percentage that drives the
                         curved clip-path boundary */
+  /* Two-segment quadratic bezier creates asymmetric bend topology:
+     the top segment bulges 18% past the cut line (the corner is the
+     most curved area), the bottom segment only 2% past (the body
+     of the page is nearly flat against the wall). Real paper bends
+     more at the corner being lifted than across its center mass —
+     this is that geometry. */
   clip-path: shape(
     from 0% 0%,
     line to var(--curl-x) 0%,
+    curve to calc(var(--curl-x) + 4%) 42%
+       with calc(var(--curl-x) + 18%) 16%,
     curve to calc(var(--curl-x) - 4%) 100%
-       with calc(var(--curl-x) + 14%) 50%,
+       with calc(var(--curl-x) + 3%) 74%,
     line to 0% 100%,
     close
   );
