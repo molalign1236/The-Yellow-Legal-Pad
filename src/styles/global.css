@@ -67,12 +67,12 @@
   --dark-selection-bg: #c9941f;
   --dark-selection-text: #161616;
   --dark-paper-edge-alpha: 0.5;
-  --dark-cta-shadow-1: 0.65;
-  --dark-cta-shadow-2: 0.45;
-  --dark-cta-shadow-hover-1: 0.78;
-  --dark-cta-shadow-hover-2: 0.55;
-  --dark-cta-shadow-active-1: 0.9;
-  --dark-cta-shadow-active-2: 0.6;
+  --dark-cta-shadow-1: 0.55;
+  --dark-cta-shadow-2: 0.38;
+  --dark-cta-shadow-hover-1: 0.68;
+  --dark-cta-shadow-hover-2: 0.46;
+  --dark-cta-shadow-active-1: 0.78;
+  --dark-cta-shadow-active-2: 0.52;
   --dark-cta-highlight: 0.06;
   --dark-cta-highlight-hover: 0.08;
   --dark-rule-alpha: 0.13;
