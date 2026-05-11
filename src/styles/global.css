@@ -293,18 +293,28 @@ body::before {
   .site-paper {
     max-width: 60rem;
     margin: 2rem auto;
-    /* Stacked-paper illusion + lateral blur halo. The paper-colored
-       offset shadows fake the corners of a second and third sheet
-       peeking from behind the active page. The lateral (no-offset)
-       blur shadows then bleed outward into the wall — a tight
-       close halo, a mid halo, and a far halo extending 100+px past
-       the paper edge. This is the 'shadow blurring from the sides'
-       emphasis Mola asked for; the page becomes the only sharply-
-       defined object in the scene. */
+    /* Three-sheet stacked-paper illusion + page-thickness edge
+       highlights + lateral blur halo.
+       1. inset top + left hairlines simulate light catching the
+          paper's top edge and left edge (the lit sides). This is
+          the perceived-thickness cue.
+       2. Inset bottom + right hairlines fall into shadow (the dark
+          sides of the paper's thickness).
+       3. Three paper-colored offset shadows behind the active sheet
+          read as the corner of a second, third, and fourth sheet
+          underneath — peeking out as the stack accumulates.
+       4. Lateral blur halo bleeds out into the wall at three
+          increasing distances (40 / 90 / 160px).
+       5. Directional drop shadows ground the whole stack. */
     box-shadow:
+      inset 0 1px 0 rgba(255, 250, 235, 0.32),
+      inset 1px 0 0 rgba(255, 250, 235, 0.22),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.06),
+      inset -1px 0 0 rgba(0, 0, 0, 0.06),
       inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha)),
       4px 4px 0 0 var(--c-paper),
-      9px 9px 0 0 var(--c-paper),
+      9px 10px 0 0 var(--c-paper),
+      14px 17px 0 0 var(--c-paper),
       0 0 0 1px rgba(0, 0, 0, 0.12),
       0 0 40px 6px rgba(0, 0, 0, 0.10),
       0 0 90px 24px rgba(0, 0, 0, 0.10),
@@ -558,6 +568,7 @@ small,
       rgba(0, 0, 0, 0.45) 115%,
       transparent 125%
     );
+    box-shadow: inset 0 0 0 transparent;
     opacity: 1;
     filter: brightness(1) drop-shadow(0 0 0 transparent);
   }
@@ -576,6 +587,7 @@ small,
       rgba(0, 0, 0, 0.45) 76%,
       transparent 84%
     );
+    box-shadow: inset -20px 20px 32px -10px rgba(0, 0, 0, 0.16);
     filter: brightness(0.94)
       drop-shadow(-14px 16px 28px rgba(0, 0, 0, 0.34));
   }
@@ -595,10 +607,12 @@ small,
       rgba(0, 0, 0, 0.45) 36%,
       transparent 44%
     );
+    box-shadow: inset -42px 42px 56px -16px rgba(0, 0, 0, 0.26);
     filter: brightness(0.82)
       drop-shadow(-30px 30px 54px rgba(0, 0, 0, 0.42));
   }
   85% {
+    box-shadow: inset -60px 60px 72px -20px rgba(0, 0, 0, 0.28);
     filter: brightness(0.70)
       drop-shadow(-44px 44px 76px rgba(0, 0, 0, 0.36));
   }
@@ -618,6 +632,7 @@ small,
       rgba(0, 0, 0, 0.45) -8%,
       transparent 0%
     );
+    box-shadow: inset -80px 80px 88px -24px rgba(0, 0, 0, 0.30);
     opacity: 0;
     filter: brightness(0.58)
       drop-shadow(-54px 54px 88px rgba(0, 0, 0, 0.30));
