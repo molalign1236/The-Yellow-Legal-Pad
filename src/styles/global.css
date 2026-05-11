@@ -929,6 +929,10 @@ small,
 }
 
 @media print {
+  @page {
+    margin: 0.6in;
+  }
+
   body {
     background: #fff;
     color: #000;
@@ -936,9 +940,47 @@ small,
     line-height: 1.5;
   }
 
+  /* Strip the paper-on-desk illusion in print — no shadows, no
+     warm background, no mask images bleeding onto the page. */
+  .site-paper {
+    background: #fff;
+    box-shadow: none;
+    padding: 0;
+    max-width: none;
+  }
+
   .site-header,
-  .site-footer {
+  .site-footer__nav {
     display: none;
+  }
+
+  /* Keep the legal disclaimer + brand line on every printed page.
+     CLAUDE.md §5 requires the disclaimer everywhere; printing a
+     page without it would defeat the entire compliance posture. */
+  .site-footer {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #888;
+    page-break-inside: avoid;
+  }
+
+  .site-footer__disclaimer,
+  .site-footer__note {
+    color: #000;
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+
+  /* CTAs render as decorative recessed holes on screen — meaningless
+     in print, so collapse them to plain underlined link text. */
+  .cta {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: 0 !important;
+    padding: 0 !important;
+    color: #000 !important;
+    text-decoration: underline;
+    font-weight: normal;
   }
 
   .section {
@@ -951,6 +993,8 @@ small,
     text-decoration: underline;
   }
 
+  /* Append the URL for external links. Internal site links stay
+     bare — the disclaimer footer carries the domain reference. */
   a[href^="http"]::after {
     content: " (" attr(href) ")";
     font-size: 90%;
