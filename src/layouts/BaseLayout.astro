@@ -125,6 +125,20 @@ const canonicalUrl = Astro.site
         document.addEventListener("astro:after-swap", function () {
           window.scrollTo(0, 0);
           update();
+          /* Move focus to the new <main> so screen readers announce
+             the freshly-swapped page. ClientRouter leaves focus on
+             the link the user clicked, which is now sitting in the
+             new page's header — confusing for AT users. main has
+             tabindex="-1" and main:focus { outline: none } so this
+             is invisible to mouse/sighted users. */
+          var main = document.getElementById("main-content");
+          if (main) {
+            try {
+              main.focus({ preventScroll: true });
+            } catch (e) {
+              main.focus();
+            }
+          }
         });
         update();
       })();

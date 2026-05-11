@@ -179,8 +179,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     box-shadow: inset 0 0 0 3px var(--c-paper);
   }
 
-  .settings-form input[type="radio"]:focus-visible {
-    outline: 2px solid var(--c-gold);
-    outline-offset: 2px;
-  }
+  /* Focus uses the global :focus-visible rule from global.css —
+     an ink-colored ring at 3px offset, contrast-safe in both
+     themes. Don't override with gold here; gold falls below 3:1
+     against ivory paper (see docs/contrast-audit-2026-05-11.md). */
 </style>
