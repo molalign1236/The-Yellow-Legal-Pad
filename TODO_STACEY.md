@@ -102,6 +102,14 @@ Site reads "Stacey" everywhere. When a last name arrives, append in:
 `public/favicon.svg` is a temporary placeholder. Stacey can replace
 whenever she has a proper mark.
 
+### Apple touch icon — iOS home-screen fallback
+Per `docs/icon-audit-2026-05-11.md`: iOS Safari's "Add to Home
+Screen" doesn't read SVG favicons. Export `favicon.svg` to a
+180×180 PNG and drop at `public/apple-touch-icon.png`, then add
+`<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />`
+inside `BaseLayout.astro`'s `<head>`. Until then, iOS home-screen
+saves get a generic icon.
+
 ### Real fonts (optional)
 Currently `@fontsource/eb-garamond` via npm. If the owner wants
 licensed fonts (Söhne, etc.), drop into `public/fonts/` and update
