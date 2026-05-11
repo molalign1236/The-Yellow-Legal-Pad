@@ -258,9 +258,11 @@ body::before {
     center calc(var(--bg-parallax-y, 0px));
   /* Sub-pixel blur softens the bookshelf edges and gradient seams —
      pushes the environment toward photographic softness rather than
-     vector crispness. The paper sheet is on body (above this pseudo)
-     so it stays sharp. */
-  filter: blur(0.4px);
+     vector crispness. 0.6px is below conscious detection threshold
+     at normal viewing distance but enough to quiet the shelves'
+     vector-clean edges. The paper sheet is on body (above this
+     pseudo) so it stays sharp. */
+  filter: blur(0.6px);
   will-change: background-position;
 }
 
