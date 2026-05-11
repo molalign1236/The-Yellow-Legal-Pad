@@ -60,43 +60,45 @@ const canonicalUrl = Astro.site
   <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
 
-    <header class="site-header">
-      <div class="site-header__inner">
-        <a href="/" class="site-header__brand" aria-label="The Yellow Legal Pad — home">
-          The Yellow Legal Pad
-        </a>
-        <nav class="site-header__nav" aria-label="Primary">
-          <a href="/about" class:list={["site-header__link", { "is-active": isActive("/about") }]} aria-current={isActive("/about") ? "page" : undefined}>About</a>
-          <a href="/services" class:list={["site-header__link", { "is-active": isActive("/services") }]} aria-current={isActive("/services") ? "page" : undefined}>Services</a>
-          <a href="/resources" class:list={["site-header__link", { "is-active": isActive("/resources") }]} aria-current={isActive("/resources") ? "page" : undefined}>Resources</a>
-          <a href="/contact" class:list={["site-header__link", { "is-active": isActive("/contact") }]} aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
-        </nav>
-      </div>
-    </header>
+    <div class="site-paper">
+      <header class="site-header">
+        <div class="site-header__inner">
+          <a href="/" class="site-header__brand" aria-label="The Yellow Legal Pad — home">
+            The Yellow Legal Pad
+          </a>
+          <nav class="site-header__nav" aria-label="Primary">
+            <a href="/about" class:list={["site-header__link", { "is-active": isActive("/about") }]} aria-current={isActive("/about") ? "page" : undefined}>About</a>
+            <a href="/services" class:list={["site-header__link", { "is-active": isActive("/services") }]} aria-current={isActive("/services") ? "page" : undefined}>Services</a>
+            <a href="/resources" class:list={["site-header__link", { "is-active": isActive("/resources") }]} aria-current={isActive("/resources") ? "page" : undefined}>Resources</a>
+            <a href="/contact" class:list={["site-header__link", { "is-active": isActive("/contact") }]} aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
+          </nav>
+        </div>
+      </header>
 
-    <main id="main-content" tabindex="-1">
-      <slot />
-    </main>
+      <main id="main-content" tabindex="-1">
+        <slot />
+      </main>
 
-    <footer class="site-footer">
-      <div class="site-footer__inner">
-        <nav class="site-footer__nav" aria-label="Footer">
-          <a href="/about" class="site-footer__link">About</a>
-          <a href="/services" class="site-footer__link">Services</a>
-          <a href="/resources" class="site-footer__link">Resources</a>
-          <a href="/contact" class="site-footer__link">Contact</a>
-        </nav>
-        <p class="caption site-footer__disclaimer">
-          The Yellow Legal Pad provides financial coaching and education
-          only. This is not financial advice, investment advice, legal
-          advice, or tax advice. Consult a licensed professional for
-          advice specific to your situation.
-        </p>
-        <p class="caption site-footer__note">
-          The Yellow Legal Pad &middot; Stacey &middot; Vero Beach, Florida
-        </p>
-      </div>
-    </footer>
+      <footer class="site-footer">
+        <div class="site-footer__inner">
+          <nav class="site-footer__nav" aria-label="Footer">
+            <a href="/about" class="site-footer__link">About</a>
+            <a href="/services" class="site-footer__link">Services</a>
+            <a href="/resources" class="site-footer__link">Resources</a>
+            <a href="/contact" class="site-footer__link">Contact</a>
+          </nav>
+          <p class="caption site-footer__disclaimer">
+            The Yellow Legal Pad provides financial coaching and education
+            only. This is not financial advice, investment advice, legal
+            advice, or tax advice. Consult a licensed professional for
+            advice specific to your situation.
+          </p>
+          <p class="caption site-footer__note">
+            The Yellow Legal Pad &middot; Stacey &middot; Vero Beach, Florida
+          </p>
+        </div>
+      </footer>
+    </div>
 
   </body>
 </html>

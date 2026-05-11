@@ -29,14 +29,39 @@ body {
   line-height: var(--line-height-body);
   letter-spacing: theme("letterSpacing.body");
   color: theme("colors.ink.DEFAULT");
-  background-color: theme("colors.paper.DEFAULT");
-  /* Crisp text on retina; no smoothing tricks. */
+  /* The 'desk' — a warm tan that the paper sheet sits on. On mobile
+     the paper sheet fills the viewport so this is hidden; on tablet+
+     it shows as the margin around the page. */
+  background-color: #e6dcc7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Slightly imperfectly human — text-rendering 'optimizeLegibility'
-     trades a small perf cost for kerning that respects the type
-     designer's intent. Safe at this scale. */
   text-rendering: optimizeLegibility;
+}
+
+/* The paper sheet — holds the entire site content. Edge-to-edge on
+   mobile, floats on the desk with a soft drop shadow on tablet+. */
+.site-paper {
+  background-color: theme("colors.paper.DEFAULT");
+  max-width: 100%;
+}
+
+@media (min-width: 40rem) {
+  .site-paper {
+    max-width: 64rem;
+    margin: 2rem auto;
+    border-radius: 3px;
+    box-shadow:
+      0 0 0 1px rgba(31, 56, 100, 0.04),
+      0 2px 4px rgba(31, 56, 100, 0.04),
+      0 12px 32px rgba(31, 56, 100, 0.08);
+  }
+}
+
+@media (min-width: 64rem) {
+  .site-paper {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+  }
 }
 
 h1,
