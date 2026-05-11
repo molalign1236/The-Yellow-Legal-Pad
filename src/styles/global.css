@@ -140,6 +140,10 @@
     --c-rule-alpha: var(--dark-rule-alpha);
     --c-rule-rgb: 201, 148, 31;
     --c-lamp-alpha: var(--dark-lamp-alpha);
+    --bg-overlay: linear-gradient(
+      rgba(10, 10, 10, 0.82),
+      rgba(10, 10, 10, 0.82)
+    );
     --paper-lift-x: 18px;
     --paper-lift-ry: -8deg;
     --paper-curl-deg: 58deg;
@@ -175,6 +179,10 @@
   --c-rule-alpha: var(--dark-rule-alpha);
   --c-rule-rgb: 201, 148, 31;
   --c-lamp-alpha: var(--dark-lamp-alpha);
+  --bg-overlay: linear-gradient(
+    rgba(10, 10, 10, 0.82),
+    rgba(10, 10, 10, 0.82)
+  );
   --paper-lift-x: 18px;
   --paper-lift-ry: -8deg;
   --paper-curl-deg: 58deg;
@@ -196,23 +204,29 @@ body {
   line-height: var(--line-height-body);
   letter-spacing: theme("letterSpacing.body");
   color: var(--c-ink);
-  /* The site sits in a library: a tiled SVG of book spines on shelves
-     forms the backdrop, with a warm radial 'reading lamp' lighting
-     the center where the paper sheet lives. The dark mode override
-     below pulls the books deeper so they recede further. */
-  background-color: #1a0e08;
+  /* The site sits in front of a modern white bookshelf: a tiled SVG
+     of colorful books on white shelves with plants and small
+     decorative objects (including a ceramic coin bank and a stack
+     of coins — quiet money references that fit the practice). A
+     soft warm vignette over the top sells the lamp-from-above
+     idea without blasting the page in saturated light.
+
+     Dark mode darkens the whole assembly via an overlay layer so
+     the bright shelves don't punch through the matte-black paper. */
+  background-color: #ece6dc;
   background-image:
     radial-gradient(
-      ellipse 120vw 70vh at center 18vh,
-      rgba(110, 70, 30, var(--c-lamp-alpha, 0.42)) 0%,
-      rgba(60, 35, 18, 0.18) 30%,
-      transparent 70%
+      ellipse 110vw 60vh at center 22vh,
+      rgba(255, 240, 215, var(--c-lamp-alpha, 0.32)) 0%,
+      rgba(245, 230, 200, 0.10) 35%,
+      transparent 75%
     ),
+    var(--bg-overlay, none),
     url("/library.svg");
   background-attachment: fixed;
-  background-repeat: no-repeat, repeat;
-  background-position: center top, center top;
-  background-size: 100% 100%, 240px 600px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-position: center top, center top, center top;
+  background-size: 100% 100%, 100% 100%, 480px 720px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -243,14 +257,16 @@ body {
   .site-paper {
     max-width: 60rem;
     margin: 2rem auto;
-    /* Heavier drop shadow than the old desk era — the library
-       backdrop is genuinely dark, so the paper needs to lift more
-       to read as a single illuminated sheet at the center. */
+    /* Soft drop shadow tuned for the bright bookshelf wall — paper
+       still lifts visibly off the off-white backdrop without
+       looking like a heavy-shadowed card. Inner edge darkening
+       comes from the paper-edge-alpha variable, which is heavier
+       in dark mode where the contrast is lower. */
     box-shadow:
       inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha)),
-      0 0 0 1px rgba(0, 0, 0, 0.35),
-      0 4px 8px rgba(0, 0, 0, 0.28),
-      0 18px 56px rgba(0, 0, 0, 0.42);
+      0 0 0 1px rgba(0, 0, 0, 0.10),
+      0 4px 8px rgba(0, 0, 0, 0.10),
+      0 18px 48px rgba(0, 0, 0, 0.18);
   }
 }
 
