@@ -36,6 +36,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
   <section class="section">
     <div class="column">
+      <p class="contact-step-heading">After you write</p>
+      <p>
+        Stacey reads your note herself, usually within a day or two.
+        If it seems like the right kind of fit, she'll send a link
+        to book a free Discovery Call &mdash; twenty to thirty minutes
+        on Zoom. She'll listen, ask a few questions, and tell you
+        honestly whether she can help. There's no obligation to
+        continue afterward.
+      </p>
+
       <p>
         You don't need to summarize your whole financial picture or
         know exactly what you want. "I've been meaning to talk to
@@ -54,5 +64,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   .contact-email {
     margin-top: 1.5rem;
     font-size: 1.25rem;
+  }
+  /* Section step heading — a small quiet label that frames the
+     'what happens next' paragraph without becoming a procedural
+     h2. Sits at the typographic register of an italic dek rather
+     than a numbered step. */
+  .contact-step-heading {
+    font-style: italic;
+    color: var(--c-ink-soft);
+    margin-bottom: 0.375rem;
   }
 </style>
