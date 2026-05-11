@@ -42,47 +42,62 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         pick the right one in advance.
       </p>
 
-      <article style="margin-top: 3rem;">
+      <article class="pathway" style="margin-top: 3rem;">
         <h3>Clarity Session</h3>
         <p>
           One ninety-minute conversation. You bring whatever you can
           find &mdash; recent statements, a rough sense of income, the
           bills you know about &mdash; and we look at all of it
-          together. You leave with a clear picture of where you are,
-          a short list of priorities, and a written summary in your
-          inbox within forty-eight hours.
+          together.
         </p>
+        <ul class="pathway__includes">
+          <li>One ninety-minute session</li>
+          <li>Walk through your current picture together</li>
+          <li>Short written summary in your inbox within forty-eight hours</li>
+          <li>No ongoing commitment</li>
+        </ul>
       </article>
 
-      <article style="margin-top: 3rem;">
+      <article class="pathway" style="margin-top: 3rem;">
         <h3>Fresh Start</h3>
         <p>
           A Clarity Session plus a sixty-minute follow-up a few weeks
           later, to work through what came up between conversations.
-          Comes with a personalised roadmap document you can refer
-          back to.
         </p>
+        <ul class="pathway__includes">
+          <li>Everything in the Clarity Session</li>
+          <li>Sixty-minute follow-up a few weeks later</li>
+          <li>Personalised roadmap document you can refer back to</li>
+        </ul>
       </article>
 
-      <article style="margin-top: 3rem;">
+      <article class="pathway" style="margin-top: 3rem;">
         <h3>Complete Blueprint</h3>
         <p>
-          Four sessions over a couple of months. We go further: a
-          real plan for debt and savings, a retirement projection
-          if you're close, the practical layout of what to do in
-          what order. Includes thirty days of email support
-          between sessions.
+          Four sessions over a couple of months for people sorting
+          through more than one thing at once.
         </p>
+        <ul class="pathway__includes">
+          <li>Four sessions, one at a time</li>
+          <li>A real plan for debt and savings</li>
+          <li>Retirement projection (if retirement is close)</li>
+          <li>Thirty days of email support between sessions</li>
+        </ul>
       </article>
 
-      <article style="margin-top: 3rem;">
+      <article class="pathway" style="margin-top: 3rem;">
         <h3>Full Year</h3>
         <p>
-          Everything in Complete Blueprint, plus quarterly check-ins
-          across twelve months, an annual review, and email support
-          all year. For people who'd rather have Stacey as the
-          person they check in with regularly as life changes.
+          Quarterly check-ins across twelve months, for people who'd
+          rather have Stacey as the person they check in with
+          regularly as life changes.
         </p>
+        <ul class="pathway__includes">
+          <li>Everything in Complete Blueprint</li>
+          <li>Quarterly check-ins for twelve months</li>
+          <li>Annual review</li>
+          <li>Email support all year</li>
+        </ul>
       </article>
 
       <p style="margin-top: 3rem;">
@@ -93,6 +108,36 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </p>
     </div>
   </section>
+
+  <style>
+    /* Pathway "what's included" lists — paper-aesthetic bullets in
+       muted gold, indented modestly, no card grid. Scannable detail
+       without the SaaS-feature-list energy. */
+    .pathway__includes {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0 0 0;
+    }
+    .pathway__includes li {
+      position: relative;
+      padding: 0.25rem 0 0.25rem 1.5rem;
+      color: var(--c-ink-soft);
+      font-size: 1rem;
+      line-height: 1.55;
+      max-width: var(--measure-prose);
+    }
+    .pathway__includes li::before {
+      content: "";
+      position: absolute;
+      left: 0.25rem;
+      top: 0.85rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-radius: 999px;
+      background-color: var(--c-gold);
+      opacity: 0.5;
+    }
+  </style>
 
   <section class="section" aria-labelledby="not-heading">
     <div class="column">
