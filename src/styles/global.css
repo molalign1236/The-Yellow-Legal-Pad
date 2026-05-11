@@ -121,6 +121,17 @@ small,
   color: theme("colors.ink.muted");
 }
 
+/* Page subhead — sits beneath an h1, names what the page is about
+   in one quiet line. Italic, ink.soft, pulled close to the heading. */
+.dek {
+  font-style: italic;
+  font-size: 1.0625rem;
+  color: theme("colors.ink.soft");
+  margin-top: -0.25rem;
+  margin-bottom: 2rem;
+  max-width: var(--measure-prose);
+}
+
 .section {
   /* Mobile baseline — generous but not exhausting on small screens */
   padding-top: 4rem;
