@@ -572,11 +572,20 @@ small,
 }
 
 ::view-transition-new(paper) {
+  /* New page sits fully visible underneath the entire time — no
+     mask on it. The OLD page's mask cuts away parts of itself,
+     revealing the new page in those areas. This is what prevents
+     the 'disappearing' gap that Mola flagged: when both layers
+     had partial masks, mid-curl there were regions where the
+     mask of the old hid old, and the mask of the new hid new,
+     so the visitor saw the room through both. With new always
+     visible, the curl reveals new naturally.
+     Settle (positional ease) still runs longer than the curl so
+     the last beat is a quiet 'find resting position.' */
   animation:
-    ibook-page-mask-reveal 800ms cubic-bezier(0.2, 0, 0.4, 1) both,
-    ibook-page-settle 800ms cubic-bezier(0.25, 0, 0.35, 1) 60ms both;
+    ibook-page-settle 860ms cubic-bezier(0.25, 0, 0.35, 1) 60ms both;
   z-index: 1;
-  will-change: transform, opacity, filter, mask-image;
+  will-change: transform, opacity, filter;
 }
 
 /* Mask flow with non-uniform stops AND a tiny mid-curl micro-catch.
@@ -724,9 +733,14 @@ small,
    the rotation, so the shadow density 'leads' the lift — paper
    shadows build before the surface starts moving away. */
 @keyframes ibook-bend-shade {
+  /* No opacity ramp here — the mask alone hides the page as the
+     curl progresses. Adding a linear opacity 1→0 would make the
+     old page semi-transparent through the entire curl, so the
+     room behind would bleed through wherever the mask still shows
+     the page (and where the new page is also masked by the old's
+     mask, you'd see room through both). The mask is sufficient. */
   0% {
     box-shadow: inset 0 0 0 transparent;
-    opacity: 1;
     filter: brightness(1) drop-shadow(0 0 0 transparent);
   }
   25% {
@@ -746,80 +760,14 @@ small,
   }
   100% {
     box-shadow: inset -82px 82px 90px -24px rgba(0, 0, 0, 0.25);
-    opacity: 0;
     filter: brightness(0.58)
       drop-shadow(-54px 54px 88px rgba(0, 0, 0, 0.28));
   }
 }
 
-/* New page reveal — mirrors the mask sweep of the outgoing page so
-   the curl line appears continuous across the sheet stack. The
-   settle (scale + translate + brightness) runs on its own animation
-   with a 60ms delay so the new sheet first 'appears' along the
-   diagonal, then begins settling into final position. */
-@keyframes ibook-page-mask-reveal {
-  0% {
-    mask-image: linear-gradient(
-      to top right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.45) 5%,
-      black 12%, black 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      transparent 0%,
-      rgba(0, 0, 0, 0.45) 5%,
-      black 12%, black 100%
-    );
-  }
-  22% {
-    mask-image: linear-gradient(
-      to top right,
-      transparent 8%,
-      rgba(0, 0, 0, 0.45) 14%,
-      black 22%, black 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      transparent 8%,
-      rgba(0, 0, 0, 0.45) 14%,
-      black 22%, black 100%
-    );
-  }
-  55% {
-    mask-image: linear-gradient(
-      to top right,
-      transparent 36%,
-      rgba(0, 0, 0, 0.45) 44%,
-      black 52%, black 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      transparent 36%,
-      rgba(0, 0, 0, 0.45) 44%,
-      black 52%, black 100%
-    );
-  }
-  85% {
-    mask-image: linear-gradient(
-      to top right,
-      transparent 80%,
-      rgba(0, 0, 0, 0.45) 88%,
-      black 96%, black 100%
-    );
-    -webkit-mask-image: linear-gradient(
-      to top right,
-      transparent 80%,
-      rgba(0, 0, 0, 0.45) 88%,
-      black 96%, black 100%
-    );
-  }
-  100% {
-    mask-image: none;
-    -webkit-mask-image: none;
-  }
-}
-
+/* The new page settles into position from a tiny scale/translate
+   offset and brightens slightly as the curl uncovers it. No mask
+   on the new page — the old page's mask is what reveals it. */
 @keyframes ibook-page-settle {
   0% {
     opacity: 1;
