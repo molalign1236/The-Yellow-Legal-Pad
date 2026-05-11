@@ -69,7 +69,7 @@ body {
 
 @media (min-width: 40rem) {
   .site-paper {
-    max-width: 64rem;
+    max-width: 60rem;
     margin: 2rem auto;
     box-shadow:
       inset 0 0 80px rgba(31, 56, 100, 0.045),
