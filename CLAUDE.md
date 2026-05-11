@@ -3,7 +3,7 @@
 > Entry point for AI agents (Claude Code, Cursor, Codex, etc.)
 > working in this repo. Read this before making changes.
 
-**Last updated:** 2026-05-11
+**Last updated:** 2026-05-11 (Pass 429)
 
 ---
 
@@ -20,8 +20,9 @@ widowhood, late starts, caregiving, inheritance, new careers).
   404. Seven routes total.
 - **Hosting:** Vercel (per brief). No backend; no database.
 - **JS footprint:** The only JS is Astro's ClientRouter for SPA-style
-  navigation + an inline pre-paint settings script. Everything else
-  is plain HTML/CSS.
+  navigation + two inline scripts in `BaseLayout.astro` (a pre-paint
+  settings script and a scroll-driven background-parallax script).
+  Everything else is plain HTML/CSS.
 
 The site is intentionally small. Resist additions that would make
 it bigger without making the writing land more clearly.
@@ -160,6 +161,54 @@ visually persistent.
 
 ---
 
+## Protected systems (don't casually refactor)
+
+A few subsystems are deliberately delicate and have taken many
+passes to land. Touch them only when you understand what each
+moving part is for. If a future change needs to alter one, prefer
+adding a sibling system over rewriting the existing one.
+
+### Page-curl transition (Pass 401 → 419)
+The `::view-transition-old(paper)` rule in `src/styles/global.css`
+runs five concurrent animations on the outgoing sheet:
+- `ibook-mask-flow` — diagonal mask-image sweep that reveals the
+  desk underneath as the page rolls back.
+- `ibook-tilt` — 3D rotateY/rotateX bending, hinged at the left
+  edge.
+- `ibook-bend-shade` — paper-tinted gradient that simulates the
+  curl shadow and the lift highlight.
+- `ibook-origin-drift` — a small `transform-origin` migration along
+  the spine to fake the curl line walking down the page.
+- `ibook-curl-x` — an `@property`-registered custom property
+  (`--curl-x`) that drives the `clip-path: shape()` quadratic
+  bezier so the cut edge is curved, not straight.
+
+The new page sits fully visible underneath with no mask of its
+own — the old page's mask is what reveals it. Adding a mask or
+opacity ramp to the new page caused the "pages disappear
+mid-transition" bug (fixed in Pass 408); don't reintroduce it.
+
+### Background parallax + library wall
+`public/library.svg` is a hand-coded SVG (NOT a photo) painted as
+a fixed pseudo-element behind `.site-paper`. The wall's
+`background-position-y` is driven by a CSS variable
+(`--bg-parallax-y`) that an inline script in `BaseLayout.astro`
+updates at ~15% of `scrollY`. Moving the library back to
+`background-attachment: fixed` caused the "jiggling" bug fixed in
+Pass 400. The script must respect `data-motion="off"` and
+`prefers-reduced-motion` (Pass 425); don't strip that check.
+
+### Settings pre-paint script
+The inline script in the `<head>` of `BaseLayout.astro` reads
+`localStorage.getItem("ylp:settings")` and sets `data-theme`,
+`data-font-size`, `data-motion` on `<html>` **before first
+paint**. Moving this to a deferred or module script reintroduces
+the flash-of-wrong-theme bug. It also re-runs on
+`astro:after-swap` so View-Transition navigation keeps the user's
+overrides applied.
+
+---
+
 ## Working with Mola's multi-AI sessions
 
 Mola often coordinates several AI agents — Claude Code, ChatGPT,
@@ -231,6 +280,7 @@ abstractions just because they exist.
 | `CLAUDE.md` | This file — AI agent brief |
 | `README.md` | Human-facing repo intro |
 | `TODO_STACEY.md` | Worklist of placeholders + pending owner decisions |
+| `docs/` | Frozen reference material (audits, handoffs). Doesn't ship. See `docs/README.md`. |
 
 If you add a new fact that contradicts one of these, update it in
 the same pass. Stale docs are worse than no docs.
@@ -248,6 +298,10 @@ single pass.
 Recent pass examples worth reading for style:
 - Pass 394 — settings system (CSS variables + pre-paint script)
 - Pass 395 — iBook-style page flip transition
+- Pass 401–419 — curved page-curl transition refinement
+- Pass 397–400 — library backdrop + non-jiggling parallax
+- Pass 425 — parallax respects motion preferences
+- Pass 428 — sitemap.xml via @astrojs/sitemap
 - Pass 368 — legal disclaimer site-wide
 - Pass 338 — remove reveal-on-scroll entirely
 - Pass 328 — fix font-bundling deployment bug

@@ -21,6 +21,13 @@ token, replace, commit.
 | Site-wide legal disclaimer | Footer on every page (Pass 368) |
 | Light + dark mode | Auto via `prefers-color-scheme` + user override on `/settings` (Pass 394) |
 | iBook-style page flip transition | View Transitions on `.site-paper` (Pass 395) |
+| Curved page-curl transition (clip-path: shape + bezier) | global.css view-transition pseudos (Pass 401–419) |
+| Library backdrop (hand-coded SVG, glass shelves, money objects) | `public/library.svg` (Pass 397–400) |
+| Parallax respects motion preferences | BaseLayout.astro inline script (Pass 425) |
+| Skip link no longer leaks on desktop | BaseLayout.astro `.skip-link` (Pass 425) |
+| Forbidden advisor terms removed from Services | `src/pages/services.astro` (Pass 426) |
+| Real guide titles on Resources | `src/pages/resources.astro` (Pass 427) |
+| sitemap-index.xml + robots Sitemap directive | @astrojs/sitemap in astro.config (Pass 428) |
 
 ---
 
@@ -63,17 +70,18 @@ the Discovery Call." If Stacey wants prices public, add price tags
 to each `<article>` on `src/pages/services.astro`.
 
 ### Real Resources PDFs
-`src/pages/resources.astro` lists 5 placeholder guides:
-- A Family Money Guide
-- A Couples Money Guide
-- Starting at Forty (or Fifty, or Sixty)
-- When Your Parents Need Help
-- A First-Job Money Letter
+`src/pages/resources.astro` lists Stacey's four real guide titles
+as plain text (no links yet):
+- Five Moves That Change Everything
+- Where Did It All Go?
+- Money as a Family
+- Money and Your Partner
 
 When Stacey provides each PDF:
-1. Drop the file into `public/guides/` (e.g. `family-money.pdf`)
-2. Wrap the matching `<h3>Title</h3>` in `<a href="/guides/family-money.pdf">`
-3. Remove any entry Stacey doesn't actually have
+1. Drop the file into `public/guides/` (e.g. `five-moves.pdf`)
+2. Wrap the matching `<h3>Title</h3>` in `<a href="/guides/five-moves.pdf">`
+3. The page-count caption ("about 6 pages") is a rough estimate —
+   update when the real PDF is in hand.
 
 ### Brand imagery (Q4)
 No headshot until after April 2027 (employer doesn't know about the
@@ -98,6 +106,15 @@ whenever she has a proper mark.
 Currently `@fontsource/eb-garamond` via npm. If the owner wants
 licensed fonts (Söhne, etc.), drop into `public/fonts/` and update
 the `@font-face` declarations.
+
+### Open-Graph image (low priority, audit P2)
+No `og:image` is set. Twitter card is `summary` (text-only), which
+is fine for now but a quiet ivory-paper-on-tan-desk image at
+1200×630 in `public/og.png` would land better in chat previews and
+link unfurls. Reference the file from `BaseLayout.astro` via
+`<meta property="og:image" content="https://theyellowlegalpad.co/og.png" />`.
+Wait until Stacey signs off on the imagery; don't generate one in
+the meantime.
 
 ---
 
