@@ -204,32 +204,61 @@ body {
   line-height: var(--line-height-body);
   letter-spacing: theme("letterSpacing.body");
   color: var(--c-ink);
-  /* The site sits in front of a modern white bookshelf: a tiled SVG
-     of colorful books on white shelves with plants and small
-     decorative objects (including a ceramic coin bank and a stack
-     of coins — quiet money references that fit the practice). A
-     soft warm vignette over the top sells the lamp-from-above
-     idea without blasting the page in saturated light.
-
-     Dark mode darkens the whole assembly via an overlay layer so
-     the bright shelves don't punch through the matte-black paper. */
-  background-color: #ece6dc;
-  background-image:
-    radial-gradient(
-      ellipse 110vw 60vh at center 22vh,
-      rgba(255, 240, 215, var(--c-lamp-alpha, 0.32)) 0%,
-      rgba(245, 230, 200, 0.10) 35%,
-      transparent 75%
-    ),
-    var(--bg-overlay, none),
-    url("/library.svg");
-  background-attachment: fixed;
-  background-repeat: no-repeat, no-repeat, repeat;
-  background-position: center top, center top, center top;
-  background-size: 100% 100%, 100% 100%, 480px 720px;
+  /* Library bookshelf as the only body-layer background. Scrolls
+     naturally with content (no background-attachment: fixed, which
+     was causing repaint jitter on scroll). The lamp / vignette /
+     dark-mode overlay layers live on body::before below, which is
+     position: fixed so they stay locked to the viewport without
+     the fixed-bg jiggle. */
+  background-color: #e8e2d4;
+  background-image: url("/library.svg");
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: 480px 720px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  position: relative;
+}
+
+/* Viewport-locked depth wash:
+     1. Warm light pool centered behind the paper — the lamp.
+     2. Wide soft halo of darker shadow extending out from the paper.
+     3. Heavy corner vignette pushing the periphery into shadow.
+     4. Dark-mode overlay (var --bg-overlay), only in dark.
+   The pseudo-element is fixed to the viewport so it doesn't drift
+   with scroll, but doesn't suffer the jiggle that
+   background-attachment: fixed has on body. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(
+      ellipse 50vw 60vh at center 38vh,
+      rgba(255, 246, 225, var(--c-lamp-alpha, 0.55)) 0%,
+      rgba(255, 240, 215, 0.20) 30%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 65vw 80vh at center 40vh,
+      transparent 18%,
+      rgba(0, 0, 0, 0.08) 35%,
+      rgba(0, 0, 0, 0.22) 60%,
+      rgba(0, 0, 0, 0.32) 100%
+    ),
+    radial-gradient(
+      ellipse 100vw 100vh at center 50vh,
+      transparent 40%,
+      rgba(0, 0, 0, 0.12) 70%,
+      rgba(0, 0, 0, 0.35) 100%
+    ),
+    var(--bg-overlay, none);
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
 }
 
 /* User-selected larger text — bumps root font-size so everything
@@ -243,7 +272,16 @@ body {
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   max-width: 100%;
+  /* The paper sheet sits above the fixed depth wash (body::before)
+     via position+z-index. */
+  position: relative;
+  z-index: 1;
   box-shadow: inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha));
+}
+
+/* Skip link sits above everything including the fixed depth wash. */
+.skip-link {
+  z-index: 10;
 }
 
 @media (prefers-contrast: more) {

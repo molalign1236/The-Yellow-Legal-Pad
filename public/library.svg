@@ -12,20 +12,42 @@
       <stop offset="0.5" stop-color="#000" stop-opacity="0"/>
       <stop offset="1" stop-color="#000" stop-opacity="0.18"/>
     </linearGradient>
-    <linearGradient id="shelfShadow" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#000" stop-opacity="0.25"/>
-      <stop offset="1" stop-color="#000" stop-opacity="0"/>
+    <!-- Glass shelves: bright at the top, slightly cool/grey at the
+         bottom — reads as a polished surface catching light. -->
+    <linearGradient id="shelfGlass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#fdfbf6"/>
+      <stop offset="0.45" stop-color="#f3efe6"/>
+      <stop offset="1"   stop-color="#e2dcd0"/>
+    </linearGradient>
+    <!-- Vertical case columns: same idea horizontally, so the edge
+         away from the lamp reads as rounded glass. -->
+    <linearGradient id="columnGlass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#fdfbf6"/>
+      <stop offset="0.5" stop-color="#ece8de"/>
+      <stop offset="1"   stop-color="#d8d2c4"/>
+    </linearGradient>
+    <!-- Deep shadow that drops beneath each shelf so the books on
+         the row below read as being in cast shadow. -->
+    <linearGradient id="shelfDropShadow" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#000" stop-opacity="0.40"/>
+      <stop offset="0.45" stop-color="#000" stop-opacity="0.18"/>
+      <stop offset="1"   stop-color="#000" stop-opacity="0"/>
     </linearGradient>
   </defs>
 
   <!-- back wall (warm off-white) -->
   <rect width="480" height="720" fill="#ece6dc"/>
 
-  <!-- vertical shelf dividers (the white case structure) -->
-  <rect x="0"   y="0" width="6" height="720" fill="#f5f0e6"/>
-  <rect x="158" y="0" width="6" height="720" fill="#f5f0e6"/>
-  <rect x="316" y="0" width="6" height="720" fill="#f5f0e6"/>
-  <rect x="474" y="0" width="6" height="720" fill="#f5f0e6"/>
+  <!-- vertical case columns rendered as glass with a specular
+       highlight on the inside edge -->
+  <rect x="0"   y="0" width="6" height="720" fill="url(#columnGlass)"/>
+  <rect x="0"   y="0" width="1" height="720" fill="#ffffff" opacity="0.7"/>
+  <rect x="158" y="0" width="6" height="720" fill="url(#columnGlass)"/>
+  <rect x="158" y="0" width="1" height="720" fill="#ffffff" opacity="0.6"/>
+  <rect x="316" y="0" width="6" height="720" fill="url(#columnGlass)"/>
+  <rect x="316" y="0" width="1" height="720" fill="#ffffff" opacity="0.6"/>
+  <rect x="474" y="0" width="6" height="720" fill="url(#columnGlass)"/>
+  <rect x="474" y="0" width="1" height="720" fill="#ffffff" opacity="0.7"/>
 
   <!-- ROW 1 — top shelf -->
   <g>
@@ -73,9 +95,11 @@
     <rect x="460" y="56" width="14" height="184" fill="#1a1a1a"/>
   </g>
 
-  <!-- Shelf 1 -->
-  <rect y="240" width="480" height="6" fill="#f5f0e6"/>
-  <rect y="246" width="480" height="14" fill="url(#shelfShadow)"/>
+  <!-- Shelf 1 — glass surface + specular highlight + cast shadow -->
+  <rect y="240" width="480" height="8" fill="url(#shelfGlass)"/>
+  <rect y="240" width="480" height="1.5" fill="#ffffff" opacity="0.95"/>
+  <rect y="248" width="480" height="3" fill="#000" opacity="0.30"/>
+  <rect y="251" width="480" height="20" fill="url(#shelfDropShadow)"/>
 
   <!-- ROW 2 — middle shelf -->
   <g>
@@ -118,9 +142,11 @@
     <rect x="460" y="284" width="14" height="182" fill="#d4c5a8"/>
   </g>
 
-  <!-- Shelf 2 -->
-  <rect y="466" width="480" height="6" fill="#f5f0e6"/>
-  <rect y="472" width="480" height="14" fill="url(#shelfShadow)"/>
+  <!-- Shelf 2 — glass + highlight + cast shadow -->
+  <rect y="466" width="480" height="8" fill="url(#shelfGlass)"/>
+  <rect y="466" width="480" height="1.5" fill="#ffffff" opacity="0.95"/>
+  <rect y="474" width="480" height="3" fill="#000" opacity="0.30"/>
+  <rect y="477" width="480" height="20" fill="url(#shelfDropShadow)"/>
 
   <!-- ROW 3 — bottom shelf -->
   <g>
