@@ -75,6 +75,38 @@ const canonicalUrl = Astro.site
         document.addEventListener("astro:after-swap", apply);
       })();
     </script>
+    {/* Gentle background parallax. Library tiles inside the fixed
+        depth-wash pseudo; this script translates the library's
+        background-position-y at ~15% of scroll speed so the wall
+        slides down slightly as the visitor reads downward. The
+        paper sheet and content scroll normally at 1.0x; only the
+        wall is slowed. */}
+    <script is:inline>
+      (function () {
+        var ticking = false;
+        var rate = 0.15;
+        function update() {
+          var y = window.scrollY * rate;
+          document.documentElement.style.setProperty(
+            "--bg-parallax-y",
+            y + "px"
+          );
+          ticking = false;
+        }
+        function onScroll() {
+          if (!ticking) {
+            window.requestAnimationFrame(update);
+            ticking = true;
+          }
+        }
+        window.addEventListener("scroll", onScroll, { passive: true });
+        document.addEventListener("astro:after-swap", function () {
+          window.scrollTo(0, 0);
+          update();
+        });
+        update();
+      })();
+    </script>
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
