@@ -40,17 +40,21 @@ body {
 
 /* The paper sheet — holds the entire site content. Edge-to-edge on
    mobile, floats on the desk with a soft drop shadow on tablet+.
-   Tiled SVG fractalNoise gives a faint paper grain (~3.5% alpha). */
+   Tiled SVG fractalNoise gives a faint paper grain (~3.5% alpha).
+   An inset shadow darkens the inner edges so the sheet reads as a
+   physical surface picking up shadow near its borders. */
 .site-paper {
   background-color: theme("colors.paper.DEFAULT");
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   max-width: 100%;
+  box-shadow: inset 0 0 80px rgba(31, 56, 100, 0.045);
 }
 
 @media (prefers-contrast: more) {
   .site-paper {
     background-image: none;
+    box-shadow: none;
   }
 }
 
@@ -58,8 +62,8 @@ body {
   .site-paper {
     max-width: 64rem;
     margin: 2rem auto;
-    border-radius: 3px;
     box-shadow:
+      inset 0 0 80px rgba(31, 56, 100, 0.045),
       0 0 0 1px rgba(31, 56, 100, 0.04),
       0 2px 4px rgba(31, 56, 100, 0.04),
       0 12px 32px rgba(31, 56, 100, 0.08);
