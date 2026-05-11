@@ -295,7 +295,7 @@ small,
       #0e0e0e 0%,
       transparent 75%
     );
-    color: #ede5d0;
+    color: #dccfb0;
   }
 
   .site-paper {
@@ -304,11 +304,11 @@ small,
   }
 
   h1, h2, h3 {
-    color: #ede5d0;
+    color: #dccfb0;
   }
 
   a {
-    color: #ede5d0;
+    color: #dccfb0;
     text-decoration-color: #c9941f;
   }
 
@@ -337,7 +337,7 @@ small,
 
   .skip-link {
     background-color: #161616;
-    color: #ede5d0;
+    color: #dccfb0;
     border-color: rgba(201, 148, 31, 0.5);
   }
   .skip-link:focus {
@@ -348,13 +348,13 @@ small,
     border-bottom-color: rgba(201, 148, 31, 0.18);
   }
   .site-header__brand {
-    color: #ede5d0;
+    color: #dccfb0;
   }
   .site-header__brand:hover,
   .site-header__link:hover,
   .site-footer__link:hover,
   .site-header__link.is-active {
-    color: #ede5d0;
+    color: #dccfb0;
     text-decoration-color: #c9941f;
   }
   .site-header__link {
@@ -374,19 +374,19 @@ small,
 
   .cta {
     background-color: #050505;
-    color: #ede5d0;
+    color: #dccfb0;
     box-shadow:
       inset 0 3px 5px rgba(0, 0, 0, 0.65),
       inset 0 1px 2px rgba(0, 0, 0, 0.45),
-      inset 0 -1px 1px rgba(237, 229, 208, 0.06);
+      inset 0 -1px 1px rgba(220, 207, 176, 0.06);
   }
   .cta:hover {
     background-color: #000000;
-    color: #ede5d0;
+    color: #dccfb0;
     box-shadow:
       inset 0 3px 6px rgba(0, 0, 0, 0.78),
       inset 0 1px 2px rgba(0, 0, 0, 0.55),
-      inset 0 -1px 1px rgba(237, 229, 208, 0.08);
+      inset 0 -1px 1px rgba(220, 207, 176, 0.08);
   }
   .cta:active {
     background-color: #000000;
@@ -399,7 +399,7 @@ small,
   .site-paper {
     box-shadow:
       inset 0 0 80px rgba(0, 0, 0, 0.5),
-      0 0 0 1px rgba(237, 229, 208, 0.04),
+      0 0 0 1px rgba(220, 207, 176, 0.04),
       0 2px 4px rgba(0, 0, 0, 0.3),
       0 12px 32px rgba(0, 0, 0, 0.45);
   }
