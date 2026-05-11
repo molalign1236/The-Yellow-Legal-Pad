@@ -42,7 +42,7 @@
   --light-cta-shadow-active-2: 0.14;
   --light-cta-highlight: 0.5;
   --light-cta-highlight-hover: 0.55;
-  --light-rule-alpha: 0.10;
+  --light-rule-alpha: 0.07;
   --light-lamp-alpha: 0.42;
   /* Warm cream rim that hugs the curl edge — light catching the
      bend's outermost surface. Kept low alpha so it reads as a
@@ -75,7 +75,7 @@
   --dark-cta-shadow-active-2: 0.6;
   --dark-cta-highlight: 0.06;
   --dark-cta-highlight-hover: 0.08;
-  --dark-rule-alpha: 0.18;
+  --dark-rule-alpha: 0.13;
   --dark-lamp-alpha: 0.22;
   /* Dark mode: rim is a much dimmer warm bronze. On matte black
      paper, any cream highlight would read as too bright. */
