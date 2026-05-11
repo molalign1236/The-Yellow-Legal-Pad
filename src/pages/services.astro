@@ -164,7 +164,64 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       background-color: var(--c-gold);
       opacity: 0.5;
     }
+
+    /* Emotional-hesitation FAQ. <dl> for correct semantics; styled
+       so the questions read as quiet thoughts rather than support-
+       documentation headings. No toggles, no chevrons — the whole
+       list is always open so reading stays continuous. */
+    .faq {
+      margin: 0.75rem 0 0 0;
+      max-width: var(--measure-prose);
+    }
+    .faq dt {
+      font-style: italic;
+      color: var(--c-ink);
+      margin-top: 1.5rem;
+      margin-bottom: 0.375rem;
+    }
+    .faq dt:first-of-type {
+      margin-top: 0;
+    }
+    .faq dd {
+      margin: 0;
+      color: var(--c-ink-soft);
+    }
   </style>
+
+  <section class="section" aria-labelledby="wondering-heading">
+    <div class="column">
+      <h2 id="wondering-heading">If you're wondering</h2>
+
+      <dl class="faq">
+        <dt>What if I'm embarrassed about where things are?</dt>
+        <dd>
+          Most people are. The point of sitting down with Stacey isn't
+          to be impressed by how organized you are. It's to put the
+          embarrassment down for an hour.
+        </dd>
+
+        <dt>What if I don't know what to ask?</dt>
+        <dd>
+          You don't need to. Stacey asks the questions. You answer the
+          ones that fit your life and skip the ones that don't.
+        </dd>
+
+        <dt>What if my situation feels too messy to explain?</dt>
+        <dd>
+          You don't have to explain it in advance. The Discovery Call
+          is for a rough sense of where you are &mdash; a thirty-second
+          version is enough. The detail comes later, in sessions,
+          with time.
+        </dd>
+
+        <dt>What if I just need someone to help me think clearly?</dt>
+        <dd>
+          That's most of what Stacey does. Not optimizing returns;
+          just being a steady second mind on what's already there.
+        </dd>
+      </dl>
+    </div>
+  </section>
 
   <section class="section" aria-labelledby="not-heading">
     <div class="column">
