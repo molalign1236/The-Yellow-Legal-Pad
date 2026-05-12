@@ -39,6 +39,19 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 459 (Builder)
+
+Image-slot scaffolding. Added an HTML-comment `<figure
+class="page-image">` placeholder at three positions per
+TODO_STACEY § Brand imagery: /about (after the .dek), / (after
+the first welcome paragraph), /resources (after the h1). Added a
+commented-out `.page-image` style block in global.css ready to
+uncomment alongside the imagery. Initial JSX-comment attempt
+(`{/* … */}`) was leaving the `<figure>` markup in the rendered
+DOM; switched to plain HTML comments which the browser ignores
+inertly. Zero DOM elements added — verified by stripping
+`<!-- -->` from rendered HTML and grepping for `<figure>`.
+
 ### 2026-05-12 — Pass 458 (Builder)
 
 Letterpress watermark experiment landed. New `.site-paper::before`

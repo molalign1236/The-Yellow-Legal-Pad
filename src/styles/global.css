@@ -555,6 +555,22 @@ small,
   opacity: 0.6;
 }
 
+/* Pending — uncomment alongside the Pass 459 follow-up when
+   Stacey's warm abstract imagery lands. Three placeholder
+   <figure class="page-image"> slots are already scaffolded
+   (commented) in src/pages/about.astro, index.astro, and
+   resources.astro. See TODO_STACEY.md § Brand imagery.
+.page-image {
+  max-width: var(--measure-prose);
+  margin: 2rem auto;
+}
+.page-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+*/
+
 ::selection {
   background-color: var(--c-selection-bg);
   color: var(--c-selection-text);
