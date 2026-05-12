@@ -28,6 +28,13 @@ token, replace, commit.
 | Forbidden advisor terms removed from Services | `src/pages/services.astro` (Pass 426) |
 | Real guide titles on Resources | `src/pages/resources.astro` (Pass 427) |
 | sitemap-index.xml + robots Sitemap directive | @astrojs/sitemap in astro.config (Pass 428) |
+| OG image design source | `public/og.svg` (Pass 430) — PNG export still pending |
+| Focus outlines pass WCAG 1.4.11 | `:focus-visible` switched to `--c-ink` (Pass 431) |
+| Post-navigation focus for screen readers | `astro:after-swap` handler in BaseLayout (Pass 432) |
+| `og:site_name` + `og:locale` for cleaner unfurls | BaseLayout head (Pass 433) |
+| Print stylesheet keeps the legal disclaimer | global.css `@media print` (Pass 435) |
+| Audit suite under `docs/` | contrast, keyboard, dependency, icon, deployment, cross-browser, touch-target, no-JS (Pass 429–440) |
+| `<noscript>` notice on `/settings` | `src/pages/settings.astro` (Pass 440) |
 
 ---
 
