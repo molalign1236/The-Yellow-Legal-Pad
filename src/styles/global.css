@@ -515,6 +515,14 @@ small,
   margin-right: auto;
 }
 
+.section-rule {
+  width: 6rem;
+  margin: 2.5rem auto;
+  border: 0;
+  border-top: 1px solid rgba(var(--c-rule-rgb), var(--c-rule-alpha));
+  opacity: 0.6;
+}
+
 ::selection {
   background-color: var(--c-selection-bg);
   color: var(--c-selection-text);

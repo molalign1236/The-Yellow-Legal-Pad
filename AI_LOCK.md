@@ -39,6 +39,19 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 457 (Builder)
+
+Section-divider rule experiment landed on /about. New
+`.section-rule` class in global.css (6rem wide, 2.5rem
+top/bottom margins, 1px gold rule using the existing
+`--c-rule-rgb` + `--c-rule-alpha` tokens, additional 0.6 opacity
+nudge). Used once: between the Grampy story section and the
+"Most people aren't financially unintelligent" section. Tokens
+already swap correctly between light and dark, so the rule
+adapts without theme-specific overrides. Compound alpha lands
+around 0.04 light / 0.08 dark — punctuation, not decoration.
+Kept after the restraint test.
+
 ### 2026-05-12 — Pass 456 (Builder)
 
 Stacey phrase #5 landed on /resources between the two intro
