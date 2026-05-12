@@ -281,6 +281,7 @@ abstractions just because they exist.
 | `README.md` | Human-facing repo intro |
 | `TODO_STACEY.md` | Worklist of placeholders + pending owner decisions |
 | `docs/` | Frozen reference material (audits, handoffs). Doesn't ship. See `docs/README.md`. |
+| `docs/anti-patterns.md` | Catalogue of changes that have been considered and deliberately rejected — read before proposing analytics, intake forms, blog systems, pricing tables, etc. |
 
 If you add a new fact that contradicts one of these, update it in
 the same pass. Stale docs are worse than no docs.

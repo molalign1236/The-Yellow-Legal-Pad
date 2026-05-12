@@ -15,6 +15,9 @@ this folder ships to production.
 | `cross-browser-audit-2026-05-11.md` | Static analysis of the stylesheet against Chrome / Safari / Firefox support matrices (Pass 438). Curl system's degradation paths verified intentional; no code changes needed. Re-run on new vendor-prefixed properties or Astro 6 upgrade. |
 | `touch-target-audit-2026-05-11.md` | WCAG 2.5.8 (AA) + 2.5.5 (AAA) check on every interactive surface (Pass 439). All pass AA; AAA gap on inline nav links is intentional visual identity. Documented padding fix held as an option pending real-device feedback. |
 | `no-js-audit-2026-05-11.md` | Walkthrough of every page with JS disabled (Pass 440). Static-first posture holds except on `/settings`; added a `<noscript>` paragraph there explaining the JS dependency. Re-run on new client-side hydration. |
+| `reading-ecology-audit-2026-05-11.md` | Prose width, heading density, CTA cadence, paragraph rhythm (Pass 442). Site sits in classical reading-measure range; only two CTAs across seven pages, correctly. Re-run on new page types or CTA count drift. |
+| `failure-state-audit-2026-05-11.md` | Cascade walk for font / SVG / View-Transitions / localStorage / JS / URL / mailto failures (Pass 443). All degrade gracefully through existing fallback chains. No code changes needed. |
+| `anti-patterns.md` | **Read before proposing additions.** Catalogue of changes considered and deliberately rejected: analytics, blog system, intake forms, embedded paid scheduling, stock photos, cookie banner, search input, etc. Each entry includes the reason it's tempting and the actual cost. |
 
 When new context arrives that's longer than a passing note but
 isn't a load-bearing rule (CLAUDE.md) or an owner-input checklist
