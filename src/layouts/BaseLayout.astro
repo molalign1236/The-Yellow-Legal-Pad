@@ -145,19 +145,23 @@ const canonicalUrl = Astro.site
     </script>
     <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
-    {/* Open Graph + Twitter — quiet defaults for shared links.
-        og:image deliberately omitted until a PNG export of
-        public/og.svg lands at public/og.png; see TODO_STACEY.md. */}
+    {/* Open Graph + Twitter — share unfurls. */}
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="The Yellow Legal Pad" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={meta} />
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content="/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Yellow Legal Pad — financial coaching for life's biggest transitions" />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={meta} />
+    <meta name="twitter:image" content="/og.png" />
     <ClientRouter />
   </head>
 

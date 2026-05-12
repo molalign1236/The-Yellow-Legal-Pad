@@ -110,40 +110,24 @@ Site reads "Stacey" everywhere. When a last name arrives, append in:
 `public/favicon.svg` is a temporary placeholder. Stacey can replace
 whenever she has a proper mark.
 
-### Apple touch icon — iOS home-screen fallback
-Per `docs/icon-audit-2026-05-11.md`: iOS Safari's "Add to Home
+### ~~Apple touch icon — iOS home-screen fallback~~ — landed Pass 447
+~~Per `docs/icon-audit-2026-05-11.md`: iOS Safari's "Add to Home
 Screen" doesn't read SVG favicons. Export `favicon.svg` to a
 180×180 PNG and drop at `public/apple-touch-icon.png`, then add
 `<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />`
-inside `BaseLayout.astro`'s `<head>`. Until then, iOS home-screen
-saves get a generic icon.
+inside `BaseLayout.astro`'s `<head>`.~~
 
 ### Real fonts (optional)
 Currently `@fontsource/eb-garamond` via npm. If the owner wants
 licensed fonts (Söhne, etc.), drop into `public/fonts/` and update
 the `@font-face` declarations.
 
-### Open-Graph image — PNG export pending
-`public/og.svg` is the canonical design source (Pass 430) — a
-quiet ivory-paper-on-tan-desk 1200×630 composition with the
-wordmark, tagline, and Vero Beach byline. It is intentionally not
-yet referenced as `og:image` because the major social platforms
-(Twitter, LinkedIn, Facebook) don't render SVG share previews.
-
-To finish: export `og.svg` to `public/og.png` (1200×630), then add
-to `BaseLayout.astro`:
-
-```astro
-<meta property="og:image" content="https://theyellowlegalpad.co/og.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://theyellowlegalpad.co/og.png" />
-```
-
-Stacey can do the conversion via any SVG-to-PNG tool (rsvg-convert,
-Inkscape, Figma export, online converter) — no code change needed
-until the PNG lands.
+### ~~Open-Graph image — PNG export pending~~ — landed Pass 447
+~~`public/og.svg` is the canonical design source (Pass 430). PNG
+export landed during prep (`public/og.png`, 1200×630); meta tags
+wired in Pass 447 (`og:image`, `og:image:width`,
+`og:image:height`, `og:image:alt`, `twitter:image`); `twitter:card`
+upgraded to `summary_large_image`.~~
 
 ---
 

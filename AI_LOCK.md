@@ -39,6 +39,16 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 447 (Builder)
+
+OG + apple-touch meta tag wiring. Removed stale "deliberately
+omitted" comment; added og:image (+ width/height/alt),
+twitter:image, apple-touch-icon link; upgraded twitter:card from
+"summary" to "summary_large_image"; consolidated share-unfurl meta
+tags into one contiguous block. Verified each unique tag appears
+once in served HTML; /og.png and /apple-touch-icon.png return 200
+OK. KI-003 closed; two TODO_STACEY entries struck through.
+
 ### 2026-05-12 — Pass 446 (Builder)
 
 Dark-mode CTA fix landed. Added `--c-cta-border-color` alias

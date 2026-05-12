@@ -11,33 +11,6 @@ where it lives, what closes it.
 
 ## Active
 
-### KI-003 — OG image + Apple touch icon meta tags missing
-
-**Status:** PARTIAL — PNG assets present, meta tags not yet wired.
-**Severity:** low — affects social-card previews and iOS home-
-screen adds, not core rendering.
-
-`public/og.png` (1200×630) and `public/apple-touch-icon.png`
-(180×180) were pre-rendered from the existing SVGs during prep
-(2026-05-12, ImageMagick from sandbox — verified visually,
-production-quality). What remains is wiring the `<meta>` and
-`<link>` tags in `src/layouts/BaseLayout.astro`:
-
-```
-<meta property="og:image" content="/og.png" />
-<meta name="twitter:image" content="/og.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-```
-
-Co-update: also confirm `og:url`, `og:title`, `og:type`, and
-`twitter:card` exist in BaseLayout head. Add in the same pass if
-absent.
-
-Close: combine into a single Pass 447 (drop Pass 448 — there is
-no second deliverable since both PNGs already exist).
-
 ### KI-002 — Bookshelf treatment owner-pending
 
 **Status:** OWNER-DECISION.
@@ -86,6 +59,19 @@ This is not a bug. It is how the sandbox isolation is designed.
 ---
 
 ## Resolved
+
+### KI-003 — OG image + Apple touch icon meta tags missing
+
+**Closed:** Pass 447 — 2026-05-12.
+
+PNG assets were pre-rendered during prep. Pass 447 wired:
+`og:image`, `og:image:width`, `og:image:height`, `og:image:alt`,
+`twitter:image`, `<link rel="apple-touch-icon" sizes="180x180">`;
+upgraded `twitter:card` from `summary` to `summary_large_image`;
+consolidated the share-unfurl meta tags into a single contiguous
+block and removed the stale "deliberately omitted" comment.
+Verified each tag appears exactly once in served HTML; `/og.png`
+and `/apple-touch-icon.png` both return 200 OK.
 
 ### KI-001 — Dark-mode CTA visibility
 
