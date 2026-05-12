@@ -39,6 +39,21 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 462 (Builder — owner verdict, docs only)
+
+Owner ran the Pass 458 visual-restraint test and returned KEEP.
+On light desktop at window width ≥60rem the YLP letterpress
+mark in the lower-right of the paper reads as stationery —
+third-glance, low-attention, closer to faint pre-printed
+letterhead than to a visible logo treatment. Restraint level
+stays inside the site's warmth envelope and does not pull focus
+from content. Current implementation preserved verbatim — no
+opacity tuning, no color iteration, no positional change, no
+additional watermark experiments. Pass 458 experiment status
+flips from "visual verification owed" to closed/kept. Three
+evidence inputs still owner-gated: Pass 460 stack-variation
+verdict, bookshelf KI-002, Stacey content arrivals.
+
 ### 2026-05-12 — Pass 461 (Builder — final engineering pass)
 
 Print-stylesheet co-update on Pass 458 watermark. Added one
