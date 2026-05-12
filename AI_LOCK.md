@@ -39,6 +39,17 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 454 (Builder)
+
+Stacey phrase #3 landed on /services. Added one italic quoted
+line — "Let's look at the real numbers." — between the
+Grampy-kitchen-table paragraph and the "you leave with a clearer
+picture" paragraph in the How Stacey works section. The
+preceding paragraph describes how sessions feel; the phrase is
+what Stacey literally says sitting down with a client. Quoted
+(curly quotes via HTML entities) to mark her direct voice in
+prose flow.
+
 ### 2026-05-12 — Pass 453 (Builder)
 
 Stacey phrase #2 landed on /contact. Added one line — italic "No

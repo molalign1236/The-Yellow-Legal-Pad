@@ -8,3 +8,4 @@ Pass 450 — a11y verification on Pass 446. CTA still native anchor (tab-reachab
 Pass 451 — dev server smoke. All 6 real routes return 200; /nonexistent returns 404 as designed; dev server log shows zero warnings/errors/hydration messages since startup. No code change required.
 Pass 452 — Stacey phrase #1 landed on /contact: italic ".dek" line "Just a conversation." between h1 and the first paragraph.
 Pass 453 — Stacey phrase #2 landed on /contact: italic "No pressure. No pitch." directly under the email anchor (new .contact-email-note style).
+Pass 454 — Stacey phrase #3 landed on /services: italic quoted "Let's look at the real numbers." between the Grampy-kitchen-table paragraph and the next-steps paragraph in the How Stacey works section.
