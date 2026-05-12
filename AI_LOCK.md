@@ -39,6 +39,16 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 455 (Builder)
+
+Stacey phrase #4 landed in /services FAQ. Prepended italic quoted
+"That feeling is exactly why you need this conversation." to the
+"What if I'm embarrassed about where things are?" answer; one
+word ("are" → "are embarrassed") added so the AI-drafted prose
+still reads naturally after the insertion. The FAQ question
+expresses the hesitation the phrase addresses; her voice answers
+the reader directly before the surrounding reassurance continues.
+
 ### 2026-05-12 — Pass 454 (Builder)
 
 Stacey phrase #3 landed on /services. Added one italic quoted

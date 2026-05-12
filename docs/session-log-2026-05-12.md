@@ -9,3 +9,4 @@ Pass 451 — dev server smoke. All 6 real routes return 200; /nonexistent return
 Pass 452 — Stacey phrase #1 landed on /contact: italic ".dek" line "Just a conversation." between h1 and the first paragraph.
 Pass 453 — Stacey phrase #2 landed on /contact: italic "No pressure. No pitch." directly under the email anchor (new .contact-email-note style).
 Pass 454 — Stacey phrase #3 landed on /services: italic quoted "Let's look at the real numbers." between the Grampy-kitchen-table paragraph and the next-steps paragraph in the How Stacey works section.
+Pass 455 — Stacey phrase #4 landed in /services FAQ. Prepended italic quoted "That feeling is exactly why you need this conversation." to the embarrassment-FAQ answer; "are" → "are embarrassed" for prose flow.
