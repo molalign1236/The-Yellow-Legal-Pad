@@ -1023,6 +1023,10 @@ small,
     max-width: none;
   }
 
+  .site-paper::before {
+    display: none;
+  }
+
   .site-header,
   .site-footer__nav {
     display: none;

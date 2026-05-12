@@ -39,6 +39,21 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 461 (Builder — final engineering pass)
+
+Print-stylesheet co-update on Pass 458 watermark. Added one
+`.site-paper::before { display: none; }` rule inside the
+existing `@media print` block in `src/styles/global.css`,
+grouped immediately under the existing `.site-paper` print
+override. The print block's stated invariant — "Strip the
+paper-on-desk illusion in print" — now extends to the new
+pseudo. Three-line diff (rule + blank lines). On-screen
+watermark behavior unchanged; the rule is print-scoped only.
+Engineering queue is now genuinely empty — remaining work is
+owner-gated (Pass 458 / Pass 460 visual restraint tests,
+bookshelf KI-002, Stacey content arrivals, host-side
+build/deploy validation).
+
 ### 2026-05-12 — Pass 460 (Builder)
 
 Per-page paper-stack variation landed. BaseLayout.astro
