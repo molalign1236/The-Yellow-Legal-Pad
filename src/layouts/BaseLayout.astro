@@ -28,6 +28,10 @@ const isActive = (href: string) => {
   return path === normalized;
 };
 
+// Route name on <body data-route="..."> so global.css can nudge
+// the paper-stack drop-shadow alphas per page. Pass 460.
+const routeName = path === "/" ? "home" : path.replace(/^\//, "");
+
 // Canonical + og:url only render when astro.config has `site` set,
 // otherwise we'd ship localhost URLs to production.
 const canonicalUrl = Astro.site
@@ -165,7 +169,7 @@ const canonicalUrl = Astro.site
     <ClientRouter />
   </head>
 
-  <body>
+  <body data-route={routeName}>
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <div class="site-paper" transition:name="paper">

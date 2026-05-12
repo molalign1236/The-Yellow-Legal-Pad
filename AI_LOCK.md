@@ -39,6 +39,21 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 460 (Builder)
+
+Per-page paper-stack variation landed. BaseLayout.astro
+frontmatter now derives `routeName` from the existing `path`
+("/" → "home", else `pathname.replace(/^\//, "")`); body tag
+now `data-route={routeName}`. In global.css, the two directional
+drop-shadow alphas in the desktop `.site-paper` shadow stack
+were parameterized via `--paper-drop-1-alpha` (default 0.18) and
+`--paper-drop-2-alpha` (default 0.22); `body[data-route="about"]`
+overrides to 0.21/0.25 (heavier), `body[data-route="resources"]`
+overrides to 0.15/0.19 (lighter). Other routes inherit the
+default. Deltas are ±0.03 — at the boundary of conscious
+detection. Visual restraint test by owner still owed; revert
+candidate if the difference is pointable rather than feelable.
+
 ### 2026-05-12 — Pass 459 (Builder)
 
 Image-slot scaffolding. Added an HTML-comment `<figure

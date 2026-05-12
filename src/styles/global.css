@@ -344,8 +344,22 @@ body::before {
       0 0 40px 6px rgba(0, 0, 0, 0.10),
       0 0 90px 24px rgba(0, 0, 0, 0.10),
       0 0 160px 48px rgba(0, 0, 0, 0.08),
-      6px 10px 22px rgba(0, 0, 0, 0.18),
-      0 26px 64px rgba(0, 0, 0, 0.22);
+      6px 10px 22px rgba(0, 0, 0, var(--paper-drop-1-alpha, 0.18)),
+      0 26px 64px rgba(0, 0, 0, var(--paper-drop-2-alpha, 0.22));
+  }
+
+  /* Per-route paper-stack nudges — Pass 460. Deltas are
+     intentionally below the conscious-detection threshold; the
+     point is a quiet weight signature per page, not a visible
+     difference. /about reads as a longer-sit page; /resources
+     reads lighter for scanning. */
+  body[data-route="about"] {
+    --paper-drop-1-alpha: 0.21;
+    --paper-drop-2-alpha: 0.25;
+  }
+  body[data-route="resources"] {
+    --paper-drop-1-alpha: 0.15;
+    --paper-drop-2-alpha: 0.19;
   }
 }
 
