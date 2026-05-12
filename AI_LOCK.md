@@ -39,6 +39,14 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 453 (Builder)
+
+Stacey phrase #2 landed on /contact. Added one line — italic "No
+pressure. No pitch." — directly under the email anchor, with a
+new `.contact-email-note` style (muted ink, 1rem, 0.5rem top
+margin, zero bottom) added to the page-scoped `<style>` block.
+Phrase verbatim from stacey-direction.md.
+
 ### 2026-05-12 — Pass 452 (Builder)
 
 Stacey phrase #1 landed on /contact. Added one line — a `.dek`
