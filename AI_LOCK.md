@@ -39,6 +39,14 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 451 (Builder — verification only)
+
+Dev server smoke after Passes 446 + 447. Hit all 6 real routes
+(/, /about, /services, /resources, /contact, /settings) — each
+200. /nonexistent returns 404 as designed (Astro renders the 404
+page). Dev server log: zero warnings, zero errors, zero hydration
+messages since startup. No code change.
+
 ### 2026-05-12 — Pass 450 (Builder — verification only)
 
 A11y verification on Pass 446 CTA changes. Confirmed: CTA remains
