@@ -3,7 +3,7 @@
 > Entry point for AI agents (Claude Code, Cursor, Codex, etc.)
 > working in this repo. Read this before making changes.
 
-**Last updated:** 2026-05-11 (Pass 445)
+**Last updated:** 2026-05-12 (post-Pass 445 audit/handoff)
 
 ---
 
@@ -260,16 +260,36 @@ stack and a fundamentally different visual identity.
 
 **Posture for cross-repo work:**
 
-- BidOnDent is **reference only** from the yellow-legal-pad side.
-- Patterns worth borrowing: docs structure (this CLAUDE.md is
-  shaped after BD's), `mola-ai-relay-protocol` skill, the
-  CSS-variable theme system pattern.
-- Patterns NOT to import: `bd-*` utility classes (specific to BD's
-  premium identity), shadcn-style component machinery, the
-  Supabase/Clerk/MapLibre stack, framer-motion patterns.
+- BidOnDent is **reference only** from the yellow-legal-pad side,
+  and only at the methodology layer. It is a **systems-thinking
+  reference, not a style reference.**
+- Patterns worth borrowing (methodology / discipline): docs
+  structure, the `mola-ai-relay-protocol` skill, the CSS-variable
+  theme system pattern, BD's two-purpose motion filter (motion
+  serves trust or spatial continuity, otherwise rejected),
+  mandatory `prefers-reduced-motion` guards in the same commit,
+  apex-canon structural-lock thinking, co-update doctrine, anti-
+  recursion operational awareness.
+- Patterns NOT to import (style / spectacle): `bd-*` utility
+  classes, the premium-gold-glass palette, the curl/curvature
+  topology, atmospheric density layering, animation orchestration,
+  "premium polish," visual hero moments, shadcn-style component
+  machinery, the Supabase/Clerk/MapLibre stack, framer-motion /
+  `motion/react` patterns.
 
 The Stacey site is intentionally lightweight. Resist porting BD's
-abstractions just because they exist.
+abstractions just because they exist. The full six-filter
+methodology lens lives in
+[`docs/builder-handoff-2026-05-12.md`](docs/builder-handoff-2026-05-12.md)
+§ Methodology lens — read before any pass that touches motion,
+atmosphere, or visual surface.
+
+**Apex canon protection.** [`docs/stacey-direction.md`](docs/stacey-direction.md)
+is the apex canon for Stacey's voice and is **structurally locked**
+(modeled on BD's `MOLANDJESUS_DESIGN_DECISIONS.md`). Additive
+controlled edits only, with new source material from Stacey, using
+the `docs(stacey):` commit prefix. No AI-pass restructure, merge,
+split, rename, or "improvement" of that doc.
 
 ---
 
@@ -277,14 +297,42 @@ abstractions just because they exist.
 
 | File | Purpose |
 |---|---|
-| `CLAUDE.md` | This file — AI agent brief |
+| `CLAUDE.md` | This file — AI agent brief (law tier) |
 | `README.md` | Human-facing repo intro |
+| `AI_LOCK.md` | Multi-AI session coordination. Claim before any source edit on a shared branch. |
 | `TODO_STACEY.md` | Worklist of placeholders + pending owner decisions |
-| `docs/` | Frozen reference material (audits, handoffs). Doesn't ship. See `docs/README.md`. |
-| `docs/anti-patterns.md` | Catalogue of changes that have been considered and deliberately rejected — read before proposing analytics, intake forms, blog systems, pricing tables, etc. |
+| `docs/builder-handoff-2026-05-12.md` | **Read this if you're starting fresh.** Concrete action plan for the next implementation phase — three lanes Builder can autopilot, owner-pending items, recommended pass sequence, methodology lens borrowed from BD, first-pass grounding with file:line coordinates. |
+| `docs/builder-master-prompt-2026-05-12.md` | The exact prompt to paste into a fresh Builder Claude Code session to kick off Pass 446. Persisted here so it survives chat scroll. |
+| `docs/stacey-direction.md` | Apex canon — Stacey's voice in her own words. **Structurally locked**: additive controlled edits only via `docs(stacey):` commits citing new Stacey-sourced material. |
+| `docs/perceptual-audit-2026-05-12.md` | Browser-based audit findings (bookshelf variants, dark-mode CTA bug, page-curl scope). |
+| `docs/known-issues.md` | Lightweight tracker for active bugs / sandbox limitations / deferred items. KI-### IDs. |
+| `docs/anti-patterns.md` | Catalogue of changes considered and rejected. Read before proposing analytics, intake forms, blog systems, pricing tables, etc. |
+| `docs/deployment-checklist.md` | Practical step-list for the first Vercel deploy. |
+| `docs/README.md` | Operating index for `/docs/`. |
+| `docs/archive/` | Frozen reference material: the May 11 audit cycle (contrast, keyboard, dependency, icon, cross-browser, touch-target, no-JS, reading-ecology, failure-state, original multi-AI audit) + the May 12 pre-Pass-449 dependency audit. Don't edit; new audits go alongside. |
 
 If you add a new fact that contradicts one of these, update it in
 the same pass. Stale docs are worse than no docs.
+
+### Co-update table
+
+Modeled on BD's co-update doctrine, narrowed to YLP's surface area.
+When a trigger fires, the corresponding doc(s) must be updated in
+the **same** pass — not a follow-up.
+
+| Trigger | Must update |
+|---|---|
+| New `src/styles/global.css` token added | `CLAUDE.md` § Posture if it changes a load-bearing rule (palette, motion, lamp source) |
+| New visible animation or transition | `CLAUDE.md` § Protected systems with the keyframe name + reduce-guard reference |
+| Stacey sends new written/spoken material | `docs/stacey-direction.md` (additive only, `docs(stacey):` prefix) |
+| New bug discovered | `docs/known-issues.md` with next free KI-### id |
+| Bug fixed | `docs/known-issues.md` — mark RESOLVED with date + pass number |
+| Owner decision lands (Calendly URL, About copy, headshot policy, etc.) | `TODO_STACEY.md` line struck through; relevant page edited in same pass |
+| New page route added (currently 7) | `CLAUDE.md` § Architecture page list, `astro.config.mjs` sitemap if needed |
+| New `prefers-reduced-motion` source | `CLAUDE.md` § Protected systems reduce-guard inventory |
+| Doc superseded | Move to `docs/archive/` with date suffix; update cross-refs in same pass |
+| Dependency upgraded / `npm audit` rerun | `docs/archive/dependency-audit-YYYY-MM-DD.md` snapshot, optional |
+| Astro 6 upgrade (when it happens) | `CLAUDE.md` Astro version reference + verify Tailwind integration + verify View Transitions still work |
 
 ---
 
