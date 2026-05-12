@@ -39,6 +39,22 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 458 (Builder)
+
+Letterpress watermark experiment landed. New `.site-paper::before`
+pseudo: content "YLP" in EB Garamond small caps
+(`font-variant-caps: all-small-caps`), 0.875rem, 0.2em
+letter-spacing, color `rgba(var(--light-shadow-rgb), 0.05)`
+(navy at 5%), positioned `bottom: 1.25rem; right: 1.75rem;`.
+Viewport-gated (>= 60rem) — invisible on mobile where the paper
+fills the viewport and a corner mark would crowd. Hidden in
+dark (both auto and forced) via the same negation-scoping
+pattern Pass 446 used.
+
+Design parameters point to stationery register, not branding —
+but the visual restraint test was not run from CLI. Flagged in
+the session log so Mola can keep/revert.
+
 ### 2026-05-12 — Pass 457 (Builder)
 
 Section-divider rule experiment landed on /about. New

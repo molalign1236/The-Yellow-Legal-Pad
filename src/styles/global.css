@@ -356,6 +356,38 @@ body::before {
   }
 }
 
+/* Letterpress monogram — light-mode-only, desktop-only. A faint
+   "YLP" in EB Garamond small caps in the lower-right of the
+   paper, the kind of pre-printed mark a real practitioner might
+   have on their pad. Hidden in dark mode (would read as a
+   glowing logo on matte black) and below 60rem (would crowd
+   prose). */
+@media (min-width: 60rem) {
+  .site-paper::before {
+    content: "YLP";
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.75rem;
+    font-family: theme("fontFamily.serif");
+    font-variant-caps: all-small-caps;
+    font-size: 0.875rem;
+    letter-spacing: 0.2em;
+    color: rgba(var(--light-shadow-rgb), 0.05);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .site-paper::before {
+      display: none;
+    }
+  }
+
+  :root[data-theme="dark"] .site-paper::before {
+    display: none;
+  }
+}
+
 h1, h2, h3 {
   font-family: theme("fontFamily.serif");
   font-weight: 600;
