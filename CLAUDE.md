@@ -3,7 +3,7 @@
 > Entry point for AI agents (Claude Code, Cursor, Codex, etc.)
 > working in this repo. Read this before making changes.
 
-**Last updated:** 2026-05-11 (Pass 441)
+**Last updated:** 2026-05-11 (Pass 445)
 
 ---
 

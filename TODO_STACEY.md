@@ -33,8 +33,9 @@ token, replace, commit.
 | Post-navigation focus for screen readers | `astro:after-swap` handler in BaseLayout (Pass 432) |
 | `og:site_name` + `og:locale` for cleaner unfurls | BaseLayout head (Pass 433) |
 | Print stylesheet keeps the legal disclaimer | global.css `@media print` (Pass 435) |
-| Audit suite under `docs/` | contrast, keyboard, dependency, icon, deployment, cross-browser, touch-target, no-JS (Pass 429–440) |
+| Audit suite under `docs/` | contrast, keyboard, dependency, icon, deployment, cross-browser, touch-target, no-JS, reading-ecology, failure-state (Pass 429–443) |
 | `<noscript>` notice on `/settings` | `src/pages/settings.astro` (Pass 440) |
+| Anti-patterns reference for future contributors | `docs/anti-patterns.md` (Pass 444) |
 
 ---
 
