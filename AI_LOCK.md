@@ -39,6 +39,17 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 446 (Builder)
+
+Dark-mode CTA fix landed. Added `--c-cta-border-color` alias
+(transparent light, `var(--dark-gold-soft)` both dark paths),
+raised `--dark-cta-highlight` 0.06 → 0.14 and
+`--dark-cta-highlight-hover` 0.08 → 0.18, added
+`border: 1px solid var(--c-cta-border-color)` on `.cta`.
+KI-001 closed. Six insertions, two value changes; light mode
+visually identical. Dev server verified — served CSS contains
+all six tokens at expected values.
+
 ### 2026-05-12 — Audit role: prep handoff complete
 
 Three sub-batches across the day, consolidated into one standdown

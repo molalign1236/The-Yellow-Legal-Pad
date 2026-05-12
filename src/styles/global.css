@@ -73,8 +73,8 @@
   --dark-cta-shadow-hover-2: 0.46;
   --dark-cta-shadow-active-1: 0.78;
   --dark-cta-shadow-active-2: 0.52;
-  --dark-cta-highlight: 0.06;
-  --dark-cta-highlight-hover: 0.08;
+  --dark-cta-highlight: 0.14;
+  --dark-cta-highlight-hover: 0.18;
   --dark-rule-alpha: 0.13;
   --dark-lamp-alpha: 0.22;
   /* Dark mode: rim is a much dimmer warm bronze. On matte black
@@ -107,6 +107,7 @@
   --c-cta-shadow-active-2: var(--light-cta-shadow-active-2);
   --c-cta-highlight: var(--light-cta-highlight);
   --c-cta-highlight-hover: var(--light-cta-highlight-hover);
+  --c-cta-border-color: transparent;
   --c-rule-alpha: var(--light-rule-alpha);
   --c-rule-rgb: 184, 134, 11;
   --c-lamp-alpha: var(--light-lamp-alpha);
@@ -148,6 +149,7 @@
     --c-cta-shadow-active-2: var(--dark-cta-shadow-active-2);
     --c-cta-highlight: var(--dark-cta-highlight);
     --c-cta-highlight-hover: var(--dark-cta-highlight-hover);
+    --c-cta-border-color: var(--dark-gold-soft);
     --c-rule-alpha: var(--dark-rule-alpha);
     --c-rule-rgb: 201, 148, 31;
     --c-lamp-alpha: var(--dark-lamp-alpha);
@@ -189,6 +191,7 @@
   --c-cta-shadow-active-2: var(--dark-cta-shadow-active-2);
   --c-cta-highlight: var(--dark-cta-highlight);
   --c-cta-highlight-hover: var(--dark-cta-highlight-hover);
+  --c-cta-border-color: var(--dark-gold-soft);
   --c-rule-alpha: var(--dark-rule-alpha);
   --c-rule-rgb: 201, 148, 31;
   --c-lamp-alpha: var(--dark-lamp-alpha);
@@ -429,6 +432,7 @@ a {
     inset 0 3px 5px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-1)),
     inset 0 1px 2px rgba(var(--c-shadow-rgb), var(--c-cta-shadow-2)),
     inset 0 -1px 1px rgba(var(--c-highlight-rgb), var(--c-cta-highlight));
+  border: 1px solid var(--c-cta-border-color);
   transition: background-color 180ms ease, box-shadow 180ms ease,
               transform 120ms ease;
 }

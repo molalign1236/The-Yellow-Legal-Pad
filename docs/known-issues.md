@@ -11,26 +11,6 @@ where it lives, what closes it.
 
 ## Active
 
-### KI-001 — Dark-mode CTA visibility
-
-**Status:** OPEN (Pass 446 will close).
-**Severity:** moderate — affects readability of the only
-conversion affordance on the site in one of two color modes.
-
-The "hole punched through paper" CTA effect collapses in dark
-mode because `--dark-cta-bg` (`#050505`) and `--dark-paper`
-(`#161616`) sit too close on the luminance axis and
-`--dark-cta-highlight` (`0.06`) is too faint to render the bottom
-lift edge that completes the metaphor. Net effect: the CTA reads
-as a flat dark blob rather than a recessed hole.
-
-Source: `src/styles/global.css` lines 56 (paper), 62–77 (CTA dark
-vars), 418 (CTA rule), 125 + 167 (dark mode application points).
-
-Close: Pass 446 — outline + slightly-lifted highlight approach
-recommended. See `docs/builder-handoff-2026-05-12.md` § First-pass
-grounding for the three documented options.
-
 ### KI-003 — OG image + Apple touch icon meta tags missing
 
 **Status:** PARTIAL — PNG assets present, meta tags not yet wired.
@@ -107,7 +87,21 @@ This is not a bug. It is how the sandbox isolation is designed.
 
 ## Resolved
 
-*(empty — Pass 446 will land KI-001 here)*
+### KI-001 — Dark-mode CTA visibility
+
+**Closed:** Pass 446 — 2026-05-12.
+
+The "hole punched through paper" CTA effect collapsed in dark mode
+because `--dark-cta-bg` (`#050505`) and `--dark-paper` (`#161616`)
+sat too close on the luminance axis and `--dark-cta-highlight`
+(`0.06`) was too faint to render the recessed-edge lift.
+
+Fix: introduced `--c-cta-border-color` (transparent in light,
+`var(--dark-gold-soft)` in both auto-dark and forced-dark);
+raised `--dark-cta-highlight` to `0.14` and
+`--dark-cta-highlight-hover` to `0.18`; added a single
+`border: 1px solid var(--c-cta-border-color)` declaration on
+`.cta`. Light mode unchanged (transparent border).
 
 ---
 
