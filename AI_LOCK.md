@@ -39,6 +39,16 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 456 (Builder)
+
+Stacey phrase #5 landed on /resources between the two intro
+paragraphs: italic quoted "Take your time. Read it with a cup
+of tea, not between meetings." /resources is the one page that
+explicitly invites slow reading; the phrase is the permission
+slip for that pace. All five Stacey phrases from
+stacey-direction.md § "Phrases that feel right" are now placed
+on the site.
+
 ### 2026-05-12 — Pass 455 (Builder)
 
 Stacey phrase #4 landed in /services FAQ. Prepended italic quoted

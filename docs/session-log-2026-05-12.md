@@ -10,3 +10,4 @@ Pass 452 — Stacey phrase #1 landed on /contact: italic ".dek" line "Just a con
 Pass 453 — Stacey phrase #2 landed on /contact: italic "No pressure. No pitch." directly under the email anchor (new .contact-email-note style).
 Pass 454 — Stacey phrase #3 landed on /services: italic quoted "Let's look at the real numbers." between the Grampy-kitchen-table paragraph and the next-steps paragraph in the How Stacey works section.
 Pass 455 — Stacey phrase #4 landed in /services FAQ. Prepended italic quoted "That feeling is exactly why you need this conversation." to the embarrassment-FAQ answer; "are" → "are embarrassed" for prose flow.
+Pass 456 — Stacey phrase #5 landed on /resources between the intro paragraphs: italic quoted "Take your time. Read it with a cup of tea, not between meetings." All five phrases now placed.
