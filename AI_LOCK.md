@@ -39,6 +39,14 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 452 (Builder)
+
+Stacey phrase #1 landed on /contact. Added one line — a `.dek`
+italic "Just a conversation." — between the h1 "Book a Discovery
+Call" and the first paragraph. Existing `.dek` class supplies
+italic, muted ink, prose-measure width — no new CSS. Phrase
+verbatim from stacey-direction.md.
+
 ### 2026-05-12 — Pass 451 (Builder — verification only)
 
 Dev server smoke after Passes 446 + 447. Hit all 6 real routes
