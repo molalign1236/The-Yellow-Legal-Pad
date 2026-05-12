@@ -39,6 +39,18 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 450 (Builder — verification only)
+
+A11y verification on Pass 446 CTA changes. Confirmed: CTA remains
+a native `<a>` (keyboard-reachable, 8 anchors precede it on home);
+:focus-visible outline (2px var(--c-ink), 3px offset) renders
+outside the new 1px gold border with clear separation;
+`--dark-gold-soft` (#e6b545) on `--dark-paper` (#161616) ≈ 9.4:1
+luminance ratio (WCAG 1.4.11 non-text UI passes 3:1 by 3×); print
+stylesheet `border: 0 !important` neutralizes the addition; the
+existing prefers-reduced-motion guard on `.cta` is unaffected
+because `border` is a static property. No code change.
+
 ### 2026-05-12 — Pass 447 (Builder)
 
 OG + apple-touch meta tag wiring. Removed stale "deliberately
