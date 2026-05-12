@@ -39,6 +39,20 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-12 — Pass 463 (Builder — owner verdict, docs only)
+
+Owner ran the Pass 460 visual-restraint test and returned KEEP.
+Flipping between /about and /resources, the per-route paper-stack
+variation reads atmospheric — a subtle shift in paper weight and
+warmth that reinforces the "different pages from the same physical
+legal pad stack" feeling without becoming pointable UI styling.
+Implementation preserved verbatim. No further tuning of shadow
+alpha, blur, or offsets; no expansion of the effect to additional
+routes; no additional perceptual experiments authorized. Pass 460
+experiment status flips from "visual verification owed" to
+closed/kept. Two evidence inputs still owner-gated: bookshelf
+KI-002, Stacey content arrivals.
+
 ### 2026-05-12 — Pass 462 (Builder — owner verdict, docs only)
 
 Owner ran the Pass 458 visual-restraint test and returned KEEP.

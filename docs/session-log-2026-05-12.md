@@ -17,4 +17,5 @@ Pass 459 — Image-slot scaffolding. Added commented `<figure class="page-image"
 Pass 460 — Per-page paper-stack variation. Added data-route attribute on body (home/about/services/resources/contact/settings/404); parameterized the two paper drop-shadow alphas via --paper-drop-1-alpha (0.18) / --paper-drop-2-alpha (0.22); /about overrides to 0.21/0.25 (heavier), /resources to 0.15/0.19 (lighter). Visual restraint test by owner still owed.
 Pass 461 — print-stylesheet co-update on Pass 458 watermark; .site-paper::before now hidden in print via one display: none rule grouped under the existing .site-paper print override.
 Pass 462 — owner verdict on Pass 458: KEEP watermark. Reads as stationery, not branding, on light desktop ≥60rem; restraint level inside the warmth envelope. No code change; current implementation preserved. Pass 458 visual-restraint test now closed.
+Pass 463 — owner verdict on Pass 460: KEEP per-route paper-stack variation. Difference reads atmospheric (paper-weight shift between routes), not pointable. Implementation preserved verbatim; no further alpha/blur/offset tuning, no expansion to other routes. Pass 460 visual-restraint test now closed.
 
