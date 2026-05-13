@@ -39,6 +39,41 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-13 — Pass 465 (Builder — owner follow-up correction)
+
+Owner flagged that Pass 464 didn't go far enough: the "Grampy"
+name itself still appears on the site. Read as a grandchild's
+nickname; in Stacey's voice talking about her father, the
+nickname doesn't fit. Dropped the name across all narrative
+uses; figure is now referenced by relationship only.
+
+Five edits across three files:
+
+- `src/pages/about.astro` code comment: "Grampy story" → "Family
+  origin story" (non-rendered metadata, kept for consistency).
+- `src/pages/about.astro` body: "Stacey's father, Grampy, was
+  the family's go-to person..." → "Stacey's father was the
+  family's go-to person...".
+- `src/pages/index.astro` body: "The name comes from Stacey's
+  father, Grampy. He'd sit at..." → "The name comes from
+  Stacey's father. He'd sit at...".
+- `src/pages/index.astro` body: "The best time to start was
+  when Grampy was sitting at the kitchen table." → "The best
+  time to start was when her father was sitting at the kitchen
+  table." ("her" antecedent — Stacey in the immediately
+  preceding paragraph).
+- `src/pages/services.astro` body: "the sessions feel like
+  Grampy's kitchen table" → "the sessions feel like Stacey's
+  father's kitchen table" (used the explicit "Stacey's" rather
+  than "her" because the closest preceding Stacey reference on
+  /services is the h1, not a paragraph).
+
+Verified by re-fetching /, /about, /services, /resources,
+/contact from the dev server: zero "Grampy" occurrences and
+zero "grandfather" occurrences on every route. Historical
+pass-log entries that reference "Grampy section" left intact —
+those describe past pass internals, not character canon.
+
 ### 2026-05-13 — Pass 464 (Builder — owner content correction)
 
 Owner-supplied content correction: Grampy is Stacey's father,
