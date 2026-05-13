@@ -39,6 +39,38 @@ sequential, not parallel.
 
 ## Standdown log
 
+### 2026-05-13 — Pass 464 (Builder — owner content correction)
+
+Owner-supplied content correction: Grampy is Stacey's father,
+not her grandfather. Three textual edits across two files:
+
+- `src/pages/about.astro` meta description: "Her grandfather" →
+  "Her father".
+- `src/pages/about.astro` body paragraph: "Stacey's grandfather,
+  Grampy, was the family's go-to person..." → "Stacey's father,
+  Grampy, ...".
+- `src/pages/index.astro` body: "The name comes from Stacey's
+  grandfather, Grampy." → "The name comes from Stacey's father,
+  Grampy."
+
+Name "Grampy" preserved verbatim — owner directed a relationship
+change only. Verified by re-fetching /, /about, /services from
+the dev server: zero "grandfather" occurrences in any rendered
+page; meta description correctly updated. The "Stacey grew up
+watching that" line at the end of the Grampy section now reads
+more naturally with father than it did with grandfather, but no
+change was made to that sentence.
+
+Historical pass-log entries that mention "Grampy section" /
+"Grampy-kitchen-table paragraph" left intact — those describe
+past pass internals, not character canon, so editing them would
+be revisionist.
+
+`docs/stacey-direction.md` (apex canon, structurally locked)
+unchanged because it does not mention Grampy at all — there is
+no contradiction to reconcile. Two evidence inputs still
+owner-gated: bookshelf KI-002, further Stacey content arrivals.
+
 ### 2026-05-12 — Pass 463 (Builder — owner verdict, docs only)
 
 Owner ran the Pass 460 visual-restraint test and returned KEEP.
