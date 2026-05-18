@@ -180,6 +180,7 @@ const canonicalUrl = Astro.site
           </a>
           <nav class="site-header__nav" aria-label="Primary">
             <a href="/about" class:list={["site-header__link", { "is-active": isActive("/about") }]} aria-current={isActive("/about") ? "page" : undefined}>About</a>
+            <a href="/philosophy" class:list={["site-header__link", { "is-active": isActive("/philosophy") }]} aria-current={isActive("/philosophy") ? "page" : undefined}>Philosophy</a>
             <a href="/services" class:list={["site-header__link", { "is-active": isActive("/services") }]} aria-current={isActive("/services") ? "page" : undefined}>Services</a>
             <a href="/resources" class:list={["site-header__link", { "is-active": isActive("/resources") }]} aria-current={isActive("/resources") ? "page" : undefined}>Resources</a>
             <a href="/contact" class:list={["site-header__link", { "is-active": isActive("/contact") }]} aria-current={isActive("/contact") ? "page" : undefined}>Contact</a>
@@ -195,6 +196,7 @@ const canonicalUrl = Astro.site
         <div class="site-footer__inner">
           <nav class="site-footer__nav" aria-label="Footer">
             <a href="/about" class="site-footer__link">About</a>
+            <a href="/philosophy" class="site-footer__link">Philosophy</a>
             <a href="/services" class="site-footer__link">Services</a>
             <a href="/resources" class="site-footer__link">Resources</a>
             <a href="/contact" class="site-footer__link">Contact</a>
