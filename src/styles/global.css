@@ -527,6 +527,61 @@ blockquote {
   max-width: var(--measure-prose);
 }
 
+/* Pull-quote — Pass 470. The only place on the site that visually
+   references an actual yellow legal pad: faint yellow paper tint
+   + a 2px brick-red left rule echoing the legal pad's margin line.
+   Used sparingly at natural section breaks to elevate Stacey's
+   philosophy phrasing, per Stacey's May 2026 punch list #4 + #5.
+   Restrained on purpose — the yellow is barely-there, the red is
+   muted brick rather than aggressive crayon. This is NOT a card
+   or callout box; it's a typographic gear-shift. */
+.pull-quote {
+  font-family: theme("fontFamily.serif");
+  font-style: italic;
+  font-size: 1.1875rem;
+  line-height: 1.5;
+  color: var(--c-ink);
+  background-color: rgba(255, 240, 160, 0.18);
+  border-left: 2px solid rgba(170, 80, 60, 0.55);
+  padding: 1.125rem 1.375rem;
+  margin: 2.25rem 0;
+  max-width: var(--measure-prose);
+}
+
+@media (min-width: 40rem) {
+  .pull-quote {
+    font-size: 1.3125rem;
+    padding: 1.5rem 1.75rem;
+    margin: 2.75rem 0;
+  }
+}
+
+/* Dark mode: the legal-pad yellow can't sit at full chroma against
+   matte black paper — it'd read as a glowing card. Drop to a
+   barely-perceptible warm tint, and brighten the margin rule
+   slightly to keep it readable. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .pull-quote {
+    background-color: rgba(255, 220, 130, 0.05);
+    border-left-color: rgba(210, 110, 90, 0.45);
+  }
+}
+
+:root[data-theme="dark"] .pull-quote {
+  background-color: rgba(255, 220, 130, 0.05);
+  border-left-color: rgba(210, 110, 90, 0.45);
+}
+
+/* Print: drop the yellow tint and the brick rule — they'd render
+   as faint gray noise on paper. Keep the italic emphasis. */
+@media print {
+  .pull-quote {
+    background-color: transparent;
+    border-left: 1px solid #888;
+    color: #000;
+  }
+}
+
 small,
 .caption {
   font-size: 0.9375rem;
