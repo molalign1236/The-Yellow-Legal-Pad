@@ -15,8 +15,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <p>
         Every working relationship starts with a Discovery Call &mdash;
-        free, about twenty minutes, no pressure to continue. You'll
-        come away knowing whether you want to.
+        free, twenty to thirty minutes, no pressure to continue.
+        You'll come away knowing whether you want to.
       </p>
 
       <p>
@@ -46,6 +46,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <article class="pathway" style="margin-top: 3rem;">
         <h3>Clarity Session</h3>
+        <p class="pathway__price">$197 &middot; up to ninety minutes</p>
         <p>
           One ninety-minute conversation. You bring whatever you can
           find &mdash; recent statements, a rough sense of income, the
@@ -66,6 +67,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <article class="pathway" style="margin-top: 3rem;">
         <h3>Fresh Start</h3>
+        <p class="pathway__price">$397 &middot; up to three hours total</p>
         <p>
           A Clarity Session plus a sixty-minute follow-up a few weeks
           later, to work through what came up between conversations.
@@ -84,6 +86,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <article class="pathway" style="margin-top: 3rem;">
         <h3>Complete Blueprint</h3>
+        <p class="pathway__price">$697 &middot; up to six hours total</p>
         <p>
           Four sessions over a couple of months for people sorting
           through more than one thing at once.
@@ -103,6 +106,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <article class="pathway" style="margin-top: 3rem;">
         <h3>Full Year</h3>
+        <p class="pathway__price">$1,697 &middot; up to ten hours total</p>
         <p>
           Quarterly check-ins across twelve months, for people who'd
           rather have Stacey as the person they check in with
@@ -123,15 +127,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       </article>
 
       <p style="margin-top: 3rem;">
-        What it costs depends on what you'd like to do. We talk
-        about it on the Discovery Call &mdash;
-        <a href="/contact">book one here</a> if you're not sure
-        which fits.
+        All fees are flat &mdash; paid once per package, nothing on
+        commission, no percentage of anything. If you're not sure
+        which fits, <a href="/contact">book a free Discovery Call</a>
+        and we'll work it out together.
       </p>
     </div>
   </section>
 
   <style>
+    /* Pathway price line — small italic caption sitting right under
+       the h3. Transparent pricing without a card-style price badge
+       (Pass 469 — punch-list #3). Same muted-ink color as the
+       other supporting type so it reads as info, not marketing. */
+    .pathway__price {
+      font-style: italic;
+      color: var(--c-ink-soft);
+      font-size: 1rem;
+      margin-top: -0.25rem;
+      margin-bottom: 0.875rem;
+      font-variant-numeric: tabular-nums;
+    }
+
     /* Pathway "what's included" lists — paper-aesthetic bullets in
        muted gold, indented modestly, no card grid. Scannable detail
        without the SaaS-feature-list energy. */
