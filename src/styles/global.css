@@ -295,11 +295,21 @@ body::before {
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   max-width: 100%;
+  /* Small inset on mobile so the warm desk + library + lamp gradient
+     are visible around the paper sheet. Without this, the paper
+     fills the viewport edge-to-edge below 40rem and covers the
+     fixed depth wash entirely — which read as 'plain text on a
+     plain background' on phones (Stacey's May 2026 punch list #2).
+     The 40rem+ media query overrides with larger margins. */
+  margin: 0.5rem;
   /* The paper sheet sits above the fixed depth wash (body::before)
      via position+z-index. */
   position: relative;
   z-index: 1;
-  box-shadow: inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha));
+  box-shadow:
+    inset 0 0 80px rgba(var(--c-shadow-rgb), var(--c-paper-edge-alpha)),
+    0 3px 10px rgba(0, 0, 0, 0.14),
+    0 10px 28px rgba(0, 0, 0, 0.10);
 }
 
 /* Skip link sits above everything including the fixed depth wash. */
