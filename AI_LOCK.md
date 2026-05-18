@@ -33,7 +33,23 @@ sequential, not parallel.
 
 ## Active claims
 
-*(empty)*
+### 2026-05-18 — Passes 474–476 (Builder — owner-led visual progress batch)
+
+Scope: three sequential passes on owner direction after a paste of
+the previous session's transcript + a screenshot review:
+
+- Pass 474: per-route reading rhythm. CSS-only nudge to
+  `src/styles/global.css` extending the Pass 471 pattern to
+  `body[data-route="philosophy"]` and `body[data-route="home"]`.
+- Pass 475: `src/pages/philosophy.astro` intro emphasis. Inline
+  `<em>` on "whether the life you're building matches the one you
+  actually want."
+- Pass 476: `src/pages/about.astro` content removal. Excise the
+  "Stacey made his lunch every night..." paragraph and the
+  "$28 salad" line (both landed in Pass 467; owner is pulling
+  them back). Clean-remove approach.
+
+Start: 2026-05-18, current chat session.
 
 ---
 

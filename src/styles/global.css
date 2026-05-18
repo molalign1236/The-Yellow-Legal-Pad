@@ -387,6 +387,28 @@ body::before {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
+
+  /* Pass 474 — extend the same reading-rhythm tightening to the
+     other two essay-shaped routes. /philosophy has the same
+     section + section-rule shape as /about (five inter-section
+     gaps after the new page landed in Pass 472), so it gets the
+     full pattern. Home has no .section-rule between sections
+     (three sections, two pure padding gaps) — owner flagged the
+     "More about Stacey" gap as too generous, and the same tighter
+     padding lands the home rhythm in the same envelope as the
+     other narrative routes without needing a rule override. */
+  body[data-route="philosophy"] .section {
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+  }
+  body[data-route="philosophy"] .section-rule {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  body[data-route="home"] .section {
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+  }
 }
 
 @media (min-width: 64rem) {
