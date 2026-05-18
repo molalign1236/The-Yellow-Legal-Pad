@@ -72,7 +72,11 @@ visible hole punches scattered around). The metaphor should be
 - Name: **The Yellow Legal Pad** (with "The"; casual prose may
   drop the article)
 - Colors: navy `#1F3864`, gold `#B8860B` (raw tokens in
-  `src/styles/global.css`)
+  `src/styles/global.css`). One restricted accent: a muted brick
+  red appears only as the `.pull-quote` left margin rule (Pass
+  470 — the yellow legal pad's actual margin line, the only
+  place that visual signature is rendered). Don't use brick red
+  anywhere else.
 - Tagline: "Financial coaching for life's biggest transitions"
 - Email: `stacey@theyellowlegalpad.co`
 - Domain: `https://theyellowlegalpad.co`
@@ -124,7 +128,8 @@ src/
   pages/
     index.astro           # Home
     about.astro           # About Stacey
-    services.astro        # Packages
+    philosophy.astro      # How Stacey thinks about money (Pass 472)
+    services.astro        # Packages + pricing
     resources.astro       # Guide list
     contact.astro         # Email + Discovery Call
     settings.astro        # Theme / font size / motion preferences
