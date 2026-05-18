@@ -371,6 +371,22 @@ body::before {
     --paper-drop-1-alpha: 0.15;
     --paper-drop-2-alpha: 0.19;
   }
+
+  /* Pass 471 — tighten /about section rhythm. Punch-list #6:
+     "the prose-first design should feel like reading a well-set
+     document, not a blog with generous padding." Default section
+     padding (5/4rem) plus the section-rule margins (2.5rem) was
+     adding up to ~14rem of vertical air between Stacey's father's
+     story and the philosophy section. Per-route tightening only —
+     other pages keep the default rhythm. */
+  body[data-route="about"] .section {
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
+  }
+  body[data-route="about"] .section-rule {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
 }
 
 @media (min-width: 64rem) {
