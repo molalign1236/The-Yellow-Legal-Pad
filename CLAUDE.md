@@ -3,7 +3,7 @@
 > Entry point for AI agents (Claude Code, Cursor, Codex, etc.)
 > working in this repo. Read this before making changes.
 
-**Last updated:** 2026-05-12 (post-Pass 445 audit/handoff)
+**Last updated:** 2026-05-18 (post-Pass 472 — Stacey's May 2026 punch list landed)
 
 ---
 
@@ -16,8 +16,8 @@ widowhood, late starts, caregiving, inheritance, new careers).
 
 - **Stack:** Astro 5 + Tailwind v3 + EB Garamond (Fontsource). Fully
   static output. View Transitions API via `<ClientRouter />`.
-- **Pages:** Home, About, Services, Resources, Contact, Settings,
-  404. Seven routes total.
+- **Pages:** Home, About, Philosophy, Services, Resources, Contact,
+  Settings, 404. Eight routes total.
 - **Hosting:** Vercel (per brief). No backend; no database.
 - **JS footprint:** The only JS is Astro's ClientRouter for SPA-style
   navigation + two inline scripts in `BaseLayout.astro` (a pre-paint

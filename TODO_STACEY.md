@@ -36,6 +36,15 @@ token, replace, commit.
 | Audit suite under `docs/` | contrast, keyboard, dependency, icon, deployment, cross-browser, touch-target, no-JS, reading-ecology, failure-state (Pass 429–443) |
 | `<noscript>` notice on `/settings` | `src/pages/settings.astro` (Pass 440) |
 | Anti-patterns reference for future contributors | `docs/anti-patterns.md` (Pass 444) |
+| Father vs grandfather (Stacey's May 2026 punch list #1) | All `src/pages/*.astro` (Pass 464–465) |
+| Mobile atmosphere visible (punch list #2) | `.site-paper` mobile margin in `src/styles/global.css` (Pass 466) |
+| Final About copy — "desk in the hallway and a yellow legal pad" | `src/pages/about.astro` (Pass 467); fabricated cousins/neighbors and "no brokerage" removed; silver Cross pen added |
+| Kitchen-table fabrication removed site-wide | `src/pages/index.astro`, `src/pages/services.astro` (Pass 468) |
+| Pricing visibility on Services (punch list #3) | $197 / $397 / $697 / $1,697 + durations on each pathway; `.pathway__price` style (Pass 469) |
+| Yellow legal pad visual reference (punch list #4) | `.pull-quote` element: faint yellow tint + brick-red left margin rule, in `src/styles/global.css` (Pass 470) |
+| Philosophy quotes elevated (punch list #5) | Pull-quote placements on `/index` ("financially underserved") and `/about` ("Permission matters / ziplock bag"); full essay on new `/philosophy` page (Pass 470, 472) |
+| Paragraph spacing tightened on /about (punch list #6) | Per-route nudge to `.section` + `.section-rule` in `src/styles/global.css` (Pass 471) |
+| Philosophy essay page | `src/pages/philosophy.astro` with five sections + corrected origin redux; nav + footer entries (Pass 472) |
 
 ---
 
@@ -56,26 +65,32 @@ When the URL lands, choose one of:
 Brief Q11 (embed vs button) is still open. Recommend a plain button
 opening Calendly in a new tab unless owner asks for embed.
 
-### Full About page copy
-The brief references `YellowLegalPad_AboutPage.docx` (approved). The
-site currently carries a tonal draft, not the final approved copy.
-When the docx contents arrive:
-- Replace the Grampy story, "What she believes", "Who Stacey works
-  with" with the approved text.
-- Apply pull-quote styling to the four pull quotes the brief
-  mentions.
-- Render the "Careful savers / Late starters" two-column callout as
-  side-by-side blocks (not a table).
+### ~~Full About page copy~~ — opening rewrite landed Pass 467
+~~The brief references `YellowLegalPad_AboutPage.docx` (approved).~~
+Pass 467 replaced the opening story section verbatim with Stacey's
+May 2026 "desk in the hallway and a yellow legal pad" copy
+(provided in the punch list as the canonical replacement). Two
+remaining sub-items are not yet covered by Stacey-sourced text and
+remain open:
+- "What she believes" — current body text is the Pass-394-era
+  philosophy paragraphs. May want a fresh Stacey-written version
+  once the /philosophy essay (Pass 472) has been sitting on the
+  site for a while and she sees what's worth re-stating on /about.
+- "Careful savers / Late starters" two-column callout — never
+  built; no source text from Stacey for it. Hold.
 
 ### Privacy Policy
 Brief Q13 recommends one. Needs real text from Stacey or a legal
 source — a placeholder is worse than nothing here. Hold until
 content lands.
 
-### Pricing visibility
-Brief Q2 is open. Current default: prices hidden; "talk about it on
-the Discovery Call." If Stacey wants prices public, add price tags
-to each `<article>` on `src/pages/services.astro`.
+### ~~Pricing visibility~~ — landed Pass 469
+~~Brief Q2 is open.~~ Confirmed in Stacey's May 2026 punch list:
+prices are PUBLIC ("transparent pricing is part of the 'no agenda,
+no surprises' philosophy"). Pass 469 added `.pathway__price` lines
+under each `<h3>` on `src/pages/services.astro`: Clarity $197,
+Fresh Start $397, Complete Blueprint $697, Full Year $1,697.
+Discovery Call confirmed free, 20–30 minutes.
 
 ### Real Resources PDFs
 `src/pages/resources.astro` lists Stacey's four real guide titles
