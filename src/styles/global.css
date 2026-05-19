@@ -478,6 +478,28 @@ body::before {
     rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(1.75rem - 1px),
     rgba(var(--c-rule-rgb), var(--c-rule-alpha)) 1.75rem
   );
+  /* Pass 488 — fade rules out over the bottom 9rem of the paper so
+     they don't crawl through the footer region. The footer's
+     padding + disclaimer + nav is roughly 6–10rem tall on either
+     breakpoint; 9rem catches the upper edge of the fade slightly
+     above the footer start so rules dissolve gracefully into the
+     unruled zone rather than hitting a hard edge. Owner direction:
+     "lines bunching up towards the bottom — areas like the page
+     footer don't need them or can use less of them." Mask gradient
+     instead of a paper-color backplate so there's no visible
+     rectangle around the footer (the Pass 484 mistake). */
+  mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - 9rem),
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black calc(100% - 9rem),
+    transparent 100%
+  );
 }
 
 .site-paper > header,
