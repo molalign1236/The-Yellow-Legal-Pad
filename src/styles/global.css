@@ -43,6 +43,7 @@
   --light-cta-highlight: 0.5;
   --light-cta-highlight-hover: 0.55;
   --light-rule-alpha: 0.05;
+  --light-rule-spacing: 2rem;
   --light-lamp-alpha: 0.42;
   /* Warm cream rim that hugs the curl edge — light catching the
      bend's outermost surface. Kept low alpha so it reads as a
@@ -76,6 +77,7 @@
   --dark-cta-highlight: 0.14;
   --dark-cta-highlight-hover: 0.18;
   --dark-rule-alpha: 0.06;
+  --dark-rule-spacing: 3rem;
   --dark-lamp-alpha: 0.22;
   /* Dark mode: rim is a much dimmer warm bronze. On matte black
      paper, any cream highlight would read as too bright. */
@@ -110,6 +112,7 @@
   --c-cta-border-color: transparent;
   --c-rule-alpha: var(--light-rule-alpha);
   --c-rule-rgb: 184, 134, 11;
+  --c-rule-spacing: var(--light-rule-spacing);
   --c-lamp-alpha: var(--light-lamp-alpha);
   --c-curl-rim: var(--light-curl-rim);
   --c-curl-rim-alpha: var(--light-curl-rim-alpha);
@@ -152,6 +155,7 @@
     --c-cta-border-color: var(--dark-gold-soft);
     --c-rule-alpha: var(--dark-rule-alpha);
     --c-rule-rgb: 201, 148, 31;
+    --c-rule-spacing: var(--dark-rule-spacing);
     --c-lamp-alpha: var(--dark-lamp-alpha);
     --c-curl-rim: var(--dark-curl-rim);
     --c-curl-rim-alpha: var(--dark-curl-rim-alpha);
@@ -194,6 +198,7 @@
   --c-cta-border-color: var(--dark-gold-soft);
   --c-rule-alpha: var(--dark-rule-alpha);
   --c-rule-rgb: 201, 148, 31;
+  --c-rule-spacing: var(--dark-rule-spacing);
   --c-lamp-alpha: var(--dark-lamp-alpha);
   --c-curl-rim: var(--dark-curl-rim);
   --c-curl-rim-alpha: var(--dark-curl-rim-alpha);
@@ -447,7 +452,10 @@ body::before {
    namesake to life on the surface while keeping minimalism.
 
    Repeating-linear-gradient draws faint horizontal rules at
-   ~3rem intervals across the paper, the way an actual yellow
+   ~2rem (light) / ~3rem (dark) intervals across the paper. Light
+   mode reads as a real ruled pad at 2rem; dark mode pulls sparser
+   because gold-on-matte-black carries higher apparent contrast
+   than gold-on-cream. The yellow
    legal pad has ruled lines. Paper fiber/grain is already
    carried by the fractal-noise background-image on .site-paper
    itself (line 295) — that's the "real paper quality" half.
@@ -474,9 +482,9 @@ body::before {
   background-image: repeating-linear-gradient(
     to bottom,
     transparent,
-    transparent calc(3rem - 1px),
-    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(3rem - 1px),
-    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) 3rem
+    transparent calc(var(--c-rule-spacing) - 1px),
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(var(--c-rule-spacing) - 1px),
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) var(--c-rule-spacing)
   );
   /* Pass 488 — fade rules out over the bottom 9rem of the paper so
      they don't crawl through the footer region. The footer's
