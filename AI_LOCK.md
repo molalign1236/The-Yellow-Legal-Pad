@@ -33,27 +33,164 @@ sequential, not parallel.
 
 ## Active claims
 
-### 2026-05-18 — Passes 474–476 (Builder — owner-led visual progress batch)
-
-Scope: three sequential passes on owner direction after a paste of
-the previous session's transcript + a screenshot review:
-
-- Pass 474: per-route reading rhythm. CSS-only nudge to
-  `src/styles/global.css` extending the Pass 471 pattern to
-  `body[data-route="philosophy"]` and `body[data-route="home"]`.
-- Pass 475: `src/pages/philosophy.astro` intro emphasis. Inline
-  `<em>` on "whether the life you're building matches the one you
-  actually want."
-- Pass 476: `src/pages/about.astro` content removal. Excise the
-  "Stacey made his lunch every night..." paragraph and the
-  "$28 salad" line (both landed in Pass 467; owner is pulling
-  them back). Clean-remove approach.
-
-Start: 2026-05-18, current chat session.
+*(empty)*
 
 ---
 
 ## Standdown log
+
+### 2026-05-19 — Passes 478–485 (Builder — alignment + Stacey punch list + design on paper)
+
+Multi-direction session that opened with owner direction "go
+through each section and make sure text and sections are properly
+aligned, as well as adding detail to mobile view so background
+design becomes a part of the paper itself such as ink. continue,"
+then later in the chat broadened into Stacey's May punch-list
+content edits and a redo of the on-paper design after the first
+attempt was rejected as bleed-through. Autopilot throughout.
+Eight passes shipped:
+
+- **Pass 478** (`7c1fd44`) — Column/section alignment. Audit found
+  `/about`, `/services`, and `/resources` each switched between
+  `.column` (38rem) and `.column-wide` (44rem) mid-page, which
+  produced a visible left-edge jump between sections because both
+  classes are centered. Standardized: essay pages (`/about`,
+  `/philosophy`, `/services`, `/resources`) all use `.column-wide`;
+  sparse pages (`/`, `/contact`, `/settings`, `/404`) all use
+  `.column`. Seven swaps across three files.
+  `p { max-width: var(--measure-prose) }` keeps reading measure
+  steady; the change only moves the section left-edge.
+
+- **Pass 479** (`9152baa`) — Home: open the audience aperture.
+  "She works mostly with women navigating a transition" →
+  "She works with people navigating a transition." Transition
+  list (retirement, divorce, widowhood, late start, caregiving,
+  fresh chapter) preserved verbatim. /about + /philosophy
+  continue to name women navigating transitions as the center of
+  gravity; the home opener is now the door, not the filter.
+
+- **Pass 480** (`b9c344a`) — About: surface Stacey's credentials
+  and split "The Inspiration." H1 → "About Stacey"; new
+  credentials paragraph (career managing HNW clients' complete
+  financial lives, ten years running three small businesses,
+  retiring at 56 like her father); new "The Inspiration" h2
+  introduces the father/desk story. Privacy posture preserved
+  (no headshot, no employer named, no exact father ages).
+
+- **Pass 481** (`321a6e4`) — Services: at-a-glance package
+  comparison table. Five rows (Price, Total time, Sessions,
+  Written follow-up, Email support) × four columns (Clarity
+  Session, Fresh Start, Complete Blueprint, Full Year). Paper-
+  aesthetic: thin gold rules, tabular-nums on prices, no card
+  chrome. Horizontal scroll on narrow widths rather than
+  collapsing into stacked cards. Full pathway descriptions below
+  unchanged.
+
+- **Pass 482** (`10d2e40`) — Resources: name the session-included
+  guide library up front. One-line intro: "Clients receive guides
+  relevant to their situation as part of their sessions. A few are
+  available here to browse." Sets expectation that public papers
+  are session companions, not lead-gen. Guide titles still plain
+  text; PDF anchors land when the assets do.
+
+- **Pass 483** (`413501b`) — Paper-grain bump + legal-pad rules on
+  the paper. Supersedes the mobile-ink experiment that was tried
+  earlier in the chat and reverted on owner direction ("I didn't
+  mean bleed in the sense of see-through. I want design on paper.
+  Bring it to life on the paper itself while still keeping
+  minimalism."). Two halves: (1) `.site-paper` fractal-noise
+  alpha 0.035 → 0.055 so the paper grain reads on close look;
+  (2) new `.site-paper::after` draws faint horizontal rules at
+  ~1.75rem intervals (rgba(rule-rgb, 0.07) light, 0.10 dark).
+  Z-index lift on header/main/footer to keep content above the
+  rules. Hidden in print and under `prefers-contrast: more`.
+  Site-wide, not mobile-only.
+
+- **Pass 484** (`ee4fdf7`) — Rules wrap around text. Owner
+  direction after Pass 483: "make the lines on the paper wrap
+  around the text on site since text is most important." Two
+  scopes: (a) text-block masks — `p:not(.pull-quote)`, `h1..h3`,
+  `dt/dd`, `li`, `th/td`, `.dek`, `.caption` get
+  `background-color: var(--c-paper)` so ruling pauses behind
+  text; (b) chrome region masks — `.site-paper > header` and
+  `.site-paper > footer` get paper backgrounds at container
+  level so rules don't crawl behind nav links or the disclaimer.
+  Main stays transparent so rules show through inter-block gaps.
+  `.pull-quote` excluded — its yellow-tinted background (Pass
+  470) already masks rules.
+
+- **Pass 485** (`d43b9e7`) — Letterpress YLP monogram. Faint "YLP"
+  in EB Garamond small caps in the lower-right of the paper
+  sheet. Scoped tight: ≥60rem + light-mode only (auto-dark
+  negation + explicit `data-theme="dark"` both hide it).
+  Decoration printed into the sheet, not a brand logo.
+
+Verification: `astro check` clean (0 errors, 0 warnings) after
+each CSS pass; dev server returned 200 on /, /services, /about,
+/resources throughout. All eight commits landed; `git log
+--oneline -8` shows the chain. KI-P02 stale-lock condition
+recurred at the start of the commit run — locks on `.git/`
+cleared cleanly via `rm` once diagnosed as zero-byte stale
+files with no holding process.
+
+Process note: chat opened with five uncommitted hunks left over
+from a prior chat (column-wide swaps, four route content edits,
+and the in-progress design-on-paper CSS work). The previous
+agent had been holding for owner preview confirmation. This
+session previewed → confirmed → committed the lot as eight
+separate passes via per-hunk staging on the route files and
+edit-revert-re-edit cycling on `global.css` to keep CSS-pass
+boundaries clean.
+
+### 2026-05-18 — Passes 474–477 (Builder — owner-led visual progress batch)
+
+Owner pasted the previous session's transcript and screenshots of
+the rendered site, then authorized autopilot to land additional
+visual fixes. Four passes shipped:
+
+- **Pass 474** (`ab2fa40`) — per-route reading-rhythm CSS extended
+  to `body[data-route="philosophy"]` and `body[data-route="home"]`
+  mirroring the Pass 471 /about pattern. Hit five inter-section
+  gaps on /philosophy + the home "More about Stacey" gap.
+  Combined inter-section gap: ~14rem → ~9rem on /philosophy,
+  ~9rem → ~6rem on /home.
+- **Pass 475** (`49f1f2d`) — inline `<em>` on "whether the life
+  you're building matches the one you actually want" in the
+  /philosophy intro paragraph. Owner-led; selected inline italic
+  over the lede / pull-quote alternatives so the page-level "one
+  pull-quote per page" restraint stayed intact.
+- **Pass 476** (`cbffd48`) — removed the "Stacey made his lunch
+  every night..." paragraph and the "$28 salad" single-line graf
+  from /about (both originally landed in Pass 467). Section now
+  ends on "The practice she runs today is carrying that forward."
+  Clean-remove approach worked — no connective knit needed; the
+  section reads better without the lunch vignette than with it.
+- **Pass 477** (`6e9a188`) — owner ran the site after Pass 474
+  landed and reported gaps still too generous on /philosophy.
+  Override block added at the end of the same `@media (min-width:
+  40rem)` rule: `.section` padding 3.5/2.5 → 2/1.5rem;
+  `.section-rule` margins 1.5 → 0.75rem. Combined gap drops to
+  ~5rem on /philosophy + /about and ~3.5rem on /home. Pass 471
+  and 474 declarations preserved in the file for history;
+  cascade order makes 477 win at compute.
+
+Verification ceiling: sandbox build hit KI-P01 (rollup native
+module `@rollup/rollup-linux-arm64-gnu` missing — the documented
+arm64 host vs arm64 sandbox mismatch). Grep-based verification
+held: `whether the life you` confirmed wrapped in `<em>` on
+philosophy.astro; zero hits for "salad / eleven year old /
+euchre / deli meat from the Friday errands" in about.astro after
+Pass 476; three `data-route="philosophy"` / `data-route="home"`
+blocks present in global.css after Pass 474; Pass 477 override
+block present at line 413. Host-side `npm run build` still owed.
+
+Mid-batch tooling note: between Pass 474 and Pass 477, stale
+`.git/HEAD.lock` + `.git/index.lock` from host-side git
+maintenance blocked sandbox commits for ~30s. KI-P02 territory;
+locks cleared on their own and Pass 475 + 476 had been committed
+by the host workflow during the window. Recording so the next
+agent doesn't mistake the host-attributed commits as untracked
+work.
 
 ### 2026-05-13 — Pass 465 (Builder — owner follow-up correction)
 
