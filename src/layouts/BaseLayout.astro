@@ -58,10 +58,16 @@ const canonicalUrl = Astro.site
           try {
             var s = JSON.parse(localStorage.getItem("ylp:settings") || "{}");
             var root = document.documentElement;
-            if (s.theme === "light" || s.theme === "dark") {
-              root.setAttribute("data-theme", s.theme);
-            } else {
+            // Default to light when no preference is saved. "Match my
+            // system" is opt-in (Pass 493): users explicitly choose to
+            // track their OS via /settings, otherwise the site reads
+            // as light-mode paper on first visit regardless of OS.
+            if (s.theme === "system") {
               root.removeAttribute("data-theme");
+            } else if (s.theme === "dark") {
+              root.setAttribute("data-theme", "dark");
+            } else {
+              root.setAttribute("data-theme", "light");
             }
             if (s.fontSize === "larger") {
               root.setAttribute("data-font-size", "larger");
