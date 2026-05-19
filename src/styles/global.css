@@ -447,7 +447,7 @@ body::before {
    namesake to life on the surface while keeping minimalism.
 
    Repeating-linear-gradient draws faint horizontal rules at
-   ~2rem intervals across the paper, the way an actual yellow
+   ~3rem intervals across the paper, the way an actual yellow
    legal pad has ruled lines. Paper fiber/grain is already
    carried by the fractal-noise background-image on .site-paper
    itself (line 295) — that's the "real paper quality" half.
@@ -474,9 +474,9 @@ body::before {
   background-image: repeating-linear-gradient(
     to bottom,
     transparent,
-    transparent calc(2rem - 1px),
-    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(2rem - 1px),
-    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) 2rem
+    transparent calc(3rem - 1px),
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(3rem - 1px),
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) 3rem
   );
   /* Pass 488 — fade rules out over the bottom 9rem of the paper so
      they don't crawl through the footer region. The footer's
