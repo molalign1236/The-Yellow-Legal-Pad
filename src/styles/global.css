@@ -517,6 +517,39 @@ body::before {
   }
 }
 
+/* Pass 484 — Rules pause where text sits. Text-containing
+   elements get a solid paper-color background so the ruling
+   behind them is masked, the way handwritten ink interrupts the
+   line on a real legal pad. Rules remain visible in margins,
+   section padding, lateral gutters, and inter-block gaps —
+   exactly the negative space where you'd see ruling on real
+   paper. Text reads cleanly because nothing crosses through it.
+   .pull-quote is excluded — its own yellow-tinted background
+   (Pass 470) already masks rules for that element.
+
+   Chrome regions (header, footer) get paper backgrounds at the
+   container level so rules don't crawl behind the nav links and
+   the disclaimer text — the writing zone is bounded by the
+   unruled top header and unruled footer, the way a real legal
+   pad's ruled section sits between an unruled top margin and an
+   unruled bottom. Main stays transparent so rules show through
+   inter-block gaps. */
+.site-paper :is(
+  p:not(.pull-quote),
+  h1, h2, h3,
+  dt, dd, li,
+  th, td,
+  .dek,
+  .caption
+) {
+  background-color: var(--c-paper);
+}
+
+.site-paper > header,
+.site-paper > footer {
+  background-color: var(--c-paper);
+}
+
 h1, h2, h3 {
   font-family: theme("fontFamily.serif");
   font-weight: 600;
