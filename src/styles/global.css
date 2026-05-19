@@ -20,8 +20,8 @@
   /* Light raw tokens */
   --light-desk: #e6dcc7;
   --light-desk-light: #ece2cc;
-  --light-paper: #f6f1e6;
-  --light-ink: #1F3864;
+  --light-paper: #f1ebde;
+  --light-ink: #172A4B;
   --light-ink-soft: #39487a;
   --light-ink-muted: #4a577b;
   --light-gold: #B8860B;
@@ -29,10 +29,10 @@
   --light-cta-bg: #e6dcc7;
   --light-cta-hover: #ddd1b5;
   --light-cta-active: #d2c4a4;
-  --light-shadow-rgb: 31, 56, 100;
+  --light-shadow-rgb: 23, 42, 75;
   --light-highlight-rgb: 255, 250, 235;
   --light-selection-bg: #d6a635;
-  --light-selection-text: #1F3864;
+  --light-selection-text: #172A4B;
   --light-paper-edge-alpha: 0.045;
   --light-cta-shadow-1: 0.16;
   --light-cta-shadow-2: 0.10;
@@ -42,7 +42,7 @@
   --light-cta-shadow-active-2: 0.14;
   --light-cta-highlight: 0.5;
   --light-cta-highlight-hover: 0.55;
-  --light-rule-alpha: 0.07;
+  --light-rule-alpha: 0.05;
   --light-lamp-alpha: 0.42;
   /* Warm cream rim that hugs the curl edge — light catching the
      bend's outermost surface. Kept low alpha so it reads as a
@@ -54,7 +54,7 @@
   --dark-desk: #050505;
   --dark-desk-light: #0e0e0e;
   --dark-paper: #161616;
-  --dark-ink: #dccfb0;
+  --dark-ink: #d4c6a4;
   --dark-ink-soft: #c4bda9;
   --dark-ink-muted: #918d7d;
   --dark-gold: #c9941f;
@@ -75,7 +75,7 @@
   --dark-cta-shadow-active-2: 0.52;
   --dark-cta-highlight: 0.14;
   --dark-cta-highlight-hover: 0.18;
-  --dark-rule-alpha: 0.13;
+  --dark-rule-alpha: 0.09;
   --dark-lamp-alpha: 0.22;
   /* Dark mode: rim is a much dimmer warm bronze. On matte black
      paper, any cream highlight would read as too bright. */
@@ -117,7 +117,7 @@
   /* Non-color tokens */
   --line-height-body: 1.65;
   --line-height-heading: 1.2;
-  --measure-prose: 38rem;
+  --measure-prose: 36rem;
   --paper-lift-x: 36px;
   --paper-lift-ry: -14deg;
 }
@@ -256,15 +256,15 @@ body::before {
     radial-gradient(
       ellipse 65vw 80vh at center 40vh,
       transparent 18%,
-      rgba(0, 0, 0, 0.08) 35%,
-      rgba(0, 0, 0, 0.22) 60%,
-      rgba(0, 0, 0, 0.32) 100%
+      rgba(0, 0, 0, 0.06) 35%,
+      rgba(0, 0, 0, 0.16) 60%,
+      rgba(0, 0, 0, 0.22) 100%
     ),
     radial-gradient(
       ellipse 100vw 100vh at center 50vh,
       transparent 40%,
-      rgba(0, 0, 0, 0.12) 70%,
-      rgba(0, 0, 0, 0.35) 100%
+      rgba(0, 0, 0, 0.08) 70%,
+      rgba(0, 0, 0, 0.26) 100%
     ),
     var(--bg-overlay, none),
     url("/library.svg");
@@ -280,7 +280,7 @@ body::before {
      at normal viewing distance but enough to quiet the shelves'
      vector-clean edges. The paper sheet is on body (above this
      pseudo) so it stays sharp. */
-  filter: blur(0.6px);
+  filter: blur(1.2px);
   will-change: background-position;
 }
 
@@ -292,7 +292,7 @@ body::before {
 
 .site-paper {
   background-color: var(--c-paper);
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.065 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   max-width: 100%;
   /* Small inset on mobile so the warm desk + library + lamp gradient
@@ -475,32 +475,8 @@ body::before {
     to bottom,
     transparent,
     transparent calc(1.75rem - 1px),
-    rgba(var(--c-rule-rgb), 0.07) calc(1.75rem - 1px),
-    rgba(var(--c-rule-rgb), 0.07) 1.75rem
-  );
-}
-
-/* Dark mode rules need a touch more presence — low-alpha gold on
-   matte black tends to disappear. Auto-dark path scoped with the
-   negation pattern Pass 446 established. */
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .site-paper::after {
-    background-image: repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent calc(1.75rem - 1px),
-      rgba(var(--c-rule-rgb), 0.10) calc(1.75rem - 1px),
-      rgba(var(--c-rule-rgb), 0.10) 1.75rem
-    );
-  }
-}
-:root[data-theme="dark"] .site-paper::after {
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent,
-    transparent calc(1.75rem - 1px),
-    rgba(var(--c-rule-rgb), 0.10) calc(1.75rem - 1px),
-    rgba(var(--c-rule-rgb), 0.10) 1.75rem
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(1.75rem - 1px),
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) 1.75rem
   );
 }
 
@@ -517,38 +493,25 @@ body::before {
   }
 }
 
-/* Pass 484 — Rules pause where text sits. Text-containing
-   elements get a solid paper-color background so the ruling
-   behind them is masked, the way handwritten ink interrupts the
-   line on a real legal pad. Rules remain visible in margins,
-   section padding, lateral gutters, and inter-block gaps —
-   exactly the negative space where you'd see ruling on real
-   paper. Text reads cleanly because nothing crosses through it.
-   .pull-quote is excluded — its own yellow-tinted background
-   (Pass 470) already masks rules for that element.
+/* Pass 487 — Pass 484's per-block paper backplates removed.
+   Owner direction: "Stop solving readability with translucent
+   paragraph backplates. The paper should remain visually
+   continuous behind the typography. Text should feel embedded
+   into the page, not isolated from it." The Pass 484 masks were
+   reading as digital highlight rectangles even though the fill
+   was paper-color — the contrast between (paper + rule) and
+   (paper-only) created perceptual boxes around text. Readability
+   is now handled by the global contrast tuning in this same pass
+   (deeper ink, slightly less bright paper, lower rule alpha,
+   softer library backdrop) instead. .pull-quote retains its own
+   yellow-tinted background (Pass 470) — that's a featured surface
+   treatment, not a backplate.
 
-   Chrome regions (header, footer) get paper backgrounds at the
-   container level so rules don't crawl behind the nav links and
-   the disclaimer text — the writing zone is bounded by the
-   unruled top header and unruled footer, the way a real legal
-   pad's ruled section sits between an unruled top margin and an
-   unruled bottom. Main stays transparent so rules show through
-   inter-block gaps. */
-.site-paper :is(
-  p:not(.pull-quote),
-  h1, h2, h3,
-  dt, dd, li,
-  th, td,
-  .dek,
-  .caption
-) {
-  background-color: var(--c-paper);
-}
-
-.site-paper > header,
-.site-paper > footer {
-  background-color: var(--c-paper);
-}
+   Chrome region backplates also removed for the same reason:
+   header/footer now show rules end-to-end, the way a real legal
+   pad does. The structural border-bottom on .site-header and
+   border-top on .site-footer continue to bound the writing zone
+   without needing a tint block. */
 
 /* Pass 485 — Letterpress monogram. A faint "YLP" in EB Garamond
    small caps in the lower-right of the paper, the kind of pre-
@@ -791,7 +754,7 @@ small,
 }
 
 .column-wide {
-  max-width: 44rem;
+  max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
 }
