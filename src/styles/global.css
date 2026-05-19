@@ -75,7 +75,7 @@
   --dark-cta-shadow-active-2: 0.52;
   --dark-cta-highlight: 0.14;
   --dark-cta-highlight-hover: 0.18;
-  --dark-rule-alpha: 0.09;
+  --dark-rule-alpha: 0.06;
   --dark-lamp-alpha: 0.22;
   /* Dark mode: rim is a much dimmer warm bronze. On matte black
      paper, any cream highlight would read as too bright. */
@@ -447,7 +447,7 @@ body::before {
    namesake to life on the surface while keeping minimalism.
 
    Repeating-linear-gradient draws faint horizontal rules at
-   ~1.75rem intervals across the paper, the way an actual yellow
+   ~2rem intervals across the paper, the way an actual yellow
    legal pad has ruled lines. Paper fiber/grain is already
    carried by the fractal-noise background-image on .site-paper
    itself (line 295) — that's the "real paper quality" half.
@@ -474,9 +474,9 @@ body::before {
   background-image: repeating-linear-gradient(
     to bottom,
     transparent,
-    transparent calc(1.75rem - 1px),
-    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(1.75rem - 1px),
-    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) 1.75rem
+    transparent calc(2rem - 1px),
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) calc(2rem - 1px),
+    rgba(var(--c-rule-rgb), var(--c-rule-alpha)) 2rem
   );
   /* Pass 488 — fade rules out over the bottom 9rem of the paper so
      they don't crawl through the footer region. The footer's
