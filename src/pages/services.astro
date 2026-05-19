@@ -44,6 +44,57 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         pick the right one in advance.
       </p>
 
+      <div class="package-table-wrap" role="region" aria-label="Package comparison">
+        <table class="package-table">
+          <thead>
+            <tr>
+              <th scope="col"><span class="visually-hidden">Feature</span></th>
+              <th scope="col">Clarity Session</th>
+              <th scope="col">Fresh Start</th>
+              <th scope="col">Complete Blueprint</th>
+              <th scope="col">Full Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Price</th>
+              <td>$197</td>
+              <td>$397</td>
+              <td>$697</td>
+              <td>$1,697</td>
+            </tr>
+            <tr>
+              <th scope="row">Total time</th>
+              <td>90 min</td>
+              <td>Up to 3 hrs</td>
+              <td>Up to 6 hrs</td>
+              <td>Up to 10 hrs</td>
+            </tr>
+            <tr>
+              <th scope="row">Sessions</th>
+              <td>One</td>
+              <td>One + follow-up</td>
+              <td>Four</td>
+              <td>Quarterly across 12 mo</td>
+            </tr>
+            <tr>
+              <th scope="row">Written follow-up</th>
+              <td>Summary in 48 hrs</td>
+              <td>Personalised roadmap</td>
+              <td>Plan + projection</td>
+              <td>Annual review</td>
+            </tr>
+            <tr>
+              <th scope="row">Email support</th>
+              <td>&mdash;</td>
+              <td>&mdash;</td>
+              <td>30 days</td>
+              <td>All year</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
       <article class="pathway" style="margin-top: 3rem;">
         <h3>Clarity Session</h3>
         <p class="pathway__price">$197 &middot; up to ninety minutes</p>
@@ -182,6 +233,80 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       border-radius: 999px;
       background-color: var(--c-gold);
       opacity: 0.5;
+    }
+
+    /* Package comparison table. Scannable at-a-glance view of the
+       four pathways, sitting above the longer pathway descriptions.
+       Paper-aesthetic: no card chrome, no zebra stripes — just thin
+       gold rules between rows, tabular numbers for prices, row
+       labels in muted italic. On narrow widths the wrapper allows
+       horizontal scroll rather than collapsing into stacked cards
+       (the long-form articles below already serve that purpose). */
+    .package-table-wrap {
+      margin: 2rem 0 0.5rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .package-table {
+      width: 100%;
+      max-width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9375rem;
+      font-variant-numeric: tabular-nums;
+    }
+    .package-table th,
+    .package-table td {
+      padding: 0.625rem 0.75rem;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(var(--c-rule-rgb), var(--c-rule-alpha));
+    }
+    .package-table thead th {
+      font-family: theme("fontFamily.serif");
+      font-weight: 600;
+      color: var(--c-ink);
+      font-size: 1rem;
+      border-bottom: 1px solid rgba(var(--c-rule-rgb), calc(var(--c-rule-alpha) * 2));
+      padding-bottom: 0.75rem;
+    }
+    .package-table tbody th {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--c-ink-soft);
+      white-space: nowrap;
+    }
+    .package-table tbody td {
+      color: var(--c-ink);
+    }
+    .package-table tbody tr:last-child th,
+    .package-table tbody tr:last-child td {
+      border-bottom: 0;
+    }
+    @media (max-width: 39.999rem) {
+      .package-table {
+        font-size: 0.875rem;
+      }
+      .package-table th,
+      .package-table td {
+        padding: 0.5rem 0.625rem;
+      }
+      .package-table thead th {
+        font-size: 0.9375rem;
+      }
+    }
+
+    /* Visually hide the empty top-left header cell while keeping it
+       in the accessibility tree for table semantics. */
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
     }
 
     /* Emotional-hesitation FAQ. <dl> for correct semantics; styled
