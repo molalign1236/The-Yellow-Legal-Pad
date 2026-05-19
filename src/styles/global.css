@@ -424,7 +424,9 @@ body::before {
      /home. Walk-back path is a one-value edit. */
   body[data-route="about"] .section,
   body[data-route="philosophy"] .section,
-  body[data-route="home"] .section {
+  body[data-route="home"] .section,
+  body[data-route="services"] .section,
+  body[data-route="resources"] .section {
     padding-top: 2rem;
     padding-bottom: 1.5rem;
   }
