@@ -409,6 +409,25 @@ body::before {
     padding-top: 3.5rem;
     padding-bottom: 2.5rem;
   }
+
+  /* Pass 477 — owner verdict on Pass 474: still too much air
+     between sections on the narrative routes. Overrides Pass
+     471 + Pass 474 with a tighter rhythm. The cascade lets the
+     earlier comments + values stay intact for history; later
+     rules win. Combined inter-section gap drops from ~9rem to
+     ~5rem on /about + /philosophy and from ~6rem to ~3.5rem on
+     /home. Walk-back path is a one-value edit. */
+  body[data-route="about"] .section,
+  body[data-route="philosophy"] .section,
+  body[data-route="home"] .section {
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+  }
+  body[data-route="about"] .section-rule,
+  body[data-route="philosophy"] .section-rule {
+    margin-top: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
 }
 
 @media (min-width: 64rem) {
