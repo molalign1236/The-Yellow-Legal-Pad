@@ -292,7 +292,7 @@ body::before {
 
 .site-paper {
   background-color: var(--c-paper);
-  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.055 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   max-width: 100%;
   /* Small inset on mobile so the warm desk + library + lamp gradient
@@ -437,34 +437,82 @@ body::before {
   }
 }
 
-/* Letterpress monogram — light-mode-only, desktop-only. A faint
-   "YLP" in EB Garamond small caps in the lower-right of the
-   paper, the kind of pre-printed mark a real practitioner might
-   have on their pad. Hidden in dark mode (would read as a
-   glowing logo on matte black) and below 60rem (would crowd
-   prose). */
-@media (min-width: 60rem) {
-  .site-paper::before {
-    content: "YLP";
-    position: absolute;
-    bottom: 1.25rem;
-    right: 1.75rem;
-    font-family: theme("fontFamily.serif");
-    font-variant-caps: all-small-caps;
-    font-size: 0.875rem;
-    letter-spacing: 0.2em;
-    color: rgba(var(--light-shadow-rgb), 0.05);
-    pointer-events: none;
-    user-select: none;
-  }
+/* Pass 483 — Legal-pad rules inked onto the paper itself.
+   Supersedes the mobile-ink experiment that was tried and
+   reverted in the same chat (owner direction: "design on paper,
+   not bleed through"), which
+   read as the paper being see-through to the library backdrop
+   rather than as design printed on the sheet. Owner direction:
+   "design on paper, not bleed through" — bring the practice's
+   namesake to life on the surface while keeping minimalism.
 
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) .site-paper::before {
-      display: none;
-    }
-  }
+   Repeating-linear-gradient draws faint horizontal rules at
+   ~1.75rem intervals across the paper, the way an actual yellow
+   legal pad has ruled lines. Paper fiber/grain is already
+   carried by the fractal-noise background-image on .site-paper
+   itself (line 295) — that's the "real paper quality" half.
+   The brick-red left margin from .pull-quote (Pass 470) remains
+   the only place that signature rule is rendered as a feature;
+   the body rules are subordinate.
 
-  :root[data-theme="dark"] .site-paper::before {
+   Applied site-wide (not just mobile). On desktop the library
+   backdrop continues to provide environment around the paper;
+   the rules add character to the sheet itself. Hidden in print
+   (the paper is white there, no decorative marks) and under
+   prefers-contrast: more (high-contrast users get a clean sheet).
+
+   Z-index handling: pseudo at 0, direct children of .site-paper
+   lifted to 1 so the rules sit below header/main/footer content
+   but above the paper's grain background. */
+.site-paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent calc(1.75rem - 1px),
+    rgba(var(--c-rule-rgb), 0.07) calc(1.75rem - 1px),
+    rgba(var(--c-rule-rgb), 0.07) 1.75rem
+  );
+}
+
+/* Dark mode rules need a touch more presence — low-alpha gold on
+   matte black tends to disappear. Auto-dark path scoped with the
+   negation pattern Pass 446 established. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .site-paper::after {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(1.75rem - 1px),
+      rgba(var(--c-rule-rgb), 0.10) calc(1.75rem - 1px),
+      rgba(var(--c-rule-rgb), 0.10) 1.75rem
+    );
+  }
+}
+:root[data-theme="dark"] .site-paper::after {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent calc(1.75rem - 1px),
+    rgba(var(--c-rule-rgb), 0.10) calc(1.75rem - 1px),
+    rgba(var(--c-rule-rgb), 0.10) 1.75rem
+  );
+}
+
+.site-paper > header,
+.site-paper > main,
+.site-paper > footer {
+  position: relative;
+  z-index: 1;
+}
+
+@media (prefers-contrast: more) {
+  .site-paper::after {
     display: none;
   }
 }
@@ -1146,6 +1194,13 @@ small,
   }
 
   .site-paper::before {
+    display: none;
+  }
+
+  /* Pass 483 — drop the legal-pad rules in print. The paper is
+     white in print and a ruled-line pattern would crowd the
+     printed page. */
+  .site-paper::after {
     display: none;
   }
 
